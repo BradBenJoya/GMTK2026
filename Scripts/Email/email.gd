@@ -6,8 +6,6 @@ class_name Email
 @export_group("Data")
 @export_enum("Normal") var type : String
 
-var is_hovering : bool = false
-
 func _ready():
 	pass
 

@@ -55,8 +55,6 @@ offset_right = 594.0
 offset_bottom = 20.0
 text = "DELETE"
 
-[node name="delete me when email manager is ready" type="Camera2D" parent="." unique_id=1658023212]
-
 [connection signal="pressed" from="Read" to="." method="_on_read_pressed"]
 [connection signal="pressed" from="Yes" to="." method="_on_yes_pressed"]
 [connection signal="pressed" from="No" to="." method="_on_no_pressed"]
