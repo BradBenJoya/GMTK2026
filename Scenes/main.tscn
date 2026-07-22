@@ -25,4 +25,10 @@ render_target_update_mode = 4
 [node name="Manager" parent="SubViewportContainer/SubViewport" unique_id=1747145403 instance=ExtResource("1_jjgbg")]
 position = Vector2(700, 300)
 
+[node name="Decoration" type="Polygon2D" parent="SubViewportContainer" unique_id=325516070]
+z_index = -1
+position = Vector2(700, 300)
+color = Color(0.3553136, 0.35531354, 0.35531357, 1)
+polygon = PackedVector2Array(-720, -320, 720, -320, 720, 420, -720, 420)
+
 [node name="Camera" type="Camera2D" parent="." unique_id=1316030113]

@@ -6,16 +6,14 @@ var email_scene : PackedScene = preload("res://Scenes/email.tscn")
 var emails : Array = []
 
 func _ready():
-	for i in 20:
+	for i in 50:
 		var new_email = email_scene.instantiate()
-		
+		new_email.position = Vector2(0, 350 - (i * 60))
 		new_email.type = "Normal"
 		
 		add_child(new_email)
 		emails.append(new_email)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var i : int = 0
 	for email in emails:
