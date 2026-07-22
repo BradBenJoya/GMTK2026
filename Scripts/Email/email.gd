@@ -1,3 +1,4 @@
+# start ByDesign
 extends Node2D
 class_name Email
 
@@ -5,6 +6,8 @@ class_name Email
 
 @export_group("Data")
 @export_enum("Normal", "Accept", "Decline", "Spam") var type : String
+
+var deleted : bool = false
 
 func _ready():
 	var random : float = randf_range(1, 100)
@@ -25,16 +28,22 @@ func _process(delta):
 	pass
 
 func delete_email(success : bool): # delete email after doing little animation
+	deleted = true # let the manager know that it shouldnt account for this email anymore
+	z_index = -1 # get it out of the way to avoid overlap
+	
+	var tween = create_tween().tween_property(self, "position", Vector2(-2000.0, position.y), 0.5)
+	
 	if success:
 		# add in code animation
 		# add score
-		
-		queue_free()
+		pass
 	else:
 		# add in code animation
 		# add penalty
-		
-		queue_free()
+		pass
+	
+	await tween.finished
+	queue_free()
 
 
 
@@ -50,3 +59,4 @@ func _on_no_pressed():
 
 func _on_delete_pressed():
 	delete_email(type == "Spam")
+# end ByDesign
