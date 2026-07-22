@@ -25,13 +25,16 @@ func _ready():
 		modulate = Color.LIGHT_SALMON
 
 func _process(delta):
-	pass
+	if abs(get_global_mouse_position().y - global_position.y) <= 25 and abs(get_global_mouse_position().x - global_position.x) < 600: # really long way to ask if the mouse is hovering over the email :P
+		scale += (Vector2.ONE * 1.05 - scale) / 5 # little popup animation when hovering
+	else:
+		scale += (Vector2.ONE - scale) / 5
 
 func delete_email(success : bool): # delete email after doing little animation
 	deleted = true # let the manager know that it shouldnt account for this email anymore
 	z_index = -1 # get it out of the way to avoid overlap
 	
-	var tween = create_tween().tween_property(self, "position", Vector2(-2000.0, position.y), 0.5)
+	var slide_out = create_tween().tween_property(self, "position", Vector2(-2000.0, position.y), 0.5)
 	
 	if success:
 		# add in code animation
@@ -42,7 +45,7 @@ func delete_email(success : bool): # delete email after doing little animation
 		# add penalty
 		pass
 	
-	await tween.finished
+	await slide_out.finished
 	queue_free()
 
 

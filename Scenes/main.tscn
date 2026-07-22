@@ -2,6 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bs2gvfj1541lm" path="res://Scenes/manager.tscn" id="1_jjgbg"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wj5hs"]
+size = Vector2(1600, 1000)
+
 [node name="Main" type="Node2D" unique_id=1107406334]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1630699192]
@@ -29,6 +32,10 @@ position = Vector2(700, 300)
 z_index = -1
 position = Vector2(700, 300)
 color = Color(0.3553136, 0.35531354, 0.35531357, 1)
-polygon = PackedVector2Array(-720, -320, 720, -320, 720, 420, -720, 420)
+polygon = PackedVector2Array(-750, -350, 750, -350, 750, 450, 120, 450, 120, 500, -120, 500, -120, 450, -750, 450)
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1316030113]
+
+[node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=318730638]
+z_index = -2
+texture = SubResource("PlaceholderTexture2D_wj5hs")
