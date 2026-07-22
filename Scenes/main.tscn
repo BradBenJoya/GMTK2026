@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bs8s04pdoy5r0"]
 
-[ext_resource type="PackedScene" uid="uid://bs2gvfj1541lm" path="res://manager.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bs2gvfj1541lm" path="res://Scenes/manager.tscn" id="1_jjgbg"]
 
 [node name="Main" type="Node2D" unique_id=1107406334]
 
@@ -22,7 +22,7 @@ handle_input_locally = false
 size = Vector2i(1400, 700)
 render_target_update_mode = 4
 
-[node name="Manager" parent="SubViewportContainer/SubViewport" unique_id=1747145403 instance=ExtResource("1_ig7tw")]
+[node name="Manager" parent="SubViewportContainer/SubViewport" unique_id=1747145403 instance=ExtResource("1_jjgbg")]
 position = Vector2(700, 300)
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1316030113]
