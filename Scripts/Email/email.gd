@@ -2,7 +2,7 @@
 extends Node2D
 class_name Email
 
-@export_group("Scripts")
+@export_group("Scripts") # sorry, shoulda probably split this up (?)
 
 @export_group("Data")
 @export_enum("Normal", "Accept", "Decline", "Spam") var type : String
@@ -31,21 +31,19 @@ func _process(delta):
 		scale += (Vector2.ONE - scale) / 5
 
 func delete_email(success : bool): # delete email after doing little animation
+	if success:
+		Global.main.score += 5 # remove score for mess ups
+	else:
+		Global.main.score -= 3 # remove score for mess ups
+		
+		var shake = create_tween().tween_method(func(i): position.x = sin(i) * 20.0, 0.0, -2 * PI, 0.3)
+		await shake.finished
+	
 	deleted = true # let the manager know that it shouldnt account for this email anymore
 	z_index = -1 # get it out of the way to avoid overlap
-	
 	var slide_out = create_tween().tween_property(self, "position", Vector2(-2000.0, position.y), 0.5)
-	
-	if success:
-		# add in code animation
-		# add score
-		pass
-	else:
-		# add in code animation
-		# add penalty
-		pass
-	
 	await slide_out.finished
+	
 	queue_free()
 
 
