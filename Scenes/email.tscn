@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://coeyr1oy5wo30"]
+
+[ext_resource type="Script" uid="uid://br585yyoeay5x" path="res://Scripts/Email/email.gd" id="1_hkori"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hkori"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="Email" type="Node2D" unique_id=1069154585]
+script = ExtResource("1_hkori")
+type = "Normal"
+
+[node name="TempBox" type="Polygon2D" parent="." unique_id=492917784]
+polygon = PackedVector2Array(-600, -25, 600, -25, 600, 25, -600, 25)
+
+[node name="DecorationArrow" type="Polygon2D" parent="TempBox" unique_id=550866355]
+position = Vector2(-576, 0)
+color = Color(1, 1, 0, 1)
+polygon = PackedVector2Array(-10, -10, 10, -10, 20, 0, 10, 10, -10, 10, 0, 0)
+
+[node name="FlavorText" type="Label" parent="." unique_id=1514963277]
+offset_left = -550.0
+offset_top = -23.0
+offset_right = 400.0
+offset_bottom = 23.0
+text = "Boss - Get to work or else I'm not paying you!"
+label_settings = SubResource("LabelSettings_hkori")
+vertical_alignment = 1
+
+[node name="Read" type="Button" parent="." unique_id=1751263076]
+offset_left = -595.0
+offset_top = -20.0
+offset_right = 427.0
+offset_bottom = 20.0
+text = "READ"
+
+[node name="Yes" type="Button" parent="." unique_id=1197127668]
+offset_left = 440.0
+offset_top = -20.0
+offset_right = 480.0
+offset_bottom = 20.0
+text = "YES
+"
+
+[node name="No" type="Button" parent="." unique_id=1435574022]
+offset_left = 485.0
+offset_top = -20.0
+offset_right = 525.0
+offset_bottom = 20.0
+text = "NO"
+
+[node name="Delete" type="Button" parent="." unique_id=378206852]
+offset_left = 529.0
+offset_top = -20.0
+offset_right = 594.0
+offset_bottom = 20.0
+text = "DELETE"
+
+[node name="delete me when email manager is ready" type="Camera2D" parent="." unique_id=1658023212]
+
+[connection signal="pressed" from="Read" to="." method="_on_read_pressed"]
+[connection signal="pressed" from="Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="No" to="." method="_on_no_pressed"]
+[connection signal="pressed" from="Delete" to="." method="_on_delete_pressed"]
