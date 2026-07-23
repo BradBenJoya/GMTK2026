@@ -101,7 +101,7 @@ func _ready():
 			upload.visible = true
 			
 			# start Psuedo Pakman
-			collapsed_email_text.text = flavor_text_controller.expanded_read_text[
+			collapsed_email_text.text = flavor_text_controller.expanded_upload_text[
 				randi_range(0, flavor_text_controller.expanded_upload_text.size() - 1)
 			]
 			# end Psuedo Pakman
