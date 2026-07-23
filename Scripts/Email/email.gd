@@ -19,6 +19,8 @@ class_name Email
 @export var spam : Node2D
 @export var upload : Node2D
 
+var open := false # temp for open email
+
 var deleted : bool = false
 
 var progress := 0.0 # only for upload emails
@@ -70,10 +72,11 @@ func _ready():
 		
 
 func _process(delta):
-	if abs(get_global_mouse_position().y - global_position.y) <= 25 and abs(get_global_mouse_position().x - global_position.x) < 600: # really long way to ask if the mouse is hovering over the email :P
-		scale += (Vector2.ONE * 1.05 - scale) / 5 # little popup animation when hovering
-	else:
-		scale += (Vector2.ONE - scale) / 5
+	if not open:
+		if abs(get_global_mouse_position().y - global_position.y) <= 25 and abs(get_global_mouse_position().x - global_position.x) < 600: # really long way to ask if the mouse is hovering over the email :P
+			scale += (Vector2.ONE * 1.05 - scale) / 5 # little popup animation when hovering
+		else:
+			scale += (Vector2.ONE - scale) / 5
 
 func delete_email(success : bool): # delete email after doing little animation
 	if success:
@@ -91,32 +94,56 @@ func delete_email(success : bool): # delete email after doing little animation
 	
 	queue_free()
 
+func open_email(type):
+	open = true
+	var scale_box_tween = create_tween().tween_property(self.get_node("EmailBubble"), "size", Vector2(1200, 600), 0.5) # make box fit screen
+	var scale_text_tween = create_tween().tween_property(flavor_text, "size", Vector2(550, 400), 0.5) # make text fit screen
+	var change_text_tween = create_tween().tween_property(flavor_text, "custom_maximum_size", Vector2(550, 400), 0.5) # stop ellipses from appearing
+	var move_tween = create_tween().tween_property(self, "position", Vector2(0, -250), 0.5) # move box to right position
+	var move_buttons_tween = create_tween().tween_property(self.get_node("Buttons"), "position", Vector2(0, 550), 0.5) # move buttons to bottom
+	z_index = 5
 
 
 # special interaction stuff
 func _on_read_pressed():
-	delete_email(type == "Normal")
+	if open:
+		delete_email(type == "Normal")
+	else:
+		open_email(type)
 
 func _on_yes_pressed():
-	delete_email(type == "Accept")
+	if open:
+		delete_email(type == "Accept")
+	else:
+		open_email(type)
 
 func _on_no_pressed():
-	delete_email(type == "Decline")
+	if open:
+		delete_email(type == "Decline")
+	else:
+		open_email(type)
 
 func _on_delete_pressed():
-	delete_email(type == "Spam")
+	if open:
+		delete_email(type == "Spam")
+	else:
+		open_email(type)
 
 func _on_upload_pressed(): # i think i did this one wrong (?)
-	while upload_button.button_pressed:
-		await get_tree().physics_frame
-		if [true, false].pick_random():
-			progress += 1
-		upload_bar.value = progress
-	
-	if progress >= 100:
-		delete_email(type == "Upload")
-	else:
-		if not upload_button.button_pressed:
-			progress = 0
+	if open:
+		while upload_button.button_pressed:
+			await get_tree().physics_frame
+			if [true, false].pick_random():
+				progress += 1
 			upload_bar.value = progress
+		
+		if progress >= 100:
+			delete_email(type == "Upload")
+		else:
+			if not upload_button.button_pressed:
+				progress = 0
+				upload_bar.value = progress
+	
+	else:
+		open_email(type)
 # end ByDesign
