@@ -1,7 +1,9 @@
 # start ByDesign
 extends Node2D
 
+# start Psuedo Pakman
 @export var email_scene : PackedScene
+# end Psuedo Pakman
 
 var emails : Array = []
 
