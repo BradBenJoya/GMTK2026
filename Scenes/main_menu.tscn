@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://pcq8rppqacnt"]
 
+[ext_resource type="Script" uid="uid://chs8m5gsmqpb8" path="res://Scripts/Main Menu/main_menu_play_button.gd" id="1_28flt"]
+
 [sub_resource type="BoxMesh" id="BoxMesh_cxl3x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxl3x"]
+size = Vector2(0.9999999, 1)
 
 [node name="MainMenu" type="Node2D" unique_id=371072770]
 
@@ -13,9 +18,18 @@ theme_override_font_sizes/font_size = 64
 text = "Overclocked"
 horizontal_alignment = 1
 
-[node name="TempPlayButton" type="MeshInstance2D" parent="." unique_id=1808779728]
+[node name="TempPlayButton" type="MeshInstance2D" parent="." unique_id=1808779728 node_paths=PackedStringArray("temp_play_button_mouse_detection")]
 scale = Vector2(300, 100)
 mesh = SubResource("BoxMesh_cxl3x")
+script = ExtResource("1_28flt")
+temp_play_button_mouse_detection = NodePath("TempPlayButtonMouseDetection")
+
+[node name="TempPlayButtonMouseDetection" type="StaticBody2D" parent="TempPlayButton" unique_id=158201651]
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TempPlayButton/TempPlayButtonMouseDetection" unique_id=1076198664]
+position = Vector2(7.311503e-08, -4.7683715e-09)
+shape = SubResource("RectangleShape2D_cxl3x")
 
 [node name="TempPlayButtonText" type="Label" parent="." unique_id=1153392300]
 offset_left = -65.0
