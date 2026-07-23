@@ -19,7 +19,7 @@ class_name Email
 @export var spam : Node2D
 @export var upload : Node2D
 
-var open := false # temp for open email
+var open := false # tells the manager that it shouldnt be accounted for
 
 var deleted : bool = false
 
@@ -79,6 +79,15 @@ func _process(delta):
 			scale += (Vector2.ONE - scale) / 5
 
 func delete_email(success : bool): # delete email after doing little animation
+	open = false
+	
+	var scale_box_tween = create_tween().tween_property(self.get_node("EmailBubble"), "size", Vector2(1200, 50), 0.2) # make box fit screen
+	var scale_text_tween = create_tween().tween_property(flavor_text, "size", Vector2(550, 24), 0.2) # make text fit screen
+	var change_text_tween = create_tween().tween_property(flavor_text, "custom_maximum_size", Vector2(550, 24), 0.2) # stop ellipses from appearing
+	var move_buttons_tween = create_tween().tween_property(self.get_node("Buttons"), "position", Vector2(0, 0), 0.2) # move buttons to bottom
+	
+	await move_buttons_tween.finished
+	
 	if success:
 		Global.main.score += 5 # remove score for mess ups
 	else:
@@ -96,11 +105,11 @@ func delete_email(success : bool): # delete email after doing little animation
 
 func open_email(type):
 	open = true
-	var scale_box_tween = create_tween().tween_property(self.get_node("EmailBubble"), "size", Vector2(1200, 600), 0.5) # make box fit screen
-	var scale_text_tween = create_tween().tween_property(flavor_text, "size", Vector2(550, 400), 0.5) # make text fit screen
-	var change_text_tween = create_tween().tween_property(flavor_text, "custom_maximum_size", Vector2(550, 400), 0.5) # stop ellipses from appearing
-	var move_tween = create_tween().tween_property(self, "position", Vector2(0, -250), 0.5) # move box to right position
-	var move_buttons_tween = create_tween().tween_property(self.get_node("Buttons"), "position", Vector2(0, 550), 0.5) # move buttons to bottom
+	var scale_box_tween = create_tween().tween_property(self.get_node("EmailBubble"), "size", Vector2(1200, 600), 0.2) # make box fit screen
+	var scale_text_tween = create_tween().tween_property(flavor_text, "size", Vector2(550, 400), 0.2) # make text fit screen
+	var change_text_tween = create_tween().tween_property(flavor_text, "custom_maximum_size", Vector2(550, 400), 0.2) # stop ellipses from appearing
+	var move_tween = create_tween().tween_property(self, "position", Vector2(0, -250), 0.2) # move box to right position
+	var move_buttons_tween = create_tween().tween_property(self.get_node("Buttons"), "position", Vector2(0, 550), 0.2) # move buttons to bottom
 	z_index = 5
 
 

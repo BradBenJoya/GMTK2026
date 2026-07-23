@@ -56,11 +56,11 @@ text_overrun_behavior = 5
 
 [node name="FlavorTextController" type="Node" parent="." unique_id=1545654535]
 script = ExtResource("2_hkori")
-read_text = Array[String](["Boss - Get back to work or else I'm not paying you!", "Bob - Party at my house tonight! We're gonna have pizza, soda, and Jenny is gonna be there. ;)", "Wife - I'm going to the store to get groceries. Do you need anything?", "User1426 - I filled out the form, but your company keeps charging me! If this keeps up I'm going to sue!", "Boss - Jill has called in sick and won't be here for the next couple of weeks.", "kid_jensen_11 - hi whats 4*3 my math teacher wont tell me"])
-decision_good_text = Array[String](["Boss - Want a raise? Your acceptional work has been recognised by the other staff.", "Discord - You got gifted 1 Month of Nitro! Do you accept?", "Colin - I handled the report. Should I send it to you so you can submit it?"])
-decision_bad_text = Array[String](["Susie - Should we fire Bob? He's been slacking off lately and we can't tell if he's actually in this company", "Wife - Take a day off! You could help around the house instead of being at work!", "H@CKER12345 - Hehehe! Give me money or you'll lose everything!"])
-spam_text = Array[String](["LOTTERY - You wun $10,,000!1!!!!11!!!", "Amasun - Plz confirm your acount we need to confrm it", "Itchy - Ur account got hackd. Please call 123-456-7890 to reset ur pasword."])
-upload_text = Array[String](["Jack - Could you send me the tax forms file? I think I deleted my copy.", "Boss - I need that report NOW! What's taking so long!"])
+read_text = Array[String](["Boss - Job Stuff \\n Get back to work or else I'm not paying you! Seriously.", "Bob - Party at my house tonight! \\n We're gonna have pizza, soda, and Jenny is gonna be there. ;)", "Wife - Store \\n I'm going to the store to get groceries. Do you need anything?", "User1426 - Glitch in your system \\n I filled out the form, but your company keeps charging me! If this keeps up I'm going to sue!", "Boss - Jill has called in sick and won't be here for the next couple of weeks.", "kid_jensen_11 - math \\n hi whats 4*3 my math teacher wont tell me"])
+decision_good_text = Array[String](["Boss - Job Stuff \\n Want a raise? Your acceptional work has been recognised by the other staff.", "Discord - Nitro! \\n You got gifted 1 Month of Nitro! Do you accept?", "Colin - Report Due \\n I handled the report. Should I send it to you so you can submit it?"])
+decision_bad_text = Array[String](["Susie - Bob \\n Should we fire Bob? He's been slacking off lately and we can't tell if he's actually in this company", "Wife - Be with me \\n Take a day off! You could help around the house instead of being at work!", "H@CKER12345 - YOU'VED BEEN HACKED \\n Hehehe! Give me money or you'll lose everything!"])
+spam_text = Array[String](["LOTTERY - $$$$ \\n You wun $10,,000!1!!!!11!!!", "Amasun - Pakage send problm \\n Plz confirm your acount we need to confrm it", "Itchy - you got hacker'ed smackered \\n Ur account got hackd. Please call 123-456-7890 to reset ur pasword."])
+upload_text = Array[String](["Jack - Little mistake \\n Could you send me the tax forms file? I think I deleted my copy.", "Boss - Report Due \\n I need that report NOW! What's taking so long!"])
 
 [node name="Buttons" type="Node2D" parent="." unique_id=148673893]
 
