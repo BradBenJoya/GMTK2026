@@ -1,7 +1,7 @@
 # start ByDesign
 extends Node2D
 
-var email_scene : PackedScene = preload("res://Scenes/email.tscn")
+@export var email_scene : PackedScene
 
 var emails : Array = []
 
