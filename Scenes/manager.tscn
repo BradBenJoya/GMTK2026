@@ -6,6 +6,6 @@
 script = ExtResource("1_453op")
 
 [node name="TempScreenBG" type="Polygon2D" parent="." unique_id=817006618]
-z_index = -1
+z_index = -5
 color = Color(0.70380783, 0.70380783, 0.70380783, 1)
 polygon = PackedVector2Array(-700, -300, 700, -300, 700, 400, -700, 400)
