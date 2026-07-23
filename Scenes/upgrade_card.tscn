@@ -9,6 +9,12 @@ offset_right = 200.0
 offset_bottom = 300.0
 vertical_icon_alignment = 0
 script = ExtResource("1_7wruj")
+faster_upload_name = "iRouter 18"
+faster_upload_description = "In a rare occourance, your boss has allowed you to upgrade your router. Decreaseas upload time."
+better_antivirus_name = "VirusFinder 12"
+better_antivirus_description = "By updating to the newest version of VirusFinder, your affects from virus will be reduced."
+spam_orgnizer_name = "Orgy Nizer"
+spam_orgnizer_description = "By using this new cutting edge extension you recive half of the spam mails."
 upgrade_name = NodePath("UpgradeName")
 upgrade_description = NodePath("UpgradeDescription")
 
