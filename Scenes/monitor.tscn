@@ -1,3 +1,52 @@
 [gd_scene format=3 uid="uid://mrrbgo76ffu2"]
 
+[ext_resource type="PackedScene" uid="uid://bs2gvfj1541lm" path="res://Scenes/manager.tscn" id="1_xs8qi"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_drif0"]
+size = Vector2(1600, 1000)
+
+[sub_resource type="LabelSettings" id="LabelSettings_orglu"]
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+
 [node name="Monitor" type="Node2D" unique_id=670736233]
+
+[node name="Monitor" type="SubViewportContainer" parent="." unique_id=1201581326]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -700.0
+offset_top = -300.0
+offset_right = 700.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Monitor" unique_id=1004449906]
+handle_input_locally = false
+size = Vector2i(1400, 700)
+render_target_update_mode = 4
+
+[node name="Manager" parent="Monitor/SubViewport" unique_id=1747145403 instance=ExtResource("1_xs8qi")]
+position = Vector2(700, 300)
+
+[node name="Decoration" type="Polygon2D" parent="Monitor" unique_id=1300003519]
+z_index = -1
+position = Vector2(700, 300)
+color = Color(0.3553136, 0.35531354, 0.35531357, 1)
+polygon = PackedVector2Array(-750, -350, 750, -350, 750, 450, 120, 450, 120, 500, -120, 500, -120, 450, -750, 450)
+
+[node name="TempBackgroundSprite" type="Sprite2D" parent="." unique_id=1972597120]
+z_index = -2
+texture = SubResource("PlaceholderTexture2D_drif0")
+
+[node name="TempScore" type="Label" parent="." unique_id=1793669310]
+z_index = 2
+offset_left = -690.0
+offset_top = -302.0
+offset_right = -650.0
+offset_bottom = -214.0
+text = "0"
+label_settings = SubResource("LabelSettings_orglu")
