@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://c3wn7idsxx3tv"]
 
-[ext_resource type="Script" uid="uid://7v1hndl55h5i" path="res://Scripts/Cards/card_base.gd" id="1_7wruj"]
+[ext_resource type="Script" uid="uid://7v1hndl55h5i" path="res://Scripts/Cards/upgrade.gd" id="1_7wruj"]
 
 [node name="UpgradeCard" type="Node2D" unique_id=56110472]
 
-[node name="UpgradeButton" type="Button" parent="." unique_id=1073497964]
+[node name="UpgradeButton" type="Button" parent="." unique_id=1073497964 node_paths=PackedStringArray("upgrade_name", "upgrade_description")]
 offset_right = 200.0
 offset_bottom = 300.0
 vertical_icon_alignment = 0
 script = ExtResource("1_7wruj")
+upgrade_name = NodePath("UpgradeName")
+upgrade_description = NodePath("UpgradeDescription")
 
 [node name="UpgradeName" type="Label" parent="UpgradeButton" unique_id=920796065]
 layout_mode = 0
@@ -17,3 +19,11 @@ offset_bottom = 62.0
 theme_override_font_sizes/font_size = 32
 text = "Upgrade"
 horizontal_alignment = 1
+
+[node name="UpgradeDescription" type="Label" parent="UpgradeButton" unique_id=1180273715]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 66.0
+offset_right = 41.0
+offset_bottom = 301.0
+scale = Vector2(4.92, 1)
