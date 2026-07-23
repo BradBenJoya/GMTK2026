@@ -2,37 +2,55 @@
 
 [ext_resource type="Script" uid="uid://br585yyoeay5x" path="res://Scripts/Email/email.gd" id="1_hkori"]
 [ext_resource type="Script" uid="uid://b8kf2iu72ye83" path="res://Scripts/Email/flavor_text_controller.gd" id="2_hkori"]
+[ext_resource type="Texture2D" uid="uid://co17lrl57lbes" path="res://Sprites/temp_9patch_rect.png" id="2_umtb6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hkori"]
 font_color = Color(0, 0, 0, 1)
 
 [node name="Email" type="Node2D" unique_id=1069154585 node_paths=PackedStringArray("flavor_text", "upload_button", "upload_bar", "flavor_text_controller", "read", "decision", "spam", "upload")]
 script = ExtResource("1_hkori")
-flavor_text = NodePath("FlavorText")
-upload_button = NodePath("UploadEmail/Upload")
-upload_bar = NodePath("UploadEmail/UploadProgress")
+flavor_text = NodePath("DecorationArrow/FlavorText")
+upload_button = NodePath("Buttons/UploadEmail/Upload")
+upload_bar = NodePath("Buttons/UploadEmail/UploadProgress")
 flavor_text_controller = NodePath("FlavorTextController")
 type = "Normal"
-read = NodePath("ReadEmail")
-decision = NodePath("DecisionEmail")
-spam = NodePath("SpamEmail")
-upload = NodePath("UploadEmail")
+read = NodePath("Buttons/ReadEmail")
+decision = NodePath("Buttons/DecisionEmail")
+spam = NodePath("Buttons/SpamEmail")
+upload = NodePath("Buttons/UploadEmail")
+
+[node name="EmailBubble" type="NinePatchRect" parent="." unique_id=1209836565]
+offset_left = -600.0
+offset_top = -25.0
+offset_right = 600.0
+offset_bottom = 25.0
+pivot_offset = Vector2(600, 25)
+texture = ExtResource("2_umtb6")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
 
 [node name="TempBox" type="Polygon2D" parent="." unique_id=492917784]
+visible = false
 polygon = PackedVector2Array(-600, -25, 600, -25, 600, 25, -600, 25)
 
-[node name="DecorationArrow" type="Polygon2D" parent="TempBox" unique_id=550866355]
+[node name="DecorationArrow" type="Polygon2D" parent="." unique_id=550866355]
 position = Vector2(-576, 0)
 color = Color(1, 1, 0, 1)
 polygon = PackedVector2Array(-10, -10, 10, -10, 20, 0, 10, 10, -10, 10, 0, 0)
 
-[node name="FlavorText" type="Label" parent="." unique_id=1514963277]
-offset_left = -550.0
-offset_top = -23.0
-offset_bottom = 23.0
+[node name="FlavorText" type="Label" parent="DecorationArrow" unique_id=1514963277]
+custom_minimum_size = Vector2(550, 24)
+custom_maximum_size = Vector2(550, 24)
+offset_left = 26.0
+offset_top = -12.0
+offset_right = 576.0
+offset_bottom = 12.0
 text = "Boss - Get to work or else I'm not paying you!"
 label_settings = SubResource("LabelSettings_hkori")
-vertical_alignment = 1
+autowrap_mode = 3
 clip_text = true
 text_overrun_behavior = 5
 
@@ -44,20 +62,22 @@ decision_bad_text = Array[String](["Susie - Should we fire Bob? He's been slacki
 spam_text = Array[String](["LOTTERY - You wun $10,,000!1!!!!11!!!", "Amasun - Plz confirm your acount we need to confrm it", "Itchy - Ur account got hackd. Please call 123-456-7890 to reset ur pasword."])
 upload_text = Array[String](["Jack - Could you send me the tax forms file? I think I deleted my copy.", "Boss - I need that report NOW! What's taking so long!"])
 
-[node name="ReadEmail" type="Node2D" parent="." unique_id=1948475731]
+[node name="Buttons" type="Node2D" parent="." unique_id=148673893]
+
+[node name="ReadEmail" type="Node2D" parent="Buttons" unique_id=1948475731]
 visible = false
 
-[node name="Read" type="Button" parent="ReadEmail" unique_id=384821030]
+[node name="Read" type="Button" parent="Buttons/ReadEmail" unique_id=384821030]
 offset_left = 8.0
 offset_top = -20.0
 offset_right = 594.0
 offset_bottom = 20.0
 text = "READ"
 
-[node name="DecisionEmail" type="Node2D" parent="." unique_id=1919109484]
+[node name="DecisionEmail" type="Node2D" parent="Buttons" unique_id=1919109484]
 visible = false
 
-[node name="Yes" type="Button" parent="DecisionEmail" unique_id=1197127668]
+[node name="Yes" type="Button" parent="Buttons/DecisionEmail" unique_id=1197127668]
 offset_left = 8.0
 offset_top = -20.0
 offset_right = 298.0
@@ -65,34 +85,34 @@ offset_bottom = 20.0
 text = "YES
 "
 
-[node name="No" type="Button" parent="DecisionEmail" unique_id=1435574022]
+[node name="No" type="Button" parent="Buttons/DecisionEmail" unique_id=1435574022]
 offset_left = 304.0
 offset_top = -20.0
 offset_right = 594.0
 offset_bottom = 20.0
 text = "NO"
 
-[node name="SpamEmail" type="Node2D" parent="." unique_id=1720158277]
+[node name="SpamEmail" type="Node2D" parent="Buttons" unique_id=1720158277]
 visible = false
 
-[node name="Read" type="Button" parent="SpamEmail" unique_id=1751263076]
+[node name="Read" type="Button" parent="Buttons/SpamEmail" unique_id=1751263076]
 offset_left = 8.0
 offset_top = -20.0
 offset_right = 427.0
 offset_bottom = 20.0
 text = "READ"
 
-[node name="Delete" type="Button" parent="SpamEmail" unique_id=378206852]
+[node name="Delete" type="Button" parent="Buttons/SpamEmail" unique_id=378206852]
 offset_left = 434.0
 offset_top = -20.0
 offset_right = 594.0
 offset_bottom = 20.0
 text = "DELETE"
 
-[node name="UploadEmail" type="Node2D" parent="." unique_id=1069469323]
+[node name="UploadEmail" type="Node2D" parent="Buttons" unique_id=1069469323]
 visible = false
 
-[node name="Upload" type="Button" parent="UploadEmail" unique_id=363020368]
+[node name="Upload" type="Button" parent="Buttons/UploadEmail" unique_id=363020368]
 offset_left = 8.0
 offset_top = -20.0
 offset_right = 594.0
@@ -100,7 +120,7 @@ offset_bottom = 20.0
 action_mode = 0
 text = "UPLOAD"
 
-[node name="UploadProgress" type="ProgressBar" parent="UploadEmail" unique_id=306935486]
+[node name="UploadProgress" type="ProgressBar" parent="Buttons/UploadEmail" unique_id=306935486]
 offset_left = 8.0
 offset_top = -20.0
 offset_right = 594.0
@@ -108,9 +128,9 @@ offset_bottom = 20.0
 mouse_filter = 2
 show_percentage = false
 
-[connection signal="pressed" from="ReadEmail/Read" to="." method="_on_read_pressed"]
-[connection signal="pressed" from="DecisionEmail/Yes" to="." method="_on_yes_pressed"]
-[connection signal="pressed" from="DecisionEmail/No" to="." method="_on_no_pressed"]
-[connection signal="pressed" from="SpamEmail/Read" to="." method="_on_read_pressed"]
-[connection signal="pressed" from="SpamEmail/Delete" to="." method="_on_delete_pressed"]
-[connection signal="pressed" from="UploadEmail/Upload" to="." method="_on_upload_pressed"]
+[connection signal="pressed" from="Buttons/ReadEmail/Read" to="." method="_on_read_pressed"]
+[connection signal="pressed" from="Buttons/DecisionEmail/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="Buttons/DecisionEmail/No" to="." method="_on_no_pressed"]
+[connection signal="pressed" from="Buttons/SpamEmail/Read" to="." method="_on_read_pressed"]
+[connection signal="pressed" from="Buttons/SpamEmail/Delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="Buttons/UploadEmail/Upload" to="." method="_on_upload_pressed"]
