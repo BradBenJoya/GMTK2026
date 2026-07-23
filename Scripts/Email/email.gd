@@ -30,8 +30,6 @@ var progress := 0.0 # only for upload emails
 var base_scale := Vector2.ONE # for easy scale animation tweaks
 
 func _ready():
-	print(position)
-	
 	base_scale = scale
 	all.visible = false
 	read.visible = false
@@ -103,8 +101,13 @@ func delete_email(success : bool): # delete email after doing little animation\
 	await move_buttons_tween.finished
 	
 	if not success: # shake if messed up
+		modulate = Color.LIGHT_CORAL
+		Global.manager.add_more_emails(3)
+		
 		var shake = create_tween().tween_method(func(i): position.x = sin(i) * 20.0, 0.0, -4 * PI, 0.3) # shake twice
 		await shake.finished
+	else:
+		modulate = Color.LIGHT_GREEN
 	
 	deleted = true # let the manager know that it shouldnt account for this email anymore
 	z_index = -1 # get it out of the way to avoid overlap

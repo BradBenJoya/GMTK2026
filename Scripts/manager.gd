@@ -24,7 +24,8 @@ func create_emails():
 		await get_tree().create_timer(randf_range(minimum_speed, maximum_speed)).timeout
 
 func _process(delta):
-	Global.main.total_emails = emails.size()
+	if Global.main: # failsafe
+		Global.main.total_emails = emails.size()
 	
 	var i : int = 0
 	for email in emails:
@@ -34,4 +35,13 @@ func _process(delta):
 			email.position += (Vector2(60, 950 - (i * 120)) - email.position) / 5 * (60 * delta) # smooth interpolation of emails (current += (target - current) / smoothness)
 		
 		i += 1
+
+func add_more_emails(amount : int):
+	for i in amount:
+		var new_email = email_scene.instantiate()
+		new_email.position = Vector2(60, -1000)#Vector2(60, 350 - (i * 60))
+		new_email.type = "Normal"
+		
+		add_child(new_email)
+		emails.append(new_email)
 # end ByDesign
