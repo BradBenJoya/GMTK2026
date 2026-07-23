@@ -29,7 +29,9 @@ func _ready():
 	# end Psuedo Pakman
 
 func _process(delta):
+	# start Psuedo Pakman
 	if (game_state == GameState.GAME):
+		# end Psuedo Pakman
 		$TempScore.text = str(score)
 	
 # start Psuedo Pakman
