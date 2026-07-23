@@ -10,7 +10,7 @@ shader_parameter/brightness = 1.6290000773775
 shader_parameter/contrast = 1.08
 shader_parameter/saturation = 1.1
 shader_parameter/gamma = 1.05
-shader_parameter/curvature = 0.1010000047975
+shader_parameter/curvature = 0.03600000171
 shader_parameter/corner_soften = 0.06
 shader_parameter/vignette = 0.6690000317775
 shader_parameter/scanline_strength = 0.414000019665
@@ -33,8 +33,8 @@ shader_parameter/glow_threshold = 0.65
 load_path = "res://.godot/imported/game_jam_2026_gmtk_02.png-e0011ca05c2398d5fc23aa4f800ab7d2.ctex"
 
 [sub_resource type="LabelSettings" id="LabelSettings_up85j"]
-font_size = 64
-font_color = Color(0, 0, 0, 1)
+font_size = 48
+font_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
 
 [node name="Main" type="Node2D" unique_id=1107406334]
 script = ExtResource("1_bo1nx")
@@ -72,15 +72,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Monitor/SubViewport" unique_id=1646399903]
-
-[node name="Decoration" type="Polygon2D" parent="Monitor" unique_id=325516070]
-visible = false
-z_index = -1
-position = Vector2(700, 300)
-color = Color(0.3553136, 0.35531354, 0.35531357, 1)
-polygon = PackedVector2Array(-750, -350, 750, -350, 750, 450, 120, 450, 120, 500, -120, 500, -120, 450, -750, 450)
-
 [node name="Camera" type="Camera2D" parent="." unique_id=1316030113]
 zoom = Vector2(0.335, 0.335)
 
@@ -89,10 +80,12 @@ z_index = 10
 texture = SubResource("CompressedTexture2D_jjvhh")
 
 [node name="TempScore" type="Label" parent="." unique_id=73309559]
-z_index = 2
-offset_left = -690.0
-offset_top = -302.0
-offset_right = -650.0
-offset_bottom = -214.0
-text = "0"
+z_index = 11
+offset_left = 785.00006
+offset_top = 308.00003
+offset_right = 936.00006
+offset_bottom = 445.00003
+rotation = 0.10649467
+text = "Emails
+0"
 label_settings = SubResource("LabelSettings_up85j")

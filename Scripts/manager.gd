@@ -24,6 +24,8 @@ func create_emails():
 		await get_tree().create_timer(randf_range(minimum_speed, maximum_speed)).timeout
 
 func _process(delta):
+	Global.main.total_emails = emails.size()
+	
 	var i : int = 0
 	for email in emails:
 		if email.deleted:

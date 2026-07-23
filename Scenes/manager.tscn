@@ -4,6 +4,8 @@
 
 [node name="Manager" type="Node2D" unique_id=1747145403]
 script = ExtResource("1_453op")
+minimum_speed = 0.5
+maximum_speed = 4.0
 
 [node name="TempScreenBG" type="Polygon2D" parent="." unique_id=817006618]
 z_index = -5
