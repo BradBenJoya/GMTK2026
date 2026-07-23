@@ -29,7 +29,7 @@ func _process(delta):
 		if email.deleted:
 			emails.erase(email)
 		elif not email.open:
-			email.position += (Vector2(60, 350 - (i * 60)) - email.position) / 5 * (60 * delta) # smooth interpolation of emails (current += (target - current) / smoothness)
+			email.position += (Vector2(60, 950 - (i * 120)) - email.position) / 5 * (60 * delta) # smooth interpolation of emails (current += (target - current) / smoothness)
 		
 		i += 1
 # end ByDesign
