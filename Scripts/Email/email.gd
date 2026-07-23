@@ -4,6 +4,9 @@ class_name Email
 
 @export_group("Nodes")
 @export var flavor_text : Label
+# start Psudeo Pakman
+@export var collapsed_email_text: Label
+# end Psuedo Pakman
 @export var upload_button : Button
 @export var upload_bar : ProgressBar
 
@@ -102,6 +105,9 @@ func open_email(type):
 	var move_tween = create_tween().tween_property(self, "position", Vector2(0, -250), 0.5) # move box to right position
 	var move_buttons_tween = create_tween().tween_property(self.get_node("Buttons"), "position", Vector2(0, 550), 0.5) # move buttons to bottom
 	z_index = 5
+	# start Psuedo Pakman
+	collapsed_email_text.visible = true
+	# end Psuedo Pakman
 
 
 # special interaction stuff

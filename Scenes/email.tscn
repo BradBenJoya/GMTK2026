@@ -7,9 +7,10 @@
 [sub_resource type="LabelSettings" id="LabelSettings_hkori"]
 font_color = Color(0, 0, 0, 1)
 
-[node name="Email" type="Node2D" unique_id=1069154585 node_paths=PackedStringArray("flavor_text", "upload_button", "upload_bar", "flavor_text_controller", "read", "decision", "spam", "upload")]
+[node name="Email" type="Node2D" unique_id=1069154585 node_paths=PackedStringArray("flavor_text", "collapsed_email_text", "upload_button", "upload_bar", "flavor_text_controller", "read", "decision", "spam", "upload")]
 script = ExtResource("1_hkori")
 flavor_text = NodePath("DecorationArrow/FlavorText")
+collapsed_email_text = NodePath("ExpandedEmailText")
 upload_button = NodePath("Buttons/UploadEmail/Upload")
 upload_bar = NodePath("Buttons/UploadEmail/UploadProgress")
 flavor_text_controller = NodePath("FlavorTextController")
@@ -127,6 +128,15 @@ offset_right = 594.0
 offset_bottom = 20.0
 mouse_filter = 2
 show_percentage = false
+
+[node name="ExpandedEmailText" type="Label" parent="." unique_id=1724158659]
+visible = false
+offset_left = -553.0
+offset_top = 62.0
+offset_right = 195.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "If i dont get the report by today i will personally black list you from all of the companies on earth!"
 
 [connection signal="pressed" from="Buttons/ReadEmail/Read" to="." method="_on_read_pressed"]
 [connection signal="pressed" from="Buttons/DecisionEmail/Yes" to="." method="_on_yes_pressed"]
