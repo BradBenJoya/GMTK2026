@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c3wn7idsxx3tv"]
+
+[ext_resource type="Script" uid="uid://7v1hndl55h5i" path="res://Scripts/Cards/card_base.gd" id="1_7wruj"]
+
+[node name="UpgradeCard" type="Node2D" unique_id=56110472]
+
+[node name="Button" type="Button" parent="." unique_id=1073497964]
+offset_right = 200.0
+offset_bottom = 300.0
+text = "Upgrade"
+script = ExtResource("1_7wruj")
