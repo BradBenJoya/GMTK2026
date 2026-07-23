@@ -45,5 +45,5 @@ func _ready() -> void:
 			upgrade_description.text = spam_orgnizer_description
 
 func pressed() -> void:
-	print(text)
+	pass
 # end Psuedo Pakman
