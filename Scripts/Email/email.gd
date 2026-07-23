@@ -32,7 +32,7 @@ func _ready():
 	var random : float = randf_range(1, 100)
 	if random < 70:
 		type = "Normal"
-		modulate = Color.WHITE
+		#modulate = Color.WHITE
 		flavor_text.text = flavor_text_controller.read_text.pick_random()
 		
 		read.visible = true
@@ -42,28 +42,28 @@ func _ready():
 		
 		if special_random == 1:
 			type = "Accept"
-			modulate = Color.LIGHT_GREEN
+			#modulate = Color.LIGHT_GREEN
 			flavor_text.text = flavor_text_controller.decision_good_text.pick_random()
 			
 			decision.visible = true
 		
 		elif special_random == 2:
 			type = "Decline"
-			modulate = Color.LIGHT_CORAL
+			#modulate = Color.LIGHT_CORAL
 			flavor_text.text = flavor_text_controller.decision_bad_text.pick_random()
 			
 			decision.visible = true
 		
 		elif special_random == 3:
 			type = "Spam"
-			modulate = Color.LIGHT_SALMON
+			#modulate = Color.LIGHT_SALMON
 			flavor_text.text = flavor_text_controller.spam_text.pick_random()
 			
 			spam.visible = true
 		
 		elif special_random == 4:
 			type = "Upload"
-			modulate = Color.LIGHT_SKY_BLUE
+			#modulate = Color.LIGHT_SKY_BLUE
 			flavor_text.text = flavor_text_controller.upload_text.pick_random()
 			
 			upload.visible = true

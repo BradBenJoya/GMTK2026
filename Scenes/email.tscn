@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://br585yyoeay5x" path="res://Scripts/Email/email.gd" id="1_hkori"]
 [ext_resource type="Script" uid="uid://b8kf2iu72ye83" path="res://Scripts/Email/flavor_text_controller.gd" id="2_hkori"]
+[ext_resource type="Texture2D" uid="uid://cqaxhbvxkba7f" path="res://Sprites/temp_message_box.png" id="3_umtb6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hkori"]
 font_color = Color(0, 0, 0, 1)
@@ -18,11 +19,21 @@ decision = NodePath("DecisionEmail")
 spam = NodePath("SpamEmail")
 upload = NodePath("UploadEmail")
 
-[node name="TempBox" type="Polygon2D" parent="." unique_id=492917784]
-polygon = PackedVector2Array(-600, -25, 600, -25, 600, 25, -600, 25)
+[node name="MessageBox" type="NinePatchRect" parent="." unique_id=1200732139]
+z_index = -1
+offset_left = -600.0
+offset_top = -25.0
+offset_right = 600.0
+offset_bottom = 25.0
+texture = ExtResource("3_umtb6")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
-[node name="DecorationArrow" type="Polygon2D" parent="TempBox" unique_id=550866355]
-position = Vector2(-576, 0)
+[node name="DecorationArrow" type="Polygon2D" parent="MessageBox" unique_id=550866355]
+position = Vector2(24, 25)
 color = Color(1, 1, 0, 1)
 polygon = PackedVector2Array(-10, -10, 10, -10, 20, 0, 10, 10, -10, 10, 0, 0)
 
