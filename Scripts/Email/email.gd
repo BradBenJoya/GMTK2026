@@ -4,14 +4,16 @@ class_name Email
 
 @export_group("Nodes")
 @export var flavor_text : Label
+
 # start Psudeo Pakman
 @export var collapsed_email_text: Label
 # end Psuedo Pakman
+
 @export var upload_button : Button
 @export var upload_bar : ProgressBar
 
 @export_group("Scripts") # sorry, shoulda probably split this up (?)
-@export var flavor_text_controller : Node
+@export var flavor_text_controller : FlavorTextController
 
 @export_group("Data")
 @export_enum("Normal", "Accept", "Decline", "Spam", "Upload", "Attachment") var type : String
@@ -42,6 +44,13 @@ func _ready():
 		
 		read.visible = true
 		
+		# start Psuedo Pakman
+		# Im assuming normal means read
+		collapsed_email_text.text = flavor_text_controller.expanded_read_text[
+			randi_range(0, flavor_text_controller.expanded_read_text.size() - 1)
+		]
+		# end Psuedo Pakman
+		
 	else:
 		var special_random : int = randi_range(1, 4)
 		
@@ -51,6 +60,12 @@ func _ready():
 			flavor_text.text = flavor_text_controller.decision_good_text.pick_random()
 			
 			decision.visible = true
+			
+			# start Psuedo Pakman
+			collapsed_email_text.text = flavor_text_controller.expanded_decision_good_text[
+				randi_range(0, flavor_text_controller.expanded_read_text.size() - 1)
+			]
+			# end Psuedo Pakman
 		
 		elif special_random == 2:
 			type = "Decline"
@@ -58,6 +73,12 @@ func _ready():
 			flavor_text.text = flavor_text_controller.decision_bad_text.pick_random()
 			
 			decision.visible = true
+			
+			# start Psuedo Pakman
+			collapsed_email_text.text = flavor_text_controller.expanded_decision_bad_text[
+				randi_range(0, flavor_text_controller.expanded_read_text.size() - 1)
+			]
+			# end Psuedo Pakman
 		
 		elif special_random == 3:
 			type = "Spam"
@@ -65,6 +86,12 @@ func _ready():
 			flavor_text.text = flavor_text_controller.spam_text.pick_random()
 			
 			spam.visible = true
+			
+			# start Psuedo Pakman
+			collapsed_email_text.text = flavor_text_controller.expanded_spam_text[
+				randi_range(0, flavor_text_controller.expanded_read_text.size() - 1)
+			]
+			# end Psuedo Pakman
 		
 		elif special_random == 4:
 			type = "Upload"
@@ -72,6 +99,12 @@ func _ready():
 			flavor_text.text = flavor_text_controller.upload_text.pick_random()
 			
 			upload.visible = true
+			
+			# start Psuedo Pakman
+			collapsed_email_text.text = flavor_text_controller.expanded_read_text[
+				randi_range(0, flavor_text_controller.expanded_upload_text.size() - 1)
+			]
+			# end Psuedo Pakman
 		
 
 func _process(delta):

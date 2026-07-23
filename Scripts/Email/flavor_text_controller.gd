@@ -1,4 +1,5 @@
 extends Node
+class_name FlavorTextController
 
 @export_group("Flavor Text - Read")
 @export var read_text : Array[String]
