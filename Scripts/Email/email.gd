@@ -2,27 +2,72 @@
 extends Node2D
 class_name Email
 
+@export_group("Nodes")
+@export var flavor_text : Label
+@export var upload_button : Button
+@export var upload_bar : ProgressBar
+
 @export_group("Scripts") # sorry, shoulda probably split this up (?)
+@export var flavor_text_controller : Node
 
 @export_group("Data")
-@export_enum("Normal", "Accept", "Decline", "Spam") var type : String
+@export_enum("Normal", "Accept", "Decline", "Spam", "Upload", "Attachment") var type : String
+
+@export_group("Button Groups") # the node2ds are used to hide and show different groups
+@export var read : Node2D
+@export var decision : Node2D
+@export var spam : Node2D
+@export var upload : Node2D
 
 var deleted : bool = false
 
+var progress := 0.0 # only for upload emails
+
 func _ready():
+	read.visible = false
+	decision.visible = false
+	spam.visible = false
+	upload.visible = false
+	
 	var random : float = randf_range(1, 100)
 	if random < 70:
 		type = "Normal"
 		modulate = Color.WHITE
-	elif random < 80:
-		type = "Accept"
-		modulate = Color.LIGHT_GREEN
-	elif random < 90:
-		type = "Decline"
-		modulate = Color.LIGHT_CORAL
-	elif random <= 100:
-		type = "Spam"
-		modulate = Color.LIGHT_SALMON
+		flavor_text.text = flavor_text_controller.read_text.pick_random()
+		
+		read.visible = true
+		
+	else:
+		var special_random : int = randi_range(1, 4)
+		
+		if special_random == 1:
+			type = "Accept"
+			modulate = Color.LIGHT_GREEN
+			flavor_text.text = flavor_text_controller.decision_good_text.pick_random()
+			
+			decision.visible = true
+		
+		elif special_random == 2:
+			type = "Decline"
+			modulate = Color.LIGHT_CORAL
+			flavor_text.text = flavor_text_controller.decision_bad_text.pick_random()
+			
+			decision.visible = true
+		
+		elif special_random == 3:
+			type = "Spam"
+			modulate = Color.LIGHT_SALMON
+			flavor_text.text = flavor_text_controller.spam_text.pick_random()
+			
+			spam.visible = true
+		
+		elif special_random == 4:
+			type = "Upload"
+			modulate = Color.LIGHT_SKY_BLUE
+			flavor_text.text = flavor_text_controller.upload_text.pick_random()
+			
+			upload.visible = true
+		
 
 func _process(delta):
 	if abs(get_global_mouse_position().y - global_position.y) <= 25 and abs(get_global_mouse_position().x - global_position.x) < 600: # really long way to ask if the mouse is hovering over the email :P
@@ -60,4 +105,18 @@ func _on_no_pressed():
 
 func _on_delete_pressed():
 	delete_email(type == "Spam")
+
+func _on_upload_pressed(): # i think i did this one wrong (?)
+	while upload_button.button_pressed:
+		await get_tree().physics_frame
+		if [true, false].pick_random():
+			progress += 1
+		upload_bar.value = progress
+	
+	if progress >= 100:
+		delete_email(type == "Upload")
+	else:
+		if not upload_button.button_pressed:
+			progress = 0
+			upload_bar.value = progress
 # end ByDesign
