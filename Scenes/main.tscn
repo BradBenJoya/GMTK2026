@@ -111,9 +111,9 @@ offset_bottom = 1151.0
 [node name="Time" type="Label" parent="Monitor/SubViewport/Manager/BottomBar" unique_id=1809968647]
 z_index = 11
 layout_mode = 0
-offset_left = 1172.0
+offset_left = 1019.0
 offset_top = 26.00003
-offset_right = 1343.0
+offset_right = 1364.0
 offset_bottom = 163.00003
 text = "12:00"
 label_settings = SubResource("LabelSettings_up85j")
@@ -140,6 +140,7 @@ texture = ExtResource("5_kry3j")
 [node name="UpgradeBox" type="ColorRect" parent="." unique_id=1430341454]
 unique_name_in_owner = true
 process_mode = 3
+visible = false
 z_index = 10
 anchors_preset = 8
 anchor_left = 0.5

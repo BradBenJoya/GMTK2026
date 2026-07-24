@@ -8,6 +8,12 @@ extends Node2D
 
 @export var upgrade_list: Array[UpgradeItem]
 
+@export_group("Stats")
+@export var upload_speed: float = 100
+@export var virus_chance: float = 100
+@export var spam_chance: float = 100
+@export var email_speed: float = 100
+
 enum GameState {
 	MAIN_MENU,
 	GAME,
@@ -62,14 +68,15 @@ func _process(delta):
 	if floor(clock + 9) > 12: 
 		time.text = str(int(fmod(floor(clock + 9), 12))) + ":%02.f" % floor(fmod(clock + 9, 1)*60) + " PM"
 	elif fmod(floor(clock + 9), 12) == 0:
-		time.text = "12 PM"
+		time.text = "12" + ":%02.f" % floor(fmod(clock + 9, 1)*60) + " PM"
 	else:
 		time.text = str(int(fmod(floor(clock + 9), 12))) + ":%02.f" % floor(fmod(clock + 9, 1)*60) + " AM"
 	
-	if fmod(snappedf(clock, 0.01), 1) == 0 and clock >= 1:
-		choose_upgrade()
-		game_state = GameState.PAUSE_MENU
-		%UpgradeBox.show()
+	#if fmod(snappedf(clock, 0.01), 1) == 0 and clock >= 1:
+		#print(clock)
+		#choose_upgrade()
+		#game_state = GameState.PAUSE_MENU
+		#%UpgradeBox.show()
 
 #end ampbeetle
 
@@ -106,22 +113,38 @@ func choose_upgrade():
 		#print("picking random upgrade:" + str(random_upgrade))
 		#child.effects = random_upgrade.effects
 		#print(child.effects)
-	pass
 
 func _on_upgrade_selected(source: BaseButton) -> void:
 	for button in %UpgradeChoice.get_children():
 		if button != source:
 			button.button_pressed = false
-	pass # Replace with function body.
-
-#end ampbeetle
-
 
 func _on_accept_button_pressed() -> void:
 	print("pressed accept")
 	
 	for button in %UpgradeChoice.get_children():
 		if button.button_pressed == true:
+			button.button_pressed = false
 			%UpgradeBox.hide()
+			
+			for effect in button.effects:
+				match effect:
+					UpgradeType.UPLOAD_SPEED:
+						upload_speed += button.effects[effect]
+					UpgradeType.VIRUS_CHANCE:
+						virus_chance += button.effects[effect]
+					UpgradeType.SPAM_CHANCE:
+						spam_chance += button.effects[effect]
+					UpgradeType.EMAIL_SPEED:
+						email_speed += button.effects[effect]
+			print("upload: " + str(upload_speed))
+			print("virus: " + str(virus_chance))
+			print("spam: " + str(spam_chance))
+			print("email: " + str(email_speed))
+			await get_tree().create_timer(0.5).timeout
 			game_state = GameState.GAME
 		button.button_pressed = false
+
+#add something to disable accept unless an upgrade is selected
+
+#end ampbeetle
