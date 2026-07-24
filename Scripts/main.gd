@@ -21,7 +21,7 @@ var game_state: GameState = GameState.MAIN_MENU:
 var current_scene_instance: Node = null
 # end Psuedo Pakman
 
-var score : int = 0
+var total_emails : int = 0
 
 func _ready():
 	# start Psuedo Pakman
@@ -30,10 +30,7 @@ func _ready():
 	# end Psuedo Pakman
 	
 func _process(delta):
-	# start Psuedo Pakman
-	if (game_state == GameState.GAME):
-		# end Psuedo Pakman
-		current_scene_instance.get_node("TempScore").text = str(score)
+	$TempScore.text = "Emails \n" + str(total_emails)
 
 # start Psuedo Pakman
 func _on_state_changed(new_state: GameState) -> void:
