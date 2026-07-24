@@ -1,0 +1,8 @@
+res://Scenes/email.tscn
+res://Shaders/crt.gdshader
+res://Scripts/Email/email.gd
+res://Scripts/Manager/manager.gd
+res://Scenes/manager.tscn
+res://Scenes/main.tscn
+res://Scenes/main_menu.tscn
+res://Scripts/main.gd

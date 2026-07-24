@@ -1,0 +1,34 @@
+78098b89c88a74ebe8c20117b8754620
+::res://::1784865258
+README.md::TextFile::-1::1784745306::0::1::::<><><>0<>0<><>::
+style_guide.md::TextFile::-1::1784751620::0::1::::<><><>0<>0<><>::
+::res://Fonts/::1784865010
+Monofrik Demo.ttf::FontFile::8151847038327742896::1784865010::1784865010::1::::<><><>0<>0<>71042472fb6fd148c7341f97974367e5<>res://.godot/imported/Monofrik Demo.ttf-fe9e446521efa8b3fc84d4fc2ed91a40.fontdata::
+::res://Scenes/::1784865010
+email.tscn::PackedScene::5765231644023460633::1784865137::0::1::::<><><>0<>0<><>::uid://br585yyoeay5x::::res://Scripts/Email/email.gd<>uid://b8kf2iu72ye83::::res://Scripts/Email/flavor_text_controller.gd<>uid://co17lrl57lbes::::res://Sprites/temp_9patch_rect.png<>uid://doe2y2s8d1bw7::::res://Fonts/Monofrik Demo.ttf
+main.tscn::PackedScene::3719083432284289299::1784865010::0::1::::<><><>0<>0<><>::uid://edk5gupnbidp::::res://Scripts/main.gd<>uid://bs2gvfj1541lm::::res://Scenes/manager.tscn<>uid://chc3tjbnn10ur::::res://Scripts/global.gd<>uid://d33krf4ystq50::::res://Shaders/crt.gdshader<>uid://doe2y2s8d1bw7::::res://Fonts/Monofrik Demo.ttf<>uid://ddh8dmaeup3fr::::res://Sprites/game_jam_2026_gmtk_04.png
+main_menu.tscn::PackedScene::1057992729933664501::1784864994::0::1::::<><><>0<>0<><>::uid://chs8m5gsmqpb8::::res://Scripts/Main Menu/main_menu_play_button.gd
+manager.tscn::PackedScene::3705960149908471346::1784864994::0::1::::<><><>0<>0<><>::uid://cqonvry43p16h::::res://Scripts/Manager/manager.gd<>uid://coeyr1oy5wo30::::res://Scenes/email.tscn
+monitor.tscn::PackedScene::878394858409265263::1784864994::0::1::::<><><>0<>0<><>::uid://bs2gvfj1541lm::::res://Scenes/manager.tscn
+upgrade_card.tscn::PackedScene::6784392191822069427::1784864994::0::1::::<><><>0<>0<><>::uid://7v1hndl55h5i::::res://Scripts/Cards/upgrade.gd
+::res://Scripts/::1784865010
+global.gd::GDScript::5270026509106242461::1784864324::0::1::::<>Node<><>0<>0<><>::
+main.gd::GDScript::287609598294261965::1784865216::0::1::::<>Node2D<><>0<>0<><>::
+::res://Scripts/Cards/::1784864994
+upgrade.gd::GDScript::2290986759600587024::1784864994::0::1::::BaseUpgrade<>Button<><>0<>0<><>::
+::res://Scripts/Email/::1784865010
+email.gd::GDScript::3643620891017064563::1784865190::0::1::::Email<>Control<><>0<>0<><>::
+flavor_text_controller.gd::GDScript::4723648555261885182::1784864994::0::1::::FlavorTextController<>Node<><>0<>0<><>::
+::res://Scripts/Main Menu/::1784864994
+main_menu_play_button.gd::GDScript::5303348748517507583::1784864994::0::1::::PlayButton<>Button<><>0<>0<><>::
+::res://Scripts/Manager/::1784865010
+manager.gd::GDScript::5925591908057447781::1784865010::0::1::::<>Node2D<><>0<>0<><>::
+::res://Shaders/::1784864050
+crt.gdshader::Shader::9182990087013280845::1784864050::0::1::::<><><>0<>0<><>::
+::res://Sprites/::1784865010
+game_jam_2026_gmtk_02.png::CompressedTexture2D::7302299649793255305::1784864050::1784864050::1::::<><><>0<>0<>7c47af0c64780fb6fef84dec6f437888<>res://.godot/imported/game_jam_2026_gmtk_02.png-e0011ca05c2398d5fc23aa4f800ab7d2.ctex::
+game_jam_2026_gmtk_03.png::CompressedTexture2D::7481503534557641354::1784865010::1784865010::1::::<><><>0<>0<>395cb82881c9ea90db483cdb8bf2e010<>res://.godot/imported/game_jam_2026_gmtk_03.png-e04367070b58530222e27b122b9b8f6b.ctex::
+game_jam_2026_gmtk_04.png::CompressedTexture2D::7386288874904119011::1784865010::1784865010::1::::<><><>0<>0<>ffa60e29389e26c61ddcff7ae930b985<>res://.godot/imported/game_jam_2026_gmtk_04.png-cbea90e466c4dfe5721a1a33361996b1.ctex::
+icon.svg::CompressedTexture2D::7656091408952303338::1784864050::1784864050::1::::<><><>0<>0<>ec541fdb913887b6f3c7f1c39547dd61<>res://.godot/imported/icon.svg-b67cfb692a937e61d2bda8561d9e8db7.ctex::
+temp_9patch_rect.png::CompressedTexture2D::5811122498721750518::1784864050::1784864050::1::::<><><>0<>0<>894812300acd4942e28cf8eec256e77e<>res://.godot/imported/temp_9patch_rect.png-1f0f3697391eeb79acc3d6228c963c07.ctex::
+temp_message_box.png::CompressedTexture2D::5897271943008344589::1784864050::1784864050::1::::<><><>0<>0<>cb2266e00e4c759bf76c6b784fa73841<>res://.godot/imported/temp_message_box.png-e3a7c44b2f8600153f162d374c472e97.ctex::
