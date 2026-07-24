@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UpgradeItem" format=3 uid="uid://bxeglhgrv4qrr"]
+
+[ext_resource type="Script" uid="uid://coryhq6i1gdc0" path="res://Scripts/upgrade_item.gd" id="1_t54hl"]
+
+[resource]
+script = ExtResource("1_t54hl")
+name = "Router"
+desc = "Upgrade internet for higher speed!"
+effects = Dictionary[int, float]({
+0: 10.0
+})
+metadata/_custom_type_script = "uid://coryhq6i1gdc0"

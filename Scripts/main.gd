@@ -27,6 +27,7 @@ var total_emails : int = 0
 
 @export var counter : Label
 @export var time : Label
+var tween_time
 
 @export var day_duration : float = 300.0
 
@@ -36,7 +37,7 @@ func _ready():
 	_on_state_changed(game_state)
 	# end Psuedo Pakman
 	
-	var tween_time = create_tween().tween_property(self, "clock", 8.0, 300.0)
+	tween_time = create_tween().tween_property(self, "clock", 8.0, 20.0)
 	await tween_time.finished
 	print("end game")
 
@@ -44,18 +45,29 @@ func _process(delta):
 	counter.text = "Inbox " + str(total_emails)
 	
 	# clock stuff! :D
-	if round(clock + 9) > 12: #start ampbeetle
+	#start ampbeetle
+	
+	#if game_state == GameState.PAUSE_MENU:
+		#tween_time.pause()
+	
+	if floor(clock + 9) > 12: 
 		time.text = str(int(fmod(floor(clock + 9), 12))) + ":%02.f" % floor(fmod(clock + 9, 1)*60) + " PM"
 	elif fmod(floor(clock + 9), 12) == 0:
 		time.text = "12 PM"
 	else:
 		time.text = str(int(fmod(floor(clock + 9), 12))) + ":%02.f" % floor(fmod(clock + 9, 1)*60) + " AM"
+	
+	if fmod(snappedf(clock, 0.01), 1) == 0 and clock >= 1:
+		choose_upgrade()
+		game_state = GameState.PAUSE_MENU
+		%UpgradeBox.show()
+
 #end ampbeetle
 
 # start Psuedo Pakman
 func _on_state_changed(new_state: GameState) -> void:
 	# clear out whatever was there before
-	if current_scene_instance:
+	if new_state != GameState.PAUSE_MENU and current_scene_instance:
 		current_scene_instance.queue_free()
 		current_scene_instance = null
 		
@@ -76,3 +88,14 @@ func _on_play_pressed() -> void:
 	Global.manager.create_emails()
 # end Psuedo Pakman
 # end ByDesign
+
+#start ampbeetle
+func choose_upgrade():
+	
+	pass
+
+func _on_upgrade_selected(source: BaseButton) -> void:
+	
+	pass # Replace with function body.
+
+#end ampbeetle

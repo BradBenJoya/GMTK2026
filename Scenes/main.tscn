@@ -7,11 +7,16 @@
 [ext_resource type="Shader" uid="uid://d33krf4ystq50" path="res://Shaders/crt.gdshader" id="2_kry3j"]
 [ext_resource type="FontFile" uid="uid://doe2y2s8d1bw7" path="res://Fonts/Monofrik Demo.ttf" id="4_21xkr"]
 [ext_resource type="Texture2D" uid="uid://ddh8dmaeup3fr" path="res://Sprites/game_jam_2026_gmtk_04.png" id="5_kry3j"]
+[ext_resource type="PackedScene" uid="uid://c3wn7idsxx3tv" path="res://Scenes/upgrade_card.tscn" id="6_344ge"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_up85j"]
 font = ExtResource("4_21xkr")
 font_size = 64
 font_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+
+[sub_resource type="Theme" id="Theme_g4v7s"]
+default_font = ExtResource("4_21xkr")
+default_font_size = 56
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wj5hs"]
 shader = ExtResource("2_kry3j")
@@ -89,6 +94,71 @@ offset_bottom = 201.00003
 text = "Inbox 0"
 label_settings = SubResource("LabelSettings_up85j")
 
+[node name="UpgradeBox" type="ColorRect" parent="Monitor/SubViewport/Manager" unique_id=1430341454]
+unique_name_in_owner = true
+visible = false
+z_index = 10
+offset_left = -384.0
+offset_top = 83.0
+offset_right = 433.0
+offset_bottom = 703.0
+
+[node name="UpgradeHeader" type="Label" parent="Monitor/SubViewport/Manager/UpgradeBox" unique_id=476790690]
+z_index = 11
+layout_mode = 0
+offset_right = 584.0
+offset_bottom = 57.0
+text = "Choose upgrade:"
+label_settings = SubResource("LabelSettings_up85j")
+
+[node name="UpgradeChoice" type="HBoxContainer" parent="Monitor/SubViewport/Manager/UpgradeBox" unique_id=1078353247]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.5
+offset_top = -197.0
+offset_right = 320.5
+offset_bottom = 166.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UpgradeCard" parent="Monitor/SubViewport/Manager/UpgradeBox/UpgradeChoice" unique_id=56110472 instance=ExtResource("6_344ge")]
+
+[node name="Button" type="Button" parent="Monitor/SubViewport/Manager/UpgradeBox/UpgradeChoice" unique_id=1394176671]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button2" type="Button" parent="Monitor/SubViewport/Manager/UpgradeBox/UpgradeChoice" unique_id=1400754173]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button3" type="Button" parent="Monitor/SubViewport/Manager/UpgradeBox/UpgradeChoice" unique_id=2083860621]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UpgradeCard2" parent="Monitor/SubViewport/Manager/UpgradeBox/UpgradeChoice" unique_id=2091806333 instance=ExtResource("6_344ge")]
+
+[node name="UpgradeCard3" parent="Monitor/SubViewport/Manager/UpgradeBox/UpgradeChoice" unique_id=414813578 instance=ExtResource("6_344ge")]
+
+[node name="AcceptButton" type="Button" parent="Monitor/SubViewport/Manager/UpgradeBox" unique_id=364760450]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = -112.0
+offset_right = 106.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_g4v7s")
+text = "Accept"
+
 [node name="BottomBar" type="ColorRect" parent="Monitor/SubViewport/Manager" unique_id=1178458419]
 z_index = 10
 offset_left = -687.0
@@ -124,3 +194,10 @@ zoom = Vector2(0.335, 0.335)
 [node name="Background" type="Sprite2D" parent="." unique_id=318730638]
 z_index = 10
 texture = ExtResource("5_kry3j")
+
+[node name="Timer" type="Timer" parent="." unique_id=85152396]
+one_shot = true
+
+[connection signal="pressed" from="Monitor/SubViewport/Manager/UpgradeBox/UpgradeChoice/Button" to="." method="_on_upgrade_selected" flags=18]
+[connection signal="pressed" from="Monitor/SubViewport/Manager/UpgradeBox/UpgradeChoice/Button2" to="." method="_on_upgrade_selected" flags=18]
+[connection signal="pressed" from="Monitor/SubViewport/Manager/UpgradeBox/UpgradeChoice/Button3" to="." method="_on_upgrade_selected" flags=18]
