@@ -44,12 +44,13 @@ func _process(delta):
 	counter.text = "Inbox " + str(total_emails)
 	
 	# clock stuff! :D
-	if round(clock + 9) > 12:
-		time.text = str(int(fmod(round(clock + 9), 12))) + " PM"
-	elif fmod(round(clock + 9), 12) == 0:
+	if round(clock + 9) > 12: #start ampbeetle
+		time.text = str(int(fmod(floor(clock + 9), 12))) + ":%02.f" % floor(fmod(clock + 9, 1)*60) + " PM"
+	elif fmod(floor(clock + 9), 12) == 0:
 		time.text = "12 PM"
 	else:
-		time.text = str(int(fmod(round(clock + 9), 12))) + " AM"
+		time.text = str(int(fmod(floor(clock + 9), 12))) + ":%02.f" % floor(fmod(clock + 9, 1)*60) + " AM"
+#end ampbeetle
 
 # start Psuedo Pakman
 func _on_state_changed(new_state: GameState) -> void:

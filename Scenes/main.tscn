@@ -105,6 +105,7 @@ offset_right = 1343.0
 offset_bottom = 163.00003
 text = "12:00"
 label_settings = SubResource("LabelSettings_up85j")
+horizontal_alignment = 2
 
 [node name="CRTShader" type="ColorRect" parent="Monitor/SubViewport" unique_id=1163136055]
 z_index = 4096
