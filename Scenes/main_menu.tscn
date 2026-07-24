@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://pcq8rppqacnt"]
+
+[ext_resource type="Script" uid="uid://chs8m5gsmqpb8" path="res://Scripts/Main Menu/main_menu_play_button.gd" id="1_28flt"]
+[ext_resource type="FontFile" uid="uid://doe2y2s8d1bw7" path="res://Fonts/Monofrik Demo.ttf" id="1_48xlc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_28flt"]
+font = ExtResource("1_48xlc")
+font_size = 64
+
+[sub_resource type="Theme" id="Theme_1ehe0"]
+default_font = ExtResource("1_48xlc")
+default_font_size = 34
+
+[node name="MainMenu" type="Node2D" unique_id=371072770]
+process_mode = 3
+z_index = 4096
+scale = Vector2(2, 2)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=825915157]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+pivot_offset = Vector2(640, 360)
+color = Color(0.091, 0.09944999, 0.13, 0.84313726)
+
+[node name="TempTitle" type="Label" parent="." unique_id=1466241262]
+offset_left = -210.0
+offset_top = -233.5
+offset_right = 215.0
+offset_bottom = -3.5
+theme_override_font_sizes/font_size = 64
+text = "OVERCLOCKED"
+label_settings = SubResource("LabelSettings_28flt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TempPlayButton" type="Button" parent="." unique_id=1451293721]
+offset_left = -150.0
+offset_top = -11.0
+offset_right = 150.0
+offset_bottom = 89.0
+theme = SubResource("Theme_1ehe0")
+text = "Play"
+script = ExtResource("1_28flt")
