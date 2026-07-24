@@ -14,7 +14,7 @@ font_color = Color(0, 0, 0, 1)
 default_font = ExtResource("3_6xuhd")
 default_font_size = 26
 
-[node name="Email" type="Control" unique_id=1747348247 node_paths=PackedStringArray("flavor_text", "upload_button", "upload_bar", "base_read_button", "flavor_text_controller", "all")]
+[node name="Email" type="Control" unique_id=1747348247 node_paths=PackedStringArray("flavor_text", "collapsed_email_text", "upload_button", "upload_bar", "base_read_button", "flavor_text_controller", "decision_stuff", "email_stuff", "upload_stuff", "all")]
 layout_mode = 3
 anchors_preset = 0
 scale = Vector2(1.5, 1.5)
@@ -26,6 +26,9 @@ upload_bar = NodePath("Buttons/Upload/UploadProgress")
 base_read_button = NodePath("Read")
 flavor_text_controller = NodePath("FlavorTextController")
 type = "Normal"
+decision_stuff = NodePath("Buttons/Decisions")
+email_stuff = NodePath("Buttons/EmailStuff")
+upload_stuff = NodePath("Buttons/Upload")
 all = NodePath("Buttons")
 
 [node name="EmailBubble" type="NinePatchRect" parent="." unique_id=1209836565]
@@ -165,6 +168,7 @@ text = "READ"
 
 [node name="ExpandedEmailText" type="Label" parent="." unique_id=1724158659]
 visible = false
+layout_mode = 0
 offset_left = -553.0
 offset_top = 62.0
 offset_right = 195.0
