@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://bs2gvfj1541lm"]
-
-[ext_resource type="Script" uid="uid://cqonvry43p16h" path="res://Scripts/Manager/manager.gd" id="1_453op"]
-[ext_resource type="PackedScene" uid="uid://coeyr1oy5wo30" path="res://Scenes/email.tscn" id="2_wtnv7"]
-
-[node name="Manager" type="Node2D" unique_id=1747145403]
-script = ExtResource("1_453op")
-minimum_speed = 0.5
-email_scene = ExtResource("2_wtnv7")
