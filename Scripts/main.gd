@@ -6,10 +6,19 @@ extends Node2D
 @export var main_menu: PackedScene
 @export var monitor: PackedScene
 
+@export var upgrade_list: Array[UpgradeItem]
+
 enum GameState {
 	MAIN_MENU,
 	GAME,
 	PAUSE_MENU # add this later
+}
+
+enum UpgradeType {
+	UPLOAD_SPEED,
+	VIRUS_CHANCE,
+	SPAM_CHANCE,
+	EMAIL_SPEED
 }
 
 var game_state: GameState = GameState.MAIN_MENU:
@@ -91,11 +100,28 @@ func _on_play_pressed() -> void:
 
 #start ampbeetle
 func choose_upgrade():
-	
+	for child in %UpgradeChoice.get_children():
+		child.random_card()
+		#var random_upgrade = upgrade_list.pick_random()
+		#print("picking random upgrade:" + str(random_upgrade))
+		#child.effects = random_upgrade.effects
+		#print(child.effects)
 	pass
 
 func _on_upgrade_selected(source: BaseButton) -> void:
-	
+	for button in %UpgradeChoice.get_children():
+		if button != source:
+			button.button_pressed = false
 	pass # Replace with function body.
 
 #end ampbeetle
+
+
+func _on_accept_button_pressed() -> void:
+	print("pressed accept")
+	
+	for button in %UpgradeChoice.get_children():
+		if button.button_pressed == true:
+			%UpgradeBox.hide()
+			game_state = GameState.GAME
+		button.button_pressed = false
