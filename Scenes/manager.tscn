@@ -6,3 +6,4 @@
 [node name="Manager" type="Node2D" unique_id=1747145403]
 script = ExtResource("1_453op")
 minimum_speed = 0.5
+email_scene = ExtResource("2_wtnv7")

@@ -26,24 +26,41 @@ enum UpgradeType {
 }
 var upgrade_type: UpgradeType
 
+
 func _ready() -> void:
-	connect("pressed", pressed)
-	# Get the values inside the enum as an array and then pick a random type to assign
-	upgrade_type = UpgradeType.values().pick_random()
+	pressed.connect(_on_pressed)
+	# Pick a random upgrade type safely
+	upgrade_type = [UpgradeType.FASTER_UPLOAD, UpgradeType.BETTER_ANTIVIRUS, UpgradeType.SPAM_ORGNIZER].pick_random() as UpgradeType
 
 	match upgrade_type:
 		UpgradeType.FASTER_UPLOAD:
-			upgrade_name.text = faster_upload_name
-			upgrade_description.text = faster_upload_description
+			if upgrade_name:
+				upgrade_name.text = faster_upload_name
+			if upgrade_description:
+				upgrade_description.text = faster_upload_description
 			
 		UpgradeType.BETTER_ANTIVIRUS:
-			upgrade_name.text = better_antivirus_name
-			upgrade_description.text = better_antivirus_description
+			if upgrade_name:
+				upgrade_name.text = better_antivirus_name
+			if upgrade_description:
+				upgrade_description.text = better_antivirus_description
 			
 		UpgradeType.SPAM_ORGNIZER:
-			upgrade_name.text = spam_orgnizer_name
-			upgrade_description.text = spam_orgnizer_description
+			if upgrade_name:
+				upgrade_name.text = spam_orgnizer_name
+			if upgrade_description:
+				upgrade_description.text = spam_orgnizer_description
 
-func pressed() -> void:
-	pass
+
+func _on_pressed() -> void:
+	# Apply upgrade effect
+	match upgrade_type:
+		UpgradeType.FASTER_UPLOAD:
+			if Global.manager:
+				Global.manager.minimum_speed = max(0.05, Global.manager.minimum_speed * 0.8)
+		UpgradeType.BETTER_ANTIVIRUS:
+			pass
+		UpgradeType.SPAM_ORGNIZER:
+			pass
+	queue_free()
 # end Psuedo Pakman

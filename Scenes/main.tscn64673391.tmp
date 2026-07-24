@@ -4,11 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bs2gvfj1541lm" path="res://Scenes/manager.tscn" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://chc3tjbnn10ur" path="res://Scripts/global.gd" id="2_jjvhh"]
 [ext_resource type="Shader" uid="uid://d33krf4ystq50" path="res://Shaders/crt.gdshader" id="2_kry3j"]
-[ext_resource type="PackedScene" uid="uid://pcq8rppqacnt" path="res://Scenes/main_menu.tscn" id="2_ynf5e"]
-[ext_resource type="PackedScene" uid="uid://mrrbgo76ffu2" path="res://Scenes/monitor.tscn" id="3_hptm8"]
 [ext_resource type="FontFile" uid="uid://doe2y2s8d1bw7" path="res://Fonts/Monofrik Demo.ttf" id="4_21xkr"]
 [ext_resource type="Texture2D" uid="uid://ddh8dmaeup3fr" path="res://Sprites/game_jam_2026_gmtk_04.png" id="5_kry3j"]
-[ext_resource type="PackedScene" uid="uid://coeyr1oy5wo30" path="res://Scenes/email.tscn" id="6_d1ilt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_up85j"]
 font = ExtResource("4_21xkr")
@@ -42,10 +39,11 @@ shader_parameter/glow_threshold = 0.65
 
 [node name="Main" type="Node2D" unique_id=1107406334 node_paths=PackedStringArray("counter", "time")]
 script = ExtResource("1_bo1nx")
-main_menu = ExtResource("2_ynf5e")
-monitor = ExtResource("3_hptm8")
 counter = NodePath("Monitor/SubViewport/Manager/TopBar/Score")
 time = NodePath("Monitor/SubViewport/Manager/BottomBar/Time")
+
+[node name="Global" type="Node" parent="." unique_id=1780935722]
+script = ExtResource("2_jjvhh")
 
 [node name="Monitor" type="SubViewportContainer" parent="." unique_id=1630699192]
 anchors_preset = 8
@@ -67,7 +65,6 @@ render_target_update_mode = 4
 
 [node name="Manager" parent="Monitor/SubViewport" unique_id=1747145403 instance=ExtResource("1_jjgbg")]
 position = Vector2(700, 300)
-email_scene = ExtResource("6_d1ilt")
 
 [node name="Sprite2D" type="Sprite2D" parent="Monitor/SubViewport/Manager" unique_id=1265509594]
 position = Vector2(223.99998, 413.99997)
