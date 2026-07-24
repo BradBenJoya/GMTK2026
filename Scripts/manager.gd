@@ -44,4 +44,6 @@ func add_more_emails(amount : int):
 		
 		add_child(new_email)
 		emails.append(new_email)
+		
+		await get_tree().create_timer(0.2).timeout
 # end ByDesign

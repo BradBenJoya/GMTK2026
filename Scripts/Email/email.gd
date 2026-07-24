@@ -86,18 +86,46 @@ func delete_email(input : String): # delete email after doing little animation
 	
 	await move_buttons_tween.finished
 	
-	if not input == type: # shake if messed up
-		modulate = Color.LIGHT_CORAL
-		
-		var shake = create_tween().tween_method(func(i): position.x = sin(i) * 20.0, 0.0, -4 * PI, 0.3) # shake twice
-		await shake.finished
-	else:
-		modulate = Color.LIGHT_GREEN
-	
 	deleted = true # let the manager know that it shouldnt account for this email anymore
 	z_index = -1 # get it out of the way to avoid overlap
 	var slide_out = create_tween().tween_property(self, "position", Vector2(-2000.0, position.y), 0.5)
 	await slide_out.finished
+	
+	if type == "Normal":
+		if input == "Upload":
+			pass # add boss
+		if input == "Accept" || input == "Decline":
+			Global.manager.add_more_emails(1)
+	
+	if type == "Accept":
+		if input == "Accept":
+			pass # give upgrade
+	
+	if type == "Decline":
+		if input == "Upload":
+			Global.manager.add_more_emails(1)
+		if input == "Accept":
+			Global.manager.add_more_emails(3)
+		
+		if input == "Normal" || input == "Spam":
+			pass # add boss
+	
+	if type == "Spam":
+		if input == "Upload":
+			pass # add popups
+		if input == "Accept" || input == "Decline":
+			Global.manager.add_more_emails(5)
+		
+		if input == "Normal":
+			Global.manager.add_more_emails(1)
+	
+	if type == "Upload":
+		if input == "Spam":
+			pass # add boss
+		if input == "Accept" || input == "Decline":
+			pass # add boss
+		if input == "Normal":
+			Global.manager.add_more_emails(3)
 	
 	queue_free()
 

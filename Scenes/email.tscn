@@ -72,15 +72,15 @@ anchors_preset = 0
 
 [node name="EmailStuff" type="Control" parent="Buttons" unique_id=1625470664]
 anchors_preset = 0
-offset_top = 12.666667
-offset_bottom = 12.666667
+offset_top = 4.0
+offset_bottom = 4.0
 
 [node name="Read" type="Button" parent="Buttons/EmailStuff" unique_id=1751263076]
 z_index = 1
 layout_mode = 0
-offset_left = 8.0
+offset_left = 2.0
 offset_top = -73.333336
-offset_right = 290.6667
+offset_right = 284.6667
 offset_bottom = -33.333336
 theme = SubResource("Theme_6xuhd")
 text = "FINISH"
@@ -103,9 +103,9 @@ offset_bottom = 12.666667
 [node name="Yes" type="Button" parent="Buttons/Decisions" unique_id=1197127668]
 z_index = 1
 layout_mode = 0
-offset_left = 8.0
+offset_left = 2.0
 offset_top = -32.0
-offset_right = 202.66667
+offset_right = 196.66667
 offset_bottom = 8.0
 theme = SubResource("Theme_6xuhd")
 text = "YES
@@ -123,13 +123,13 @@ text = "NO"
 
 [node name="Upload" type="Control" parent="Buttons" unique_id=2078956031]
 anchors_preset = 0
-offset_top = 10.0
-offset_bottom = 10.0
+offset_top = 15.333334
+offset_bottom = 15.333334
 
 [node name="Upload" type="Button" parent="Buttons/Upload" unique_id=363020368]
 z_index = 1
 layout_mode = 0
-offset_left = 8.0
+offset_left = 2.0
 offset_top = 12.666668
 offset_right = 396.0
 offset_bottom = 52.666668
@@ -140,7 +140,7 @@ text = "UPLOAD"
 [node name="UploadProgress" type="ProgressBar" parent="Buttons/Upload" unique_id=306935486]
 z_index = 1
 layout_mode = 0
-offset_left = 8.0
+offset_left = 2.0
 offset_top = 12.666668
 offset_right = 394.6667
 offset_bottom = 52.666668
