@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b8kf2iu72ye83" path="res://Scripts/Email/flavor_text_controller.gd" id="2_hkori"]
 [ext_resource type="Texture2D" uid="uid://co17lrl57lbes" path="res://Sprites/temp_9patch_rect.png" id="2_umtb6"]
 [ext_resource type="FontFile" uid="uid://doe2y2s8d1bw7" path="res://Fonts/Monofrik Demo.ttf" id="3_6xuhd"]
+[ext_resource type="Script" uid="uid://dgqwpsc3dorgp" path="res://Scripts/Email/email_generator.gd" id="4_ec30c"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hkori"]
 font = ExtResource("3_6xuhd")
@@ -14,16 +15,17 @@ font_color = Color(0, 0, 0, 1)
 default_font = ExtResource("3_6xuhd")
 default_font_size = 26
 
-[node name="Email" type="Control" unique_id=1747348247 node_paths=PackedStringArray("flavor_text", "collapsed_email_text", "upload_button", "upload_bar", "base_read_button", "flavor_text_controller", "decision_stuff", "email_stuff", "upload_stuff", "all")]
+[node name="Email" type="Control" unique_id=1747348247 node_paths=PackedStringArray("flavor_text", "expanded_email_text", "upload_button", "upload_bar", "base_read_button", "email_generator", "flavor_text_controller", "decision_stuff", "email_stuff", "upload_stuff", "all")]
 layout_mode = 3
 anchors_preset = 0
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_hkori")
 flavor_text = NodePath("DecorationArrow/FlavorText")
-collapsed_email_text = NodePath("ExpandedEmailText")
+expanded_email_text = NodePath("ExpandedEmailText")
 upload_button = NodePath("Buttons/Upload/Upload")
 upload_bar = NodePath("Buttons/Upload/UploadProgress")
 base_read_button = NodePath("Read")
+email_generator = NodePath("EmailGenerator")
 flavor_text_controller = NodePath("FlavorTextController")
 type = "Normal"
 decision_stuff = NodePath("Buttons/Decisions")
@@ -57,7 +59,7 @@ offset_left = 26.0
 offset_top = -8.666667
 offset_right = 376.0
 offset_bottom = 21.333332
-text = "Boss - Get to work!"
+text = "Boss - Job Stuff"
 label_settings = SubResource("LabelSettings_hkori")
 autowrap_mode = 3
 clip_text = true
@@ -68,14 +70,17 @@ custom_minimum_size = Vector2(350, 400)
 custom_maximum_size = Vector2(350, 400)
 layout_mode = 0
 offset_left = -350.6667
-offset_top = 144.66667
+offset_top = 50.0
 offset_right = -0.666687
-offset_bottom = 544.6667
-text = "Boss - Get to work!"
+offset_bottom = 450.0
+text = "Get back to work or else!"
 label_settings = SubResource("LabelSettings_hkori")
 autowrap_mode = 3
 clip_text = true
 text_overrun_behavior = 5
+
+[node name="EmailGenerator" type="Node" parent="." unique_id=1816088348]
+script = ExtResource("4_ec30c")
 
 [node name="FlavorTextController" type="Node" parent="." unique_id=1545654535]
 script = ExtResource("2_hkori")
