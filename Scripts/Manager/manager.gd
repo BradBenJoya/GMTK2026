@@ -5,18 +5,11 @@ extends Node2D
 @export var minimum_speed : float = 0.1
 @export var maximum_speed : float = 2.0
 
-@export_group("Email Speed")
-@export var minimum_speed : float = 0.1
-@export var maximum_speed : float = 2.0
-
 # start Psuedo Pakman
 @export var email_scene : PackedScene
 # end Psuedo Pakman
 
 var emails : Array = []
-
-func _ready():
-	create_emails()
 
 func create_emails():
 	for i in 50:

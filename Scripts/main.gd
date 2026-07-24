@@ -8,7 +8,8 @@ extends Node2D
 
 enum GameState {
 	MAIN_MENU,
-	GAME
+	GAME,
+	PAUSE_MENU # add this later
 }
 
 var game_state: GameState = GameState.MAIN_MENU:
@@ -63,11 +64,14 @@ func _on_state_changed(new_state: GameState) -> void:
 			add_child(current_scene_instance)
 			var play_button = current_scene_instance.get_node("TempPlayButton")
 			play_button.play_pressed.connect(_on_play_pressed)
+			get_tree().paused = true
 		GameState.GAME:
-			current_scene_instance = monitor.instantiate()
-			add_child(current_scene_instance)
+			get_tree().paused = false
+		GameState.PAUSE_MENU:
+			get_tree().paused = true
 
 func _on_play_pressed() -> void:
 	game_state = GameState.GAME
+	Global.manager.create_emails()
 # end Psuedo Pakman
 # end ByDesign

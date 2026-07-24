@@ -14,18 +14,21 @@ font_color = Color(0, 0, 0, 1)
 default_font = ExtResource("3_6xuhd")
 default_font_size = 26
 
-[node name="Email" type="Control" unique_id=1747348247 node_paths=PackedStringArray("flavor_text", "upload_button", "upload_bar", "base_read_button", "flavor_text_controller", "all")]
+[node name="Email" type="Control" unique_id=1747348247 node_paths=PackedStringArray("flavor_text", "collapsed_email_text", "upload_button", "upload_bar", "base_read_button", "flavor_text_controller", "decision_stuff", "email_stuff", "upload_stuff", "all")]
 layout_mode = 3
 anchors_preset = 0
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_hkori")
 flavor_text = NodePath("DecorationArrow/FlavorText")
 collapsed_email_text = NodePath("ExpandedEmailText")
-upload_button = NodePath("Buttons/UploadEmail/Upload")
-upload_bar = NodePath("Buttons/UploadEmail/UploadProgress")
+upload_button = NodePath("Buttons/Upload/Upload")
+upload_bar = NodePath("Buttons/Upload/UploadProgress")
 base_read_button = NodePath("Read")
 flavor_text_controller = NodePath("FlavorTextController")
 type = "Normal"
+decision_stuff = NodePath("Buttons/Decisions")
+email_stuff = NodePath("Buttons/EmailStuff")
+upload_stuff = NodePath("Buttons/Upload")
 all = NodePath("Buttons")
 
 [node name="EmailBubble" type="NinePatchRect" parent="." unique_id=1209836565]
@@ -54,6 +57,20 @@ offset_left = 26.0
 offset_top = -8.666667
 offset_right = 376.0
 offset_bottom = 21.333332
+text = "Boss - Get to work!"
+label_settings = SubResource("LabelSettings_hkori")
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 5
+
+[node name="ExpandedEmailText" type="Label" parent="." unique_id=1665825712]
+custom_minimum_size = Vector2(350, 400)
+custom_maximum_size = Vector2(350, 400)
+layout_mode = 0
+offset_left = -350.6667
+offset_top = 144.66667
+offset_right = -0.666687
+offset_bottom = 544.6667
 text = "Boss - Get to work!"
 label_settings = SubResource("LabelSettings_hkori")
 autowrap_mode = 3
@@ -154,14 +171,6 @@ mouse_filter = 2
 theme = SubResource("Theme_6xuhd")
 show_percentage = false
 
-[node name="ExpandedEmailText" type="Label" parent="." unique_id=1724158659]
-visible = false
-offset_left = -553.0
-offset_top = 62.0
-offset_right = 195.0
-offset_bottom = 85.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "If i dont get the report by today i will personally black list you from all of the companies on earth!"
 [node name="Read" type="Button" parent="." unique_id=685986502]
 layout_mode = 0
 offset_left = 8.0

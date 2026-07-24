@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://edk5gupnbidp" path="res://Scripts/main.gd" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://bs2gvfj1541lm" path="res://Scenes/manager.tscn" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://pcq8rppqacnt" path="res://Scenes/main_menu.tscn" id="2_6bp64"]
 [ext_resource type="Script" uid="uid://chc3tjbnn10ur" path="res://Scripts/global.gd" id="2_jjvhh"]
 [ext_resource type="Shader" uid="uid://d33krf4ystq50" path="res://Shaders/crt.gdshader" id="2_kry3j"]
 [ext_resource type="FontFile" uid="uid://doe2y2s8d1bw7" path="res://Fonts/Monofrik Demo.ttf" id="4_21xkr"]
@@ -39,6 +40,7 @@ shader_parameter/glow_threshold = 0.65
 
 [node name="Main" type="Node2D" unique_id=1107406334 node_paths=PackedStringArray("counter", "time")]
 script = ExtResource("1_bo1nx")
+main_menu = ExtResource("2_6bp64")
 counter = NodePath("Monitor/SubViewport/Manager/TopBar/Score")
 time = NodePath("Monitor/SubViewport/Manager/BottomBar/Time")
 
