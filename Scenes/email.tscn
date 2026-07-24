@@ -5,25 +5,32 @@
 [ext_resource type="Texture2D" uid="uid://co17lrl57lbes" path="res://Sprites/temp_9patch_rect.png" id="2_umtb6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hkori"]
+font_size = 20
 font_color = Color(0, 0, 0, 1)
 
-[node name="Email" type="Node2D" unique_id=1069154585 node_paths=PackedStringArray("flavor_text", "collapsed_email_text", "upload_button", "upload_bar", "flavor_text_controller", "read", "decision", "spam", "upload")]
+[node name="Email" type="Control" unique_id=1747348247 node_paths=PackedStringArray("flavor_text", "upload_button", "upload_bar", "base_read_button", "flavor_text_controller", "read", "decision", "spam", "upload", "all")]
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_hkori")
 flavor_text = NodePath("DecorationArrow/FlavorText")
 collapsed_email_text = NodePath("ExpandedEmailText")
 upload_button = NodePath("Buttons/UploadEmail/Upload")
 upload_bar = NodePath("Buttons/UploadEmail/UploadProgress")
+base_read_button = NodePath("Read")
 flavor_text_controller = NodePath("FlavorTextController")
 type = "Normal"
 read = NodePath("Buttons/ReadEmail")
 decision = NodePath("Buttons/DecisionEmail")
 spam = NodePath("Buttons/SpamEmail")
 upload = NodePath("Buttons/UploadEmail")
+all = NodePath("Buttons")
 
 [node name="EmailBubble" type="NinePatchRect" parent="." unique_id=1209836565]
-offset_left = -600.0
+layout_mode = 0
+offset_left = -450.0
 offset_top = -25.0
-offset_right = 600.0
+offset_right = 450.0
 offset_bottom = 25.0
 pivot_offset = Vector2(600, 25)
 texture = ExtResource("2_umtb6")
@@ -33,23 +40,19 @@ patch_margin_top = 16
 patch_margin_right = 16
 patch_margin_bottom = 16
 
-[node name="TempBox" type="Polygon2D" parent="." unique_id=492917784]
-visible = false
-polygon = PackedVector2Array(-600, -25, 600, -25, 600, 25, -600, 25)
-
 [node name="DecorationArrow" type="Polygon2D" parent="." unique_id=550866355]
-position = Vector2(-576, 0)
+position = Vector2(-425, 0)
 color = Color(1, 1, 0, 1)
 polygon = PackedVector2Array(-10, -10, 10, -10, 20, 0, 10, 10, -10, 10, 0, 0)
 
 [node name="FlavorText" type="Label" parent="DecorationArrow" unique_id=1514963277]
-custom_minimum_size = Vector2(550, 24)
-custom_maximum_size = Vector2(550, 24)
+custom_minimum_size = Vector2(400, 30)
+custom_maximum_size = Vector2(400, 30)
 offset_left = 26.0
-offset_top = -12.0
+offset_top = -15.0
 offset_right = 576.0
-offset_bottom = 12.0
-text = "Boss - Get to work or else I'm not paying you!"
+offset_bottom = 15.0
+text = "Boss - Get to work!"
 label_settings = SubResource("LabelSettings_hkori")
 autowrap_mode = 3
 clip_text = true
@@ -68,68 +71,87 @@ expanded_spam_text = Array[String](["free bobux"])
 upload_text = Array[String](["Jack - Could you send me the tax forms file? I think I deleted my copy.", "Boss - I need that report NOW! What's taking so long!"])
 expanded_upload_text = Array[String](["man if only i didnt need to use my local mcdonalds wifi"])
 
-[node name="Buttons" type="Node2D" parent="." unique_id=148673893]
+[node name="Buttons" type="Control" parent="." unique_id=1863970812]
+anchors_preset = 0
 
-[node name="ReadEmail" type="Node2D" parent="Buttons" unique_id=1948475731]
+[node name="ReadEmail" type="Control" parent="Buttons" unique_id=702092450]
 visible = false
+anchors_preset = 0
 
 [node name="Read" type="Button" parent="Buttons/ReadEmail" unique_id=384821030]
+z_index = 1
+layout_mode = 0
 offset_left = 8.0
 offset_top = -20.0
-offset_right = 594.0
+offset_right = 445.5
 offset_bottom = 20.0
-text = "READ"
+text = "FINISH"
 
-[node name="DecisionEmail" type="Node2D" parent="Buttons" unique_id=1919109484]
+[node name="DecisionEmail" type="Control" parent="Buttons" unique_id=820817453]
 visible = false
+anchors_preset = 0
 
 [node name="Yes" type="Button" parent="Buttons/DecisionEmail" unique_id=1197127668]
+z_index = 1
+layout_mode = 0
 offset_left = 8.0
 offset_top = -20.0
-offset_right = 298.0
+offset_right = 223.0
 offset_bottom = 20.0
 text = "YES
 "
 
 [node name="No" type="Button" parent="Buttons/DecisionEmail" unique_id=1435574022]
-offset_left = 304.0
+z_index = 1
+layout_mode = 0
+offset_left = 224.0
 offset_top = -20.0
-offset_right = 594.0
+offset_right = 445.0
 offset_bottom = 20.0
 text = "NO"
 
-[node name="SpamEmail" type="Node2D" parent="Buttons" unique_id=1720158277]
+[node name="SpamEmail" type="Control" parent="Buttons" unique_id=1625470664]
 visible = false
+anchors_preset = 0
 
 [node name="Read" type="Button" parent="Buttons/SpamEmail" unique_id=1751263076]
+z_index = 1
+layout_mode = 0
 offset_left = 8.0
 offset_top = -20.0
-offset_right = 427.0
+offset_right = 374.0
 offset_bottom = 20.0
-text = "READ"
+text = "FINISH"
 
 [node name="Delete" type="Button" parent="Buttons/SpamEmail" unique_id=378206852]
-offset_left = 434.0
+z_index = 1
+layout_mode = 0
+offset_left = 375.5
 offset_top = -20.0
-offset_right = 594.0
+offset_right = 444.5
 offset_bottom = 20.0
 text = "DELETE"
 
-[node name="UploadEmail" type="Node2D" parent="Buttons" unique_id=1069469323]
+[node name="UploadEmail" type="Control" parent="Buttons" unique_id=2078956031]
 visible = false
+anchors_preset = 0
 
 [node name="Upload" type="Button" parent="Buttons/UploadEmail" unique_id=363020368]
+z_index = 1
+layout_mode = 0
 offset_left = 8.0
 offset_top = -20.0
-offset_right = 594.0
+offset_right = 445.0
 offset_bottom = 20.0
 action_mode = 0
 text = "UPLOAD"
 
 [node name="UploadProgress" type="ProgressBar" parent="Buttons/UploadEmail" unique_id=306935486]
+z_index = 1
+layout_mode = 0
 offset_left = 8.0
 offset_top = -20.0
-offset_right = 594.0
+offset_right = 445.5
 offset_bottom = 20.0
 mouse_filter = 2
 show_percentage = false
@@ -149,3 +171,4 @@ text = "If i dont get the report by today i will personally black list you from 
 [connection signal="pressed" from="Buttons/SpamEmail/Read" to="." method="_on_read_pressed"]
 [connection signal="pressed" from="Buttons/SpamEmail/Delete" to="." method="_on_delete_pressed"]
 [connection signal="pressed" from="Buttons/UploadEmail/Upload" to="." method="_on_upload_pressed"]
+[connection signal="pressed" from="Read" to="." method="_on_read_pressed"]
