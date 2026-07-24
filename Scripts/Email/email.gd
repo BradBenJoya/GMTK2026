@@ -12,10 +12,7 @@ class_name Email
 @export var upload_button : Button
 @export var upload_bar : ProgressBar
 @export var base_read_button : Button
-@export var email_generator : Node
-
-@export_group("Scripts") # sorry, shoulda probably split this up (?)
-@export var flavor_text_controller : FlavorTextController
+@export var email_list : Node
 
 @export_group("Data")
 @export_enum("Normal", "Accept", "Decline", "Spam", "Upload", "Attachment") var type : String
@@ -39,7 +36,7 @@ func _ready():
 	all.visible = false
 	expanded_email_text.visible = false
 	
-	var random : float = randf_range(1, 69)
+	var random : float = randf_range(1, 100)
 	if random < 70:
 		type = "Normal"
 		
@@ -58,7 +55,7 @@ func _ready():
 		elif special_random == 4:
 			type = "Upload"
 		
-	var text = email_generator.create_email(type) # creates the email, and sets text to an array. first value is the person and topic, second is the expanded text
+	var text = email_list.choose_email(type) # creates the email, and sets text to an array. first value is the person and topic, second is the expanded text
 	flavor_text.text = text[0]
 	expanded_email_text.text = text[1]
 
