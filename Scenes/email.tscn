@@ -3,33 +3,35 @@
 [ext_resource type="Script" uid="uid://br585yyoeay5x" path="res://Scripts/Email/email.gd" id="1_hkori"]
 [ext_resource type="Script" uid="uid://b8kf2iu72ye83" path="res://Scripts/Email/flavor_text_controller.gd" id="2_hkori"]
 [ext_resource type="Texture2D" uid="uid://co17lrl57lbes" path="res://Sprites/temp_9patch_rect.png" id="2_umtb6"]
+[ext_resource type="FontFile" uid="uid://doe2y2s8d1bw7" path="res://Fonts/Monofrik Demo.ttf" id="3_6xuhd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hkori"]
-font_size = 20
+font = ExtResource("3_6xuhd")
+font_size = 22
 font_color = Color(0, 0, 0, 1)
 
-[node name="Email" type="Control" unique_id=1747348247 node_paths=PackedStringArray("flavor_text", "upload_button", "upload_bar", "base_read_button", "flavor_text_controller", "read", "decision", "spam", "upload", "all")]
+[sub_resource type="Theme" id="Theme_6xuhd"]
+default_font = ExtResource("3_6xuhd")
+default_font_size = 26
+
+[node name="Email" type="Control" unique_id=1747348247 node_paths=PackedStringArray("flavor_text", "upload_button", "upload_bar", "base_read_button", "flavor_text_controller", "all")]
 layout_mode = 3
 anchors_preset = 0
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_hkori")
 flavor_text = NodePath("DecorationArrow/FlavorText")
-upload_button = NodePath("Buttons/UploadEmail/Upload")
-upload_bar = NodePath("Buttons/UploadEmail/UploadProgress")
+upload_button = NodePath("Buttons/Upload/Upload")
+upload_bar = NodePath("Buttons/Upload/UploadProgress")
 base_read_button = NodePath("Read")
 flavor_text_controller = NodePath("FlavorTextController")
 type = "Normal"
-read = NodePath("Buttons/ReadEmail")
-decision = NodePath("Buttons/DecisionEmail")
-spam = NodePath("Buttons/SpamEmail")
-upload = NodePath("Buttons/UploadEmail")
 all = NodePath("Buttons")
 
 [node name="EmailBubble" type="NinePatchRect" parent="." unique_id=1209836565]
 layout_mode = 0
-offset_left = -450.0
+offset_left = -400.0
 offset_top = -25.0
-offset_right = 450.0
+offset_right = 400.0
 offset_bottom = 25.0
 pivot_offset = Vector2(600, 25)
 texture = ExtResource("2_umtb6")
@@ -40,17 +42,17 @@ patch_margin_right = 16
 patch_margin_bottom = 16
 
 [node name="DecorationArrow" type="Polygon2D" parent="." unique_id=550866355]
-position = Vector2(-425, 0)
+position = Vector2(-376.66666, 0)
 color = Color(1, 1, 0, 1)
 polygon = PackedVector2Array(-10, -10, 10, -10, 20, 0, 10, 10, -10, 10, 0, 0)
 
 [node name="FlavorText" type="Label" parent="DecorationArrow" unique_id=1514963277]
-custom_minimum_size = Vector2(400, 30)
-custom_maximum_size = Vector2(400, 30)
+custom_minimum_size = Vector2(350, 30)
+custom_maximum_size = Vector2(350, 30)
 offset_left = 26.0
-offset_top = -15.0
-offset_right = 576.0
-offset_bottom = 15.0
+offset_top = -8.666667
+offset_right = 376.0
+offset_bottom = 21.333332
 text = "Boss - Get to work!"
 label_settings = SubResource("LabelSettings_hkori")
 autowrap_mode = 3
@@ -68,100 +70,96 @@ upload_text = Array[String](["Jack - Little mistake \\n\\n Could you send me the
 [node name="Buttons" type="Control" parent="." unique_id=1863970812]
 anchors_preset = 0
 
-[node name="ReadEmail" type="Control" parent="Buttons" unique_id=702092450]
-visible = false
+[node name="EmailStuff" type="Control" parent="Buttons" unique_id=1625470664]
 anchors_preset = 0
+offset_top = 12.666667
+offset_bottom = 12.666667
 
-[node name="Read" type="Button" parent="Buttons/ReadEmail" unique_id=384821030]
+[node name="Read" type="Button" parent="Buttons/EmailStuff" unique_id=1751263076]
 z_index = 1
 layout_mode = 0
 offset_left = 8.0
-offset_top = -20.0
-offset_right = 445.5
-offset_bottom = 20.0
+offset_top = -73.333336
+offset_right = 290.6667
+offset_bottom = -33.333336
+theme = SubResource("Theme_6xuhd")
 text = "FINISH"
 
-[node name="DecisionEmail" type="Control" parent="Buttons" unique_id=820817453]
-visible = false
-anchors_preset = 0
+[node name="Delete" type="Button" parent="Buttons/EmailStuff" unique_id=378206852]
+z_index = 1
+layout_mode = 0
+offset_left = 292.0
+offset_top = -73.333336
+offset_right = 394.0
+offset_bottom = -33.333336
+theme = SubResource("Theme_6xuhd")
+text = "DELETE"
 
-[node name="Yes" type="Button" parent="Buttons/DecisionEmail" unique_id=1197127668]
+[node name="Decisions" type="Control" parent="Buttons" unique_id=820817453]
+anchors_preset = 0
+offset_top = 12.666667
+offset_bottom = 12.666667
+
+[node name="Yes" type="Button" parent="Buttons/Decisions" unique_id=1197127668]
 z_index = 1
 layout_mode = 0
 offset_left = 8.0
-offset_top = -20.0
-offset_right = 223.0
-offset_bottom = 20.0
+offset_top = -32.0
+offset_right = 202.66667
+offset_bottom = 8.0
+theme = SubResource("Theme_6xuhd")
 text = "YES
 "
 
-[node name="No" type="Button" parent="Buttons/DecisionEmail" unique_id=1435574022]
+[node name="No" type="Button" parent="Buttons/Decisions" unique_id=1435574022]
 z_index = 1
 layout_mode = 0
-offset_left = 224.0
-offset_top = -20.0
-offset_right = 445.0
-offset_bottom = 20.0
+offset_left = 203.33333
+offset_top = -32.0
+offset_right = 395.3333
+offset_bottom = 8.0
+theme = SubResource("Theme_6xuhd")
 text = "NO"
 
-[node name="SpamEmail" type="Control" parent="Buttons" unique_id=1625470664]
-visible = false
+[node name="Upload" type="Control" parent="Buttons" unique_id=2078956031]
 anchors_preset = 0
+offset_top = 10.0
+offset_bottom = 10.0
 
-[node name="Read" type="Button" parent="Buttons/SpamEmail" unique_id=1751263076]
+[node name="Upload" type="Button" parent="Buttons/Upload" unique_id=363020368]
 z_index = 1
 layout_mode = 0
 offset_left = 8.0
-offset_top = -20.0
-offset_right = 374.0
-offset_bottom = 20.0
-text = "FINISH"
-
-[node name="Delete" type="Button" parent="Buttons/SpamEmail" unique_id=378206852]
-z_index = 1
-layout_mode = 0
-offset_left = 375.5
-offset_top = -20.0
-offset_right = 444.5
-offset_bottom = 20.0
-text = "DELETE"
-
-[node name="UploadEmail" type="Control" parent="Buttons" unique_id=2078956031]
-visible = false
-anchors_preset = 0
-
-[node name="Upload" type="Button" parent="Buttons/UploadEmail" unique_id=363020368]
-z_index = 1
-layout_mode = 0
-offset_left = 8.0
-offset_top = -20.0
-offset_right = 445.0
-offset_bottom = 20.0
+offset_top = 12.666668
+offset_right = 396.0
+offset_bottom = 52.666668
+theme = SubResource("Theme_6xuhd")
 action_mode = 0
 text = "UPLOAD"
 
-[node name="UploadProgress" type="ProgressBar" parent="Buttons/UploadEmail" unique_id=306935486]
+[node name="UploadProgress" type="ProgressBar" parent="Buttons/Upload" unique_id=306935486]
 z_index = 1
 layout_mode = 0
 offset_left = 8.0
-offset_top = -20.0
-offset_right = 445.5
-offset_bottom = 20.0
+offset_top = 12.666668
+offset_right = 394.6667
+offset_bottom = 52.666668
 mouse_filter = 2
+theme = SubResource("Theme_6xuhd")
 show_percentage = false
 
 [node name="Read" type="Button" parent="." unique_id=685986502]
 layout_mode = 0
 offset_left = 8.0
 offset_top = -20.0
-offset_right = 445.0
+offset_right = 395.33334
 offset_bottom = 20.0
+theme = SubResource("Theme_6xuhd")
 text = "READ"
 
-[connection signal="pressed" from="Buttons/ReadEmail/Read" to="." method="_on_read_pressed"]
-[connection signal="pressed" from="Buttons/DecisionEmail/Yes" to="." method="_on_yes_pressed"]
-[connection signal="pressed" from="Buttons/DecisionEmail/No" to="." method="_on_no_pressed"]
-[connection signal="pressed" from="Buttons/SpamEmail/Read" to="." method="_on_read_pressed"]
-[connection signal="pressed" from="Buttons/SpamEmail/Delete" to="." method="_on_delete_pressed"]
-[connection signal="pressed" from="Buttons/UploadEmail/Upload" to="." method="_on_upload_pressed"]
+[connection signal="pressed" from="Buttons/EmailStuff/Read" to="." method="_on_read_pressed"]
+[connection signal="pressed" from="Buttons/EmailStuff/Delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="Buttons/Decisions/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="Buttons/Decisions/No" to="." method="_on_no_pressed"]
+[connection signal="pressed" from="Buttons/Upload/Upload" to="." method="_on_upload_pressed"]
 [connection signal="pressed" from="Read" to="." method="_on_read_pressed"]
