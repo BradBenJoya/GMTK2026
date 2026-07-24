@@ -60,11 +60,6 @@ func _process(delta):
 	counter.text = "Inbox " + str(total_emails)
 	
 	# clock stuff! :D
-	#start ampbeetle
-	
-	#if game_state == GameState.PAUSE_MENU:
-		#tween_time.pause()
-	
 	if floor(clock + 9) > 12: 
 		time.text = str(int(fmod(floor(clock + 9), 12))) + ":%02.f" % floor(fmod(clock + 9, 1)*60) + " PM"
 	elif fmod(floor(clock + 9), 12) == 0:
@@ -72,13 +67,12 @@ func _process(delta):
 	else:
 		time.text = str(int(fmod(floor(clock + 9), 12))) + ":%02.f" % floor(fmod(clock + 9, 1)*60) + " AM"
 	
-	#if fmod(snappedf(clock, 0.01), 1) == 0 and clock >= 1:
-		#print(clock)
-		#choose_upgrade()
-		#game_state = GameState.PAUSE_MENU
-		#%UpgradeBox.show()
+	if fmod(snappedf(clock, 0.01), 1) == 0 and clock >= 1:
+		print(clock)
+		choose_upgrade()
+		game_state = GameState.PAUSE_MENU
+		%UpgradeBox.show()
 
-#end ampbeetle
 
 # start Psuedo Pakman
 func _on_state_changed(new_state: GameState) -> void:
@@ -109,24 +103,17 @@ func _on_play_pressed() -> void:
 func choose_upgrade():
 	for child in %UpgradeChoice.get_children():
 		child.random_card()
-		#var random_upgrade = upgrade_list.pick_random()
-		#print("picking random upgrade:" + str(random_upgrade))
-		#child.effects = random_upgrade.effects
-		#print(child.effects)
 
 func _on_upgrade_selected(source: BaseButton) -> void:
+	# Unpresses other buttons whenever a button is pressed.
 	for button in %UpgradeChoice.get_children():
 		if button != source:
 			button.button_pressed = false
 
 func _on_accept_button_pressed() -> void:
-	print("pressed accept")
-	
 	for button in %UpgradeChoice.get_children():
 		if button.button_pressed == true:
-			button.button_pressed = false
-			%UpgradeBox.hide()
-			
+			# Cycles through effects of upgrade and adds it's value to relevant stat.
 			for effect in button.effects:
 				match effect:
 					UpgradeType.UPLOAD_SPEED:
@@ -141,10 +128,12 @@ func _on_accept_button_pressed() -> void:
 			print("virus: " + str(virus_chance))
 			print("spam: " + str(spam_chance))
 			print("email: " + str(email_speed))
+			
 			await get_tree().create_timer(0.5).timeout
 			game_state = GameState.GAME
+		# Making sure all buttons are unpressed for next go.
 		button.button_pressed = false
 
-#add something to disable accept unless an upgrade is selected
+#add something to disable accept button unless an upgrade is selected
 
 #end ampbeetle

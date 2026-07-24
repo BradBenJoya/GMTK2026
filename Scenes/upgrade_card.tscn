@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c3wn7idsxx3tv"]
 
-[ext_resource type="Script" uid="uid://c1i0q7rghjw1" path="res://Scripts/Cards/upgradev2.gd" id="1_7wruj"]
+[ext_resource type="Script" uid="uid://c1i0q7rghjw1" path="res://Scripts/Cards/upgrade.gd" id="1_7wruj"]
 [ext_resource type="Script" uid="uid://coryhq6i1gdc0" path="res://Scripts/upgrade_item.gd" id="2_w0hou"]
 [ext_resource type="Resource" uid="uid://bxeglhgrv4qrr" path="res://Scripts/Cards/Upgrades/Router.tres" id="3_8kgka"]
 [ext_resource type="Resource" uid="uid://uyr82ts4pmvq" path="res://Scripts/Cards/Upgrades/Antivirus.tres" id="4_jke0c"]
@@ -29,6 +29,12 @@ theme_override_font_sizes/font_size = 56
 text = "Upgrade"
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="UpgradeTexture" type="TextureRect" parent="VBoxContainer" unique_id=807033298]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+expand_mode = 5
 
 [node name="UpgradeDescription" type="Label" parent="VBoxContainer" unique_id=1180273715]
 unique_name_in_owner = true
