@@ -38,7 +38,7 @@ func _process(delta):
 		if email.deleted:
 			emails.erase(email)
 		elif not email.open:
-			email.position += (Vector2(60, 950 - (i * 120)) - email.position) / 5 * (60 * delta) # smooth interpolation of emails (current += (target - current) / smoothness)
+			email.position += (Vector2(60, 930 - (i * 90)) - email.position) / 5 * (60 * delta) # smooth interpolation of emails (current += (target - current) / smoothness)
 		
 		i += 1
 
@@ -50,4 +50,6 @@ func add_more_emails(amount : int):
 		
 		add_child(new_email)
 		emails.append(new_email)
+		
+		await get_tree().create_timer(0.2).timeout
 # end ByDesign
