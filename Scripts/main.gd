@@ -42,17 +42,22 @@ var total_emails : int = 0
 
 @export var counter : Label
 @export var time : Label
+var upgrade_time = false
 var tween_time
 
-@export var day_duration : float = 300.0
+@export var day_duration : float = 20.0  # was 300, but shortening for testing
 
 func _ready():
+	$UpgradeTimer.start(day_duration / 8)
+	print($UpgradeTimer.wait_time)
+	
 	# start Psuedo Pakman
 	# trigger initial setup once
 	_on_state_changed(game_state)
 	# end Psuedo Pakman
 	
-	tween_time = create_tween().tween_property(self, "clock", 8.0, 20.0)
+	tween_time = create_tween().tween_property(self, "clock", 8.0, day_duration)
+	
 	await tween_time.finished
 	print("end game")
 
@@ -67,7 +72,7 @@ func _process(delta):
 	else:
 		time.text = str(int(fmod(floor(clock + 9), 12))) + ":%02.f" % floor(fmod(clock + 9, 1)*60) + " AM"
 	
-	if fmod(snappedf(clock, 0.01), 1) == 0 and clock >= 1:
+	if fmod(snappedf(clock, 0.01), 1) == 0 and upgrade_time:
 		print(clock)
 		choose_upgrade()
 		game_state = GameState.PAUSE_MENU
@@ -129,11 +134,17 @@ func _on_accept_button_pressed() -> void:
 			print("spam: " + str(spam_chance))
 			print("email: " + str(email_speed))
 			
-			await get_tree().create_timer(0.5).timeout
+			# Don't want it to reappear
+			#await get_tree().create_timer(0.5).timeout
 			game_state = GameState.GAME
+			upgrade_time = false
+			%UpgradeBox.hide()
 		# Making sure all buttons are unpressed for next go.
 		button.button_pressed = false
 
 #add something to disable accept button unless an upgrade is selected
+
+func _on_upgrade_timer_timeout() -> void:
+	upgrade_time = true
 
 #end ampbeetle

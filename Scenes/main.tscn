@@ -208,7 +208,11 @@ grow_vertical = 0
 theme = SubResource("Theme_g4v7s")
 text = "Accept"
 
+[node name="UpgradeTimer" type="Timer" parent="." unique_id=768330774]
+wait_time = 2.5
+
 [connection signal="pressed" from="UpgradeBox/UpgradeChoice/UpgradeCard" to="." method="_on_upgrade_selected" flags=18]
 [connection signal="pressed" from="UpgradeBox/UpgradeChoice/UpgradeCard2" to="." method="_on_upgrade_selected" flags=18]
 [connection signal="pressed" from="UpgradeBox/UpgradeChoice/UpgradeCard3" to="." method="_on_upgrade_selected" flags=18]
 [connection signal="pressed" from="UpgradeBox/AcceptButton" to="." method="_on_accept_button_pressed"]
+[connection signal="timeout" from="UpgradeTimer" to="." method="_on_upgrade_timer_timeout"]
