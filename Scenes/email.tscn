@@ -1,0 +1,188 @@
+[gd_scene format=3 uid="uid://coeyr1oy5wo30"]
+
+[ext_resource type="Script" uid="uid://br585yyoeay5x" path="res://Scripts/Email/email.gd" id="1_hkori"]
+[ext_resource type="Script" uid="uid://b8kf2iu72ye83" path="res://Scripts/Email/flavor_text_controller.gd" id="2_hkori"]
+[ext_resource type="Texture2D" uid="uid://co17lrl57lbes" path="res://Sprites/temp_9patch_rect.png" id="2_umtb6"]
+[ext_resource type="FontFile" uid="uid://doe2y2s8d1bw7" path="res://Fonts/Monofrik Demo.ttf" id="3_6xuhd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hkori"]
+font = ExtResource("3_6xuhd")
+font_size = 22
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_6xuhd"]
+default_font = ExtResource("3_6xuhd")
+default_font_size = 26
+
+[node name="Email" type="Control" unique_id=1747348247 node_paths=PackedStringArray("flavor_text", "collapsed_email_text", "upload_button", "upload_bar", "base_read_button", "flavor_text_controller", "decision_stuff", "email_stuff", "upload_stuff", "all")]
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_hkori")
+flavor_text = NodePath("DecorationArrow/FlavorText")
+collapsed_email_text = NodePath("ExpandedEmailText")
+upload_button = NodePath("Buttons/Upload/Upload")
+upload_bar = NodePath("Buttons/Upload/UploadProgress")
+base_read_button = NodePath("Read")
+flavor_text_controller = NodePath("FlavorTextController")
+type = "Normal"
+decision_stuff = NodePath("Buttons/Decisions")
+email_stuff = NodePath("Buttons/EmailStuff")
+upload_stuff = NodePath("Buttons/Upload")
+all = NodePath("Buttons")
+
+[node name="EmailBubble" type="NinePatchRect" parent="." unique_id=1209836565]
+layout_mode = 0
+offset_left = -400.0
+offset_top = -25.0
+offset_right = 400.0
+offset_bottom = 25.0
+pivot_offset = Vector2(600, 25)
+texture = ExtResource("2_umtb6")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="DecorationArrow" type="Polygon2D" parent="." unique_id=550866355]
+position = Vector2(-376.66666, 0)
+color = Color(1, 1, 0, 1)
+polygon = PackedVector2Array(-10, -10, 10, -10, 20, 0, 10, 10, -10, 10, 0, 0)
+
+[node name="FlavorText" type="Label" parent="DecorationArrow" unique_id=1514963277]
+custom_minimum_size = Vector2(350, 30)
+custom_maximum_size = Vector2(350, 30)
+offset_left = 26.0
+offset_top = -8.666667
+offset_right = 376.0
+offset_bottom = 21.333332
+text = "Boss - Get to work!"
+label_settings = SubResource("LabelSettings_hkori")
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 5
+
+[node name="ExpandedEmailText" type="Label" parent="." unique_id=1665825712]
+custom_minimum_size = Vector2(350, 400)
+custom_maximum_size = Vector2(350, 400)
+layout_mode = 0
+offset_left = -350.6667
+offset_top = 144.66667
+offset_right = -0.666687
+offset_bottom = 544.6667
+text = "Boss - Get to work!"
+label_settings = SubResource("LabelSettings_hkori")
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 5
+
+[node name="FlavorTextController" type="Node" parent="." unique_id=1545654535]
+script = ExtResource("2_hkori")
+read_text = Array[String](["Boss - Get back to work or else I'm not paying you!", "Bob - Party at my house tonight! We're gonna have pizza, soda, and Jenny is gonna be there. ;)", "Wife - I'm going to the store to get groceries. Do you need anything?", "User1426 - I filled out the form, but your company keeps charging me! If this keeps up I'm going to sue!", "Boss - Jill has called in sick and won't be here for the next couple of weeks.", "kid_jensen_11 - hi whats 4*3 my math teacher wont tell me"])
+expanded_read_text = Array[String](["keep reading and reading and reading"])
+decision_good_text = Array[String](["Boss - Want a raise? Your acceptional work has been recognised by the other staff.", "Discord - You got gifted 1 Month of Nitro! Do you accept?", "Colin - I handled the report. Should I send it to you so you can submit it?"])
+decision_bad_text = Array[String](["Susie - Should we fire Bob? He's been slacking off lately and we can't tell if he's actually in this company", "Wife - Take a day off! You could help around the house instead of being at work!", "H@CKER12345 - Hehehe! Give me money or you'll lose everything!"])
+expanded_decision_good_text = Array[String](["choices choices good"])
+expanded_decision_bad_text = Array[String](["choices choices bad"])
+spam_text = Array[String](["LOTTERY - You wun $10,,000!1!!!!11!!!", "Amasun - Plz confirm your acount we need to confrm it", "Itchy - Ur account got hackd. Please call 123-456-7890 to reset ur pasword."])
+expanded_spam_text = Array[String](["free bobux"])
+upload_text = Array[String](["Jack - Could you send me the tax forms file? I think I deleted my copy.", "Boss - I need that report NOW! What's taking so long!"])
+expanded_upload_text = Array[String](["man if only i didnt need to use my local mcdonalds wifi"])
+
+[node name="Buttons" type="Control" parent="." unique_id=1863970812]
+anchors_preset = 0
+
+[node name="EmailStuff" type="Control" parent="Buttons" unique_id=1625470664]
+anchors_preset = 0
+offset_top = 4.0
+offset_bottom = 4.0
+
+[node name="Read" type="Button" parent="Buttons/EmailStuff" unique_id=1751263076]
+z_index = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = -73.333336
+offset_right = 284.6667
+offset_bottom = -33.333336
+theme = SubResource("Theme_6xuhd")
+text = "FINISH"
+
+[node name="Delete" type="Button" parent="Buttons/EmailStuff" unique_id=378206852]
+z_index = 1
+layout_mode = 0
+offset_left = 292.0
+offset_top = -73.333336
+offset_right = 394.0
+offset_bottom = -33.333336
+theme = SubResource("Theme_6xuhd")
+text = "DELETE"
+
+[node name="Decisions" type="Control" parent="Buttons" unique_id=820817453]
+anchors_preset = 0
+offset_top = 12.666667
+offset_bottom = 12.666667
+
+[node name="Yes" type="Button" parent="Buttons/Decisions" unique_id=1197127668]
+z_index = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = -32.0
+offset_right = 196.66667
+offset_bottom = 8.0
+theme = SubResource("Theme_6xuhd")
+text = "YES
+"
+
+[node name="No" type="Button" parent="Buttons/Decisions" unique_id=1435574022]
+z_index = 1
+layout_mode = 0
+offset_left = 203.33333
+offset_top = -32.0
+offset_right = 395.3333
+offset_bottom = 8.0
+theme = SubResource("Theme_6xuhd")
+text = "NO"
+
+[node name="Upload" type="Control" parent="Buttons" unique_id=2078956031]
+anchors_preset = 0
+offset_top = 15.333334
+offset_bottom = 15.333334
+
+[node name="Upload" type="Button" parent="Buttons/Upload" unique_id=363020368]
+z_index = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = 12.666668
+offset_right = 396.0
+offset_bottom = 52.666668
+theme = SubResource("Theme_6xuhd")
+action_mode = 0
+text = "UPLOAD"
+
+[node name="UploadProgress" type="ProgressBar" parent="Buttons/Upload" unique_id=306935486]
+z_index = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = 12.666668
+offset_right = 394.6667
+offset_bottom = 52.666668
+mouse_filter = 2
+theme = SubResource("Theme_6xuhd")
+show_percentage = false
+
+[node name="Read" type="Button" parent="." unique_id=685986502]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -20.0
+offset_right = 395.33334
+offset_bottom = 20.0
+theme = SubResource("Theme_6xuhd")
+text = "READ"
+
+[connection signal="pressed" from="Buttons/EmailStuff/Read" to="." method="_on_read_pressed"]
+[connection signal="pressed" from="Buttons/EmailStuff/Delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="Buttons/Decisions/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="Buttons/Decisions/No" to="." method="_on_no_pressed"]
+[connection signal="pressed" from="Buttons/Upload/Upload" to="." method="_on_upload_pressed"]
+[connection signal="pressed" from="Read" to="." method="_on_read_pressed"]
