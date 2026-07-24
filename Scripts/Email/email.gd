@@ -20,27 +20,22 @@ class_name Email
 @export_enum("Normal", "Accept", "Decline", "Spam", "Upload", "Attachment") var type : String
 
 @export_group("Button Groups") # the node2ds are used to hide and show different groups
-@export var read : Control
-@export var decision : Control
-@export var spam : Control
-@export var upload : Control
+@export var decision_stuff : Control
+@export var email_stuff : Control
+@export var upload_stuff : Control
 @export var all : Control
 
 var open := false # tells the manager that it shouldnt be accounted for
 
 var deleted : bool = false
 
-var progress := 0.0 # only for upload emails
+var progress := 0.0
 
 var base_scale := Vector2.ONE # for easy scale animation tweaks
 
 func _ready():
 	base_scale = scale
 	all.visible = false
-	read.visible = false
-	decision.visible = false
-	spam.visible = false
-	upload.visible = false
 	
 	var random : float = randf_range(1, 100)
 	if random < 70:
@@ -48,14 +43,14 @@ func _ready():
 		#modulate = Color.WHITE
 		flavor_text.text = flavor_text_controller.read_text.pick_random().replace("\\n", "\n") # .replace fixes the line breaks
 		
-		read.visible = true
-		
-		# start Psuedo Pakman
-		# Im assuming normal means read
-		collapsed_email_text.text = flavor_text_controller.expanded_read_text[
-			randi_range(0, flavor_text_controller.expanded_read_text.size() - 1)
-		]
-		# end Psuedo Pakman
+	read.visible = true
+	
+	# start Psuedo Pakman
+	# Im assuming normal means read
+	collapsed_email_text.text = flavor_text_controller.expanded_read_text[
+		randi_range(0, flavor_text_controller.expanded_read_text.size() - 1)
+	]
+	# end Psuedo Pakman
 		
 	else:
 		var special_random : int = randi_range(1, 4)
@@ -64,53 +59,49 @@ func _ready():
 			type = "Accept"
 			#modulate = Color.LIGHT_GREEN
 			flavor_text.text = flavor_text_controller.decision_good_text.pick_random().replace("\\n", "\n") # .replace fixes the line breaks
-			
-			decision.visible = true
-			
-			# start Psuedo Pakman
-			collapsed_email_text.text = flavor_text_controller.expanded_decision_good_text[
-				randi_range(0, flavor_text_controller.expanded_read_text.size() - 1)
-			]
-			# end Psuedo Pakman
+		decision.visible = true
+		
+		# start Psuedo Pakman
+		collapsed_email_text.text = flavor_text_controller.expanded_decision_good_text[
+			randi_range(0, flavor_text_controller.expanded_read_text.size() - 1)
+		]
+		# end Psuedo Pakman
 		
 		elif special_random == 2:
 			type = "Decline"
 			#modulate = Color.LIGHT_CORAL
 			flavor_text.text = flavor_text_controller.decision_bad_text.pick_random().replace("\\n", "\n") # .replace fixes the line breaks
-			
-			decision.visible = true
-			
-			# start Psuedo Pakman
-			collapsed_email_text.text = flavor_text_controller.expanded_decision_bad_text[
-				randi_range(0, flavor_text_controller.expanded_read_text.size() - 1)
-			]
-			# end Psuedo Pakman
+		decision.visible = true
+		
+		# start Psuedo Pakman
+		collapsed_email_text.text = flavor_text_controller.expanded_decision_bad_text[
+			randi_range(0, flavor_text_controller.expanded_read_text.size() - 1)
+		]
+		# end Psuedo Pakman
 		
 		elif special_random == 3:
 			type = "Spam"
 			#modulate = Color.LIGHT_SALMON
 			flavor_text.text = flavor_text_controller.spam_text.pick_random().replace("\\n", "\n") # .replace fixes the line breaks
-			
-			spam.visible = true
-			
-			# start Psuedo Pakman
-			collapsed_email_text.text = flavor_text_controller.expanded_spam_text[
-				randi_range(0, flavor_text_controller.expanded_read_text.size() - 1)
-			]
-			# end Psuedo Pakman
+		spam.visible = true
+		
+		# start Psuedo Pakman
+		collapsed_email_text.text = flavor_text_controller.expanded_spam_text[
+			randi_range(0, flavor_text_controller.expanded_read_text.size() - 1)
+		]
+		# end Psuedo Pakman
 		
 		elif special_random == 4:
 			type = "Upload"
 			#modulate = Color.LIGHT_SKY_BLUE
 			flavor_text.text = flavor_text_controller.upload_text.pick_random().replace("\\n", "\n") # .replace fixes the line breaks
-			
-			upload.visible = true
-			
-			# start Psuedo Pakman
-			collapsed_email_text.text = flavor_text_controller.expanded_upload_text[
-				randi_range(0, flavor_text_controller.expanded_upload_text.size() - 1)
-			]
-			# end Psuedo Pakman
+		upload.visible = true
+		
+		# start Psuedo Pakman
+		collapsed_email_text.text = flavor_text_controller.expanded_upload_text[
+			randi_range(0, flavor_text_controller.expanded_upload_text.size() - 1)
+		]
+		# end Psuedo Pakman
 		
 
 func _process(delta):
@@ -125,20 +116,20 @@ func _process(delta):
 		else:
 			scale += (base_scale - scale) / 5
 
-func delete_email(success : bool): # delete email after doing little animation\
+func delete_email(input : String): # delete email after doing little animation
+	all.visible = false
 	Global.email_open = false # used to tell other emails to work again
 	open = false
 	
-	var scale_box_tween = create_tween().tween_property(self.get_node("EmailBubble"), "size", Vector2(900, 50), 0.2) # make box fit screen
-	var scale_text_tween = create_tween().tween_property(flavor_text, "size", Vector2(550, 24), 0.2) # make text fit screen
-	var change_text_tween = create_tween().tween_property(flavor_text, "custom_maximum_size", Vector2(550, 30), 0.2) # stop ellipses from appearing
+	var scale_box_tween = create_tween().tween_property(self.get_node("EmailBubble"), "size", Vector2(800, 50), 0.2) # make box fit screen
+	var scale_text_tween = create_tween().tween_property(flavor_text, "size", Vector2(350, 24), 0.2) # make text fit screen
+	var change_text_tween = create_tween().tween_property(flavor_text, "custom_maximum_size", Vector2(350, 30), 0.2) # stop ellipses from appearing
 	var move_buttons_tween = create_tween().tween_property(self.get_node("Buttons"), "position", Vector2(0, 0), 0.2) # move buttons to original place
 	
 	await move_buttons_tween.finished
 	
-	if not success: # shake if messed up
+	if not input == type: # shake if messed up
 		modulate = Color.LIGHT_CORAL
-		Global.manager.add_more_emails(3)
 		
 		var shake = create_tween().tween_method(func(i): position.x = sin(i) * 20.0, 0.0, -4 * PI, 0.3) # shake twice
 		await shake.finished
@@ -158,11 +149,11 @@ func open_email(type):
 	base_read_button.visible = false # hide the regular read button used to open the email
 	all.visible = true # show the correct buttons for the email type, hidden earlier in the script
 	
-	var scale_box_tween = create_tween().tween_property(self.get_node("EmailBubble"), "size", Vector2(1200, 600), 0.2) # make box fit screen
-	var scale_text_tween = create_tween().tween_property(flavor_text, "size", Vector2(550, 400), 0.2) # make text fit screen
-	var change_text_tween = create_tween().tween_property(flavor_text, "custom_maximum_size", Vector2(550, 400), 0.2) # stop ellipses from appearing
+	var scale_box_tween = create_tween().tween_property(self.get_node("EmailBubble"), "size", Vector2(800, 600), 0.2) # make box fit screen
+	var scale_text_tween = create_tween().tween_property(flavor_text, "size", Vector2(350, 400), 0.2) # make text fit screen
+	var change_text_tween = create_tween().tween_property(flavor_text, "custom_maximum_size", Vector2(350, 400), 0.2) # stop ellipses from appearing
 	var move_tween = create_tween().tween_property(self, "position", Vector2(0, 0), 0.2) # move box to right position
-	var move_buttons_tween = create_tween().tween_property(self.get_node("Buttons"), "position", Vector2(100, 530), 0.2) # move buttons to bottom
+	var move_buttons_tween = create_tween().tween_property(self.get_node("Buttons"), "position", Vector2(-30, 480), 0.2) # move buttons to bottom
 	z_index = 5
 	# start Psuedo Pakman
 	collapsed_email_text.visible = true
@@ -172,25 +163,25 @@ func open_email(type):
 # special interaction stuff
 func _on_read_pressed():
 	if open:
-		delete_email(type == "Normal")
+		delete_email("Normal")
 	elif not Global.email_open:
 		open_email(type)
 
 func _on_yes_pressed():
 	if open:
-		delete_email(type == "Accept")
+		delete_email("Accept")
 	elif not Global.email_open:
 		open_email(type)
 
 func _on_no_pressed():
 	if open:
-		delete_email(type == "Decline")
+		delete_email("Decline")
 	elif not Global.email_open:
 		open_email(type)
 
 func _on_delete_pressed():
 	if open:
-		delete_email(type == "Spam")
+		delete_email("Spam")
 	elif not Global.email_open:
 		open_email(type)
 
@@ -203,7 +194,7 @@ func _on_upload_pressed(): # i think i did this one wrong (?)
 			upload_bar.value = progress
 		
 		if progress >= 100:
-			delete_email(type == "Upload")
+			delete_email("Upload")
 		else:
 			if not upload_button.button_pressed:
 				progress = 0
