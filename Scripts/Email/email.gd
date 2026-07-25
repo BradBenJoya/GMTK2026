@@ -76,12 +76,54 @@ func _process(delta):
 			scale += (base_scale - scale) / 5
 
 func delete_email(input : String): # delete email after doing little animation
-	if type == input:
-		Global.audio_manager.correct_sfx.pitch_scale = randf_range(0.99, 1.01)
-		Global.audio_manager.correct_sfx.play()
-	else:
-		Global.audio_manager.incorrect_sfx.pitch_scale = randf_range(0.99, 1.01)
-		Global.audio_manager.incorrect_sfx.play()
+	if input == "Spam":
+		Global.audio_manager.play_email_sfx("deleted")
+	elif input == type:
+		Global.audio_manager.play_email_sfx("correct")
+	
+	if type == "Normal":
+		if input == "Upload":
+			pass # add boss
+		if input == "Accept" || input == "Decline":
+			Global.audio_manager.play_email_sfx("sent")
+			Global.manager.add_more_emails(1)
+	
+	if type == "Accept":
+		if input == "Accept":
+			pass # give upgrade
+		else:
+			Global.audio_manager.play_email_sfx("sent")
+	
+	if type == "Decline":
+		if input == "Upload":
+			Global.manager.add_more_emails(1)
+			Global.audio_manager.play_email_sfx("incorrect")
+			Global.audio_manager.play_email_sfx("sent")
+		if input == "Accept":
+			Global.audio_manager.play_email_sfx("incorrect")
+			Global.manager.add_more_emails(3)
+		if input == "Normal" || input == "Spam":
+			pass # add boss
+	
+	if type == "Spam":
+		if input == "Upload":
+			pass # add popups
+		if input == "Accept" || input == "Decline":
+			Global.manager.add_more_emails(5)
+			Global.audio_manager.play_email_sfx("incorrect")
+		if input == "Normal":
+			Global.manager.add_more_emails(1)
+			Global.audio_manager.play_email_sfx("incorrect")
+	
+	if type == "Upload":
+		if input == "Spam":
+			pass # add boss
+		if input == "Accept" || input == "Decline":
+			pass # add boss
+			Global.audio_manager.play_email_sfx("incorrect")
+		if input == "Normal":
+			Global.manager.add_more_emails(3)
+			Global.audio_manager.play_email_sfx("incorrect")
 	
 	expanded_email_text.visible = false
 	all.visible = false
@@ -99,42 +141,6 @@ func delete_email(input : String): # delete email after doing little animation
 	z_index = -1 # get it out of the way to avoid overlap
 	var slide_out = create_tween().tween_property(self, "position", Vector2(-2000.0, position.y), 0.5)
 	await slide_out.finished
-	
-	if type == "Normal":
-		if input == "Upload":
-			pass # add boss
-		if input == "Accept" || input == "Decline":
-			Global.manager.add_more_emails(1)
-	
-	if type == "Accept":
-		if input == "Accept":
-			pass # give upgrade
-	
-	if type == "Decline":
-		if input == "Upload":
-			Global.manager.add_more_emails(1)
-		if input == "Accept":
-			Global.manager.add_more_emails(3)
-		
-		if input == "Normal" || input == "Spam":
-			pass # add boss
-	
-	if type == "Spam":
-		if input == "Upload":
-			pass # add popups
-		if input == "Accept" || input == "Decline":
-			Global.manager.add_more_emails(5)
-		
-		if input == "Normal":
-			Global.manager.add_more_emails(1)
-	
-	if type == "Upload":
-		if input == "Spam":
-			pass # add boss
-		if input == "Accept" || input == "Decline":
-			pass # add boss
-		if input == "Normal":
-			Global.manager.add_more_emails(3)
 	
 	queue_free()
 
@@ -183,6 +189,7 @@ func _on_delete_pressed():
 
 func _on_upload_pressed(): # i think i did this one wrong (?)
 	if open:
+		Global.audio_manager.play_email_sfx("uploading")
 		while upload_button.button_pressed:
 			await get_tree().physics_frame
 			progress += 1
@@ -194,6 +201,7 @@ func _on_upload_pressed(): # i think i did this one wrong (?)
 			if not upload_button.button_pressed:
 				progress = 0
 				upload_bar.value = progress
+				Global.audio_manager.stop_uploading()
 	
 	elif not Global.email_open:
 		open_email(type)

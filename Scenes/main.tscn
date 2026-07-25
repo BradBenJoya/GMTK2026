@@ -14,14 +14,83 @@
 [ext_resource type="Resource" uid="uid://bxeglhgrv4qrr" path="res://Scripts/Cards/Upgrades/Router.tres" id="6_k12tt"]
 [ext_resource type="Resource" uid="uid://bsiba7mxpv537" path="res://Scripts/Cards/Upgrades/Go_fast.tres" id="7_h1bgf"]
 [ext_resource type="Resource" uid="uid://dbpeoebxmx4b3" path="res://Scripts/Cards/Upgrades/Firewall.tres" id="8_b3802"]
+[ext_resource type="Texture2D" uid="uid://cqaxhbvxkba7f" path="res://Sprites/temp_message_box.png" id="12_b3802"]
 [ext_resource type="Script" uid="uid://sqlam6id7o4t" path="res://Scripts/audio_manager.gd" id="15_h1bgf"]
-[ext_resource type="AudioStream" uid="uid://bw31mlg7d3t1q" path="res://Audio/SFX/mx_stinger_correct.wav" id="15_k12tt"]
-[ext_resource type="AudioStream" uid="uid://baf3j6mtdkeit" path="res://Audio/SFX/mx_stinger_incorrect.wav" id="16_h1bgf"]
+[ext_resource type="AudioStream" uid="uid://bw31mlg7d3t1q" path="res://Audio/SFX/Email/mx_stinger_correct.wav" id="15_k12tt"]
+[ext_resource type="AudioStream" uid="uid://baf3j6mtdkeit" path="res://Audio/SFX/Email/mx_stinger_incorrect.wav" id="16_h1bgf"]
+[ext_resource type="AudioStream" uid="uid://bcl7ayc6347t6" path="res://Audio/SFX/Mouse/sfx_player_MouseClick01.wav" id="17_fd3ed"]
+[ext_resource type="AudioStream" uid="uid://hfc14xxnknxj" path="res://Audio/SFX/Mouse/sfx_player_MouseClick02.wav" id="18_qnggo"]
+[ext_resource type="AudioStream" uid="uid://d2ugklbm2vugn" path="res://Audio/SFX/Mouse/sfx_player_MouseClick03.wav" id="19_tab3y"]
+[ext_resource type="AudioStream" uid="uid://b5j1hh5dws4rg" path="res://Audio/SFX/Mouse/sfx_player_MouseClick04.wav" id="20_1tvlp"]
+[ext_resource type="AudioStream" uid="uid://bkwvble5nlgq3" path="res://Audio/SFX/Mouse/sfx_player_MouseClick05.wav" id="21_wl4bb"]
+[ext_resource type="AudioStream" uid="uid://b2oa7s013svt" path="res://Audio/SFX/Mouse/sfx_player_MouseClick06.wav" id="22_6h1fc"]
+[ext_resource type="AudioStream" uid="uid://dmi6gjnp56vhk" path="res://Audio/SFX/Mouse/sfx_player_MouseClick07.wav" id="23_vxl7x"]
+[ext_resource type="AudioStream" uid="uid://vkdkxpoilvxi" path="res://Audio/SFX/Mouse/sfx_player_MouseClick08.wav" id="24_ihvwq"]
+[ext_resource type="AudioStream" uid="uid://dlm41v08nl6i5" path="res://Audio/SFX/Mouse/sfx_player_MouseClick09.wav" id="25_k8rh3"]
+[ext_resource type="AudioStream" uid="uid://d0jcw2qvnceyp" path="res://Audio/SFX/Mouse/sfx_player_MouseClick10.wav" id="26_55idt"]
+[ext_resource type="AudioStream" uid="uid://valqwq4i6nut" path="res://Audio/SFX/Mouse/sfx_player_MouseClick11.wav" id="27_87bhu"]
+[ext_resource type="AudioStream" uid="uid://b8f8rr7djhqia" path="res://Audio/SFX/Mouse/sfx_player_MouseClick12.wav" id="28_33qc4"]
+[ext_resource type="AudioStream" uid="uid://48darn30tmx7" path="res://Audio/SFX/Mouse/sfx_player_MouseClick13.wav" id="29_e6rcu"]
+[ext_resource type="AudioStream" uid="uid://cfd36wv4m7rpp" path="res://Audio/SFX/Mouse/sfx_player_MouseClick14.wav" id="30_p4gyq"]
+[ext_resource type="AudioStream" uid="uid://do4o0px57ggis" path="res://Audio/SFX/Mouse/sfx_player_MouseClick15.wav" id="31_32dfi"]
+[ext_resource type="AudioStream" uid="uid://cd1j3clegpfnl" path="res://Audio/SFX/Mouse/sfx_player_MouseClick16.wav" id="32_cf2bd"]
+[ext_resource type="AudioStream" uid="uid://ck1l0mbkbk7cn" path="res://Audio/SFX/Mouse/sfx_player_MouseClick17.wav" id="33_lpdpw"]
+[ext_resource type="AudioStream" uid="uid://dygph330ce4c6" path="res://Audio/SFX/Mouse/sfx_player_MouseClick18.wav" id="34_jrou0"]
+[ext_resource type="AudioStream" uid="uid://7tlwdvy8qiiw" path="res://Audio/SFX/Mouse/sfx_player_MouseClick19.wav" id="35_j2g22"]
+[ext_resource type="AudioStream" uid="uid://dj1xo66fnf73o" path="res://Audio/SFX/Mouse/sfx_player_MouseClick20.wav" id="36_phube"]
+[ext_resource type="AudioStream" uid="uid://bihvuqqsb5rhb" path="res://Audio/SFX/Boss/sfx_boss_Angry01.wav" id="37_t014q"]
+[ext_resource type="AudioStream" uid="uid://dv0gln7d3rdfh" path="res://Audio/SFX/Boss/sfx_boss_Angry02.wav" id="38_nb1ia"]
+[ext_resource type="AudioStream" uid="uid://bpfg41ktkd3gr" path="res://Audio/SFX/Boss/sfx_boss_Angry03.wav" id="39_3ahwd"]
+[ext_resource type="AudioStream" uid="uid://6ht1wbdcqyr3" path="res://Audio/SFX/Boss/sfx_boss_Angry04.wav" id="40_b4xsn"]
+[ext_resource type="AudioStream" uid="uid://b2xfpxnt1y1n8" path="res://Audio/SFX/Boss/sfx_boss_Angry05.wav" id="41_ot5ec"]
+[ext_resource type="AudioStream" uid="uid://cw5lq54407mlb" path="res://Audio/SFX/Boss/sfx_boss_Angry06.wav" id="42_aok0f"]
+[ext_resource type="AudioStream" uid="uid://cv35h2rvig27r" path="res://Audio/SFX/Email/sfx_email_Deleted01.wav" id="45_64lof"]
+[ext_resource type="AudioStream" uid="uid://l84sy2jmkdup" path="res://Audio/SFX/Email/sfx_email_Deleted02.wav" id="46_b4mik"]
+[ext_resource type="AudioStream" uid="uid://cdgjpxhur6gdh" path="res://Audio/SFX/Email/sfx_email_Deleted03.wav" id="47_urine"]
+[ext_resource type="AudioStream" uid="uid://dnql51sf5xc0d" path="res://Audio/SFX/Email/sfx_email_Deleted04.wav" id="48_5vy51"]
+[ext_resource type="AudioStream" uid="uid://o6eupjcrjmme" path="res://Audio/SFX/Email/sfx_email_Deleted05.wav" id="49_o2owy"]
+[ext_resource type="AudioStream" uid="uid://d0rd40lwbc7dh" path="res://Audio/SFX/Email/sfx_email_Deleted06.wav" id="50_ylsbi"]
+[ext_resource type="AudioStream" uid="uid://cykh8bxvvd3w" path="res://Audio/SFX/Email/sfx_email_Deleted07.wav" id="51_ceghn"]
+[ext_resource type="AudioStream" uid="uid://h6rs3lk3dq7i" path="res://Audio/SFX/Email/sfx_email_Deleted08.wav" id="52_3h4bx"]
+[ext_resource type="AudioStream" uid="uid://x240c01tcf81" path="res://Audio/SFX/Email/sfx_email_Deleted09.wav" id="53_xg142"]
+[ext_resource type="AudioStream" uid="uid://cv7quuany338e" path="res://Audio/SFX/Email/sfx_email_FileUploading01.wav" id="54_rlvxq"]
+[ext_resource type="AudioStream" uid="uid://ddj4ivewvaxxp" path="res://Audio/SFX/Email/sfx_email_FileUploading02.wav" id="55_0fjpc"]
+[ext_resource type="AudioStream" uid="uid://di4h4wctwhpl2" path="res://Audio/SFX/Email/sfx_email_FileUploading03.wav" id="56_gdwd6"]
+[ext_resource type="AudioStream" uid="uid://cmhx4mbhn7v34" path="res://Audio/SFX/Email/sfx_email_Recieved01.wav" id="57_cmq5c"]
+[ext_resource type="AudioStream" uid="uid://j1cmcfk63bum" path="res://Audio/SFX/Email/sfx_email_Recieved02.wav" id="58_7t1gx"]
+[ext_resource type="AudioStream" uid="uid://ci58v56rcnvpi" path="res://Audio/SFX/Email/sfx_email_Recieved03.wav" id="59_mfvrx"]
+[ext_resource type="AudioStream" uid="uid://dm55aysse0gra" path="res://Audio/SFX/Email/sfx_email_Recieved04.wav" id="60_ilwxp"]
+[ext_resource type="AudioStream" uid="uid://bkxybs27j4wse" path="res://Audio/SFX/Email/sfx_email_Recieved05.wav" id="61_xjjvj"]
+[ext_resource type="AudioStream" uid="uid://bblsm0ymog4jj" path="res://Audio/SFX/Email/sfx_email_Sent01.wav" id="62_jab21"]
+[ext_resource type="AudioStream" uid="uid://cn2n01deina8o" path="res://Audio/SFX/Email/sfx_email_Sent02.wav" id="63_8dylv"]
+[ext_resource type="AudioStream" uid="uid://cprymawt3e2op" path="res://Audio/SFX/Email/sfx_email_Sent03.wav" id="64_qv1an"]
+[ext_resource type="AudioStream" uid="uid://b7eupe25is70y" path="res://Audio/SFX/Email/sfx_email_Sent04.wav" id="65_ja2pg"]
+[ext_resource type="AudioStream" uid="uid://c0tygow644mto" path="res://Audio/SFX/Email/sfx_email_Sent05.wav" id="66_0wopu"]
+[ext_resource type="AudioStream" uid="uid://yywx10l7l7sq" path="res://Audio/SFX/Email/sfx_email_Sent06.wav" id="67_na2ur"]
+[ext_resource type="AudioStream" uid="uid://c228i4fuv6f45" path="res://Audio/SFX/Email/sfx_email_Sent07.wav" id="68_rlvdk"]
+[ext_resource type="AudioStream" uid="uid://45ms553lqu1u" path="res://Audio/SFX/Virus/sfx_email_VirusOpened01.wav" id="69_t6wb6"]
+[ext_resource type="AudioStream" uid="uid://c7ptcxvp4vu6" path="res://Audio/SFX/Virus/sfx_email_VirusOpened02.wav" id="70_fvjqb"]
+[ext_resource type="AudioStream" uid="uid://c0j3qoldbwfu7" path="res://Audio/SFX/Virus/sfx_email_VirusOpened03.wav" id="71_b05pg"]
+[ext_resource type="AudioStream" uid="uid://dfjgu1j0m3sbt" path="res://Audio/SFX/Virus/sfx_email_VirusOpened05.wav" id="72_bdqux"]
+[ext_resource type="AudioStream" uid="uid://c482ni4pkfy2t" path="res://Audio/SFX/Virus/sfx_email_VirusOpened06.wav" id="73_e1jjv"]
+[ext_resource type="AudioStream" uid="uid://d1kr6mwo8hpmy" path="res://Audio/SFX/Virus/sfx_email_VirusOpened08.wav" id="74_stool"]
+[ext_resource type="AudioStream" uid="uid://bpkaelqh03osk" path="res://Audio/SFX/Virus/sfx_email_VirusOpened09.wav" id="75_ci23i"]
+[ext_resource type="AudioStream" uid="uid://cqqfieme248n2" path="res://Audio/Music/mx_loop_level.wav" id="76_myryv"]
+[ext_resource type="AudioStream" uid="uid://bijhsl5edk7n7" path="res://Audio/Music/mx_loop_virus.wav" id="77_bpr0e"]
+[ext_resource type="AudioStream" uid="uid://bj02qcr423axl" path="res://Audio/Music/sfx_ambience_LevelLoop.wav" id="78_14mkc"]
+[ext_resource type="AudioStream" uid="uid://o8nkvv458ngd" path="res://Audio/Music/sfx_ambience_MenuLoop.wav" id="79_l78ku"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_up85j"]
 font = ExtResource("4_21xkr")
 font_size = 64
 font_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+
+[sub_resource type="Theme" id="Theme_b3802"]
+default_font = ExtResource("4_21xkr")
+
+[sub_resource type="Theme" id="Theme_g4v7s"]
+default_font = ExtResource("4_21xkr")
+default_font_size = 56
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wj5hs"]
 shader = ExtResource("2_kry3j")
@@ -47,10 +116,6 @@ shader_parameter/roll_speed = 0.1
 shader_parameter/roll_strength = 0.15
 shader_parameter/glow_strength = 0.25
 shader_parameter/glow_threshold = 0.65
-
-[sub_resource type="Theme" id="Theme_g4v7s"]
-default_font = ExtResource("4_21xkr")
-default_font_size = 56
 
 [node name="Main" type="Node2D" unique_id=1107406334 node_paths=PackedStringArray("counter", "time")]
 script = ExtResource("1_bo1nx")
@@ -81,6 +146,81 @@ audio_listener_enable_2d = true
 audio_listener_enable_3d = true
 size = Vector2i(1423, 1433)
 render_target_update_mode = 4
+
+[node name="UpgradeBox" type="NinePatchRect" parent="Monitor/SubViewport" unique_id=604761929]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+z_index = 15
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -645.5
+offset_top = -532.5
+offset_right = 642.0
+offset_bottom = 549.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_b3802")
+region_rect = Rect2(8, 8, 48, 48)
+
+[node name="UpgradeHeader" type="Label" parent="Monitor/SubViewport/UpgradeBox" unique_id=476790690]
+z_index = 11
+layout_mode = 0
+offset_left = 35.0
+offset_top = 40.0
+offset_right = 619.0
+offset_bottom = 97.0
+text = "Choose upgrade:"
+label_settings = SubResource("LabelSettings_up85j")
+
+[node name="UpgradeChoice" type="HBoxContainer" parent="Monitor/SubViewport/UpgradeBox" unique_id=1078353247]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -549.0
+offset_top = -340.0
+offset_right = 577.0
+offset_bottom = 294.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UpgradeCard" parent="Monitor/SubViewport/UpgradeBox/UpgradeChoice" unique_id=56110472 instance=ExtResource("6_344ge")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_b3802")
+
+[node name="UpgradeCard2" parent="Monitor/SubViewport/UpgradeBox/UpgradeChoice" unique_id=2091806333 instance=ExtResource("6_344ge")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_b3802")
+
+[node name="UpgradeCard3" parent="Monitor/SubViewport/UpgradeBox/UpgradeChoice" unique_id=414813578 instance=ExtResource("6_344ge")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_b3802")
+
+[node name="AcceptButton" type="Button" parent="Monitor/SubViewport/UpgradeBox" unique_id=364760450]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = -112.0
+offset_right = 106.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_g4v7s")
+text = "Accept"
 
 [node name="Manager" parent="Monitor/SubViewport" unique_id=1747145403 instance=ExtResource("1_jjgbg")]
 position = Vector2(700, 300)
@@ -142,95 +282,228 @@ zoom = Vector2(0.335, 0.335)
 z_index = 10
 texture = ExtResource("5_kry3j")
 
-[node name="UpgradeBox" type="ColorRect" parent="." unique_id=1430341454]
-unique_name_in_owner = true
-process_mode = 3
-visible = false
-z_index = 10
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -643.75
-offset_top = -541.0
-offset_right = 643.75
-offset_bottom = 541.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="UpgradeHeader" type="Label" parent="UpgradeBox" unique_id=476790690]
-z_index = 11
-layout_mode = 0
-offset_right = 584.0
-offset_bottom = 57.0
-text = "Choose upgrade:"
-label_settings = SubResource("LabelSettings_up85j")
-
-[node name="UpgradeChoice" type="HBoxContainer" parent="UpgradeBox" unique_id=1078353247]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -549.0
-offset_top = -340.0
-offset_right = 577.0
-offset_bottom = 294.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="UpgradeCard" parent="UpgradeBox/UpgradeChoice" unique_id=56110472 instance=ExtResource("6_344ge")]
-layout_mode = 2
-size_flags_horizontal = 3
-toggle_mode = true
-
-[node name="UpgradeCard2" parent="UpgradeBox/UpgradeChoice" unique_id=2091806333 instance=ExtResource("6_344ge")]
-layout_mode = 2
-size_flags_horizontal = 3
-toggle_mode = true
-
-[node name="UpgradeCard3" parent="UpgradeBox/UpgradeChoice" unique_id=414813578 instance=ExtResource("6_344ge")]
-layout_mode = 2
-size_flags_horizontal = 3
-toggle_mode = true
-
-[node name="AcceptButton" type="Button" parent="UpgradeBox" unique_id=364760450]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -106.0
-offset_top = -112.0
-offset_right = 106.0
-offset_bottom = -54.0
-grow_horizontal = 2
-grow_vertical = 0
-theme = SubResource("Theme_g4v7s")
-text = "Accept"
-
 [node name="UpgradeTimer" type="Timer" parent="." unique_id=768330774]
 wait_time = 2.5
 
-[node name="AudioManager" type="Node" parent="." unique_id=1887426924 node_paths=PackedStringArray("correct_sfx", "incorrect_sfx")]
+[node name="AudioManager" type="Node" parent="." unique_id=1887426924 node_paths=PackedStringArray("level_loop", "virus_loop", "level_ambience", "menu_loop", "mouse_click", "boss_yell", "virus_opened", "correct", "incorrect", "deleted", "uploading", "recieved", "sent")]
 script = ExtResource("15_h1bgf")
-correct_sfx = NodePath("SFX/MxStingerCorrect")
-incorrect_sfx = NodePath("SFX/MxStingerIncorrect")
+level_loop = NodePath("Music/MxLoopLevel")
+virus_loop = NodePath("Music/MxLoopVirus")
+level_ambience = NodePath("Music/SfxAmbienceLevelLoop")
+menu_loop = NodePath("Music/SfxAmbienceMenuLoop")
+mouse_click = [NodePath("SFX/Mouse/SfxPlayerMouseClick01"), NodePath("SFX/Mouse/SfxPlayerMouseClick02"), NodePath("SFX/Mouse/SfxPlayerMouseClick03"), NodePath("SFX/Mouse/SfxPlayerMouseClick04"), NodePath("SFX/Mouse/SfxPlayerMouseClick05"), NodePath("SFX/Mouse/SfxPlayerMouseClick06"), NodePath("SFX/Mouse/SfxPlayerMouseClick07"), NodePath("SFX/Mouse/SfxPlayerMouseClick08"), NodePath("SFX/Mouse/SfxPlayerMouseClick09"), NodePath("SFX/Mouse/SfxPlayerMouseClick10"), NodePath("SFX/Mouse/SfxPlayerMouseClick11"), NodePath("SFX/Mouse/SfxPlayerMouseClick12"), NodePath("SFX/Mouse/SfxPlayerMouseClick13"), NodePath("SFX/Mouse/SfxPlayerMouseClick14"), NodePath("SFX/Mouse/SfxPlayerMouseClick15"), NodePath("SFX/Mouse/SfxPlayerMouseClick16"), NodePath("SFX/Mouse/SfxPlayerMouseClick17"), NodePath("SFX/Mouse/SfxPlayerMouseClick18"), NodePath("SFX/Mouse/SfxPlayerMouseClick19"), NodePath("SFX/Mouse/SfxPlayerMouseClick20")]
+boss_yell = [NodePath("SFX/Boss/SfxBossAngry01"), NodePath("SFX/Boss/SfxBossAngry02"), NodePath("SFX/Boss/SfxBossAngry03"), NodePath("SFX/Boss/SfxBossAngry04"), NodePath("SFX/Boss/SfxBossAngry05"), NodePath("SFX/Boss/SfxBossAngry06")]
+virus_opened = [NodePath("SFX/Virus/SfxEmailVirusOpened01"), NodePath("SFX/Virus/SfxEmailVirusOpened02"), NodePath("SFX/Virus/SfxEmailVirusOpened03"), NodePath("SFX/Virus/SfxEmailVirusOpened05"), NodePath("SFX/Virus/SfxEmailVirusOpened06"), NodePath("SFX/Virus/SfxEmailVirusOpened08"), NodePath("SFX/Virus/SfxEmailVirusOpened09")]
+correct = [NodePath("SFX/Email/MxStingerCorrect")]
+incorrect = [NodePath("SFX/Email/MxStingerIncorrect")]
+deleted = [NodePath("SFX/Email/SfxEmailDeleted01"), NodePath("SFX/Email/SfxEmailDeleted02"), NodePath("SFX/Email/SfxEmailDeleted03"), NodePath("SFX/Email/SfxEmailDeleted04"), NodePath("SFX/Email/SfxEmailDeleted05"), NodePath("SFX/Email/SfxEmailDeleted06"), NodePath("SFX/Email/SfxEmailDeleted07"), NodePath("SFX/Email/SfxEmailDeleted08"), NodePath("SFX/Email/SfxEmailDeleted09")]
+uploading = [NodePath("SFX/Email/SfxEmailFileUploading01"), NodePath("SFX/Email/SfxEmailFileUploading02"), NodePath("SFX/Email/SfxEmailFileUploading03")]
+recieved = [NodePath("SFX/Email/SfxEmailRecieved01"), NodePath("SFX/Email/SfxEmailRecieved02"), NodePath("SFX/Email/SfxEmailRecieved03"), NodePath("SFX/Email/SfxEmailRecieved04"), NodePath("SFX/Email/SfxEmailRecieved05")]
+sent = [NodePath("SFX/Email/SfxEmailSent01"), NodePath("SFX/Email/SfxEmailSent02"), NodePath("SFX/Email/SfxEmailSent03"), NodePath("SFX/Email/SfxEmailSent04"), NodePath("SFX/Email/SfxEmailSent05"), NodePath("SFX/Email/SfxEmailSent06"), NodePath("SFX/Email/SfxEmailSent07")]
 
 [node name="SFX" type="Node" parent="AudioManager" unique_id=710531874]
 
-[node name="MxStingerCorrect" type="AudioStreamPlayer" parent="AudioManager/SFX" unique_id=867031841]
+[node name="Mouse" type="Node" parent="AudioManager/SFX" unique_id=1848110950]
+
+[node name="SfxPlayerMouseClick01" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=2076660742]
+stream = ExtResource("17_fd3ed")
+
+[node name="SfxPlayerMouseClick02" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=1514110923]
+stream = ExtResource("18_qnggo")
+
+[node name="SfxPlayerMouseClick03" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=1833445787]
+stream = ExtResource("19_tab3y")
+
+[node name="SfxPlayerMouseClick04" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=344630854]
+stream = ExtResource("20_1tvlp")
+
+[node name="SfxPlayerMouseClick05" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=1977025170]
+stream = ExtResource("21_wl4bb")
+
+[node name="SfxPlayerMouseClick06" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=1362681968]
+stream = ExtResource("22_6h1fc")
+
+[node name="SfxPlayerMouseClick07" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=142514765]
+stream = ExtResource("23_vxl7x")
+
+[node name="SfxPlayerMouseClick08" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=150724417]
+stream = ExtResource("24_ihvwq")
+
+[node name="SfxPlayerMouseClick09" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=1489344288]
+stream = ExtResource("25_k8rh3")
+
+[node name="SfxPlayerMouseClick10" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=199286726]
+stream = ExtResource("26_55idt")
+
+[node name="SfxPlayerMouseClick11" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=2091553613]
+stream = ExtResource("27_87bhu")
+
+[node name="SfxPlayerMouseClick12" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=309469946]
+stream = ExtResource("28_33qc4")
+
+[node name="SfxPlayerMouseClick13" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=290830651]
+stream = ExtResource("29_e6rcu")
+
+[node name="SfxPlayerMouseClick14" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=978004087]
+stream = ExtResource("30_p4gyq")
+
+[node name="SfxPlayerMouseClick15" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=302275806]
+stream = ExtResource("31_32dfi")
+
+[node name="SfxPlayerMouseClick16" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=96317447]
+stream = ExtResource("32_cf2bd")
+
+[node name="SfxPlayerMouseClick17" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=1627627395]
+stream = ExtResource("33_lpdpw")
+
+[node name="SfxPlayerMouseClick18" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=418827374]
+stream = ExtResource("34_jrou0")
+
+[node name="SfxPlayerMouseClick19" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=2027986244]
+stream = ExtResource("35_j2g22")
+
+[node name="SfxPlayerMouseClick20" type="AudioStreamPlayer" parent="AudioManager/SFX/Mouse" unique_id=1538634975]
+stream = ExtResource("36_phube")
+
+[node name="Boss" type="Node" parent="AudioManager/SFX" unique_id=516955962]
+
+[node name="SfxBossAngry01" type="AudioStreamPlayer" parent="AudioManager/SFX/Boss" unique_id=1685222459]
+stream = ExtResource("37_t014q")
+
+[node name="SfxBossAngry02" type="AudioStreamPlayer" parent="AudioManager/SFX/Boss" unique_id=1306808771]
+stream = ExtResource("38_nb1ia")
+
+[node name="SfxBossAngry03" type="AudioStreamPlayer" parent="AudioManager/SFX/Boss" unique_id=1580552601]
+stream = ExtResource("39_3ahwd")
+
+[node name="SfxBossAngry04" type="AudioStreamPlayer" parent="AudioManager/SFX/Boss" unique_id=1645883788]
+stream = ExtResource("40_b4xsn")
+
+[node name="SfxBossAngry05" type="AudioStreamPlayer" parent="AudioManager/SFX/Boss" unique_id=310595852]
+stream = ExtResource("41_ot5ec")
+
+[node name="SfxBossAngry06" type="AudioStreamPlayer" parent="AudioManager/SFX/Boss" unique_id=812335570]
+stream = ExtResource("42_aok0f")
+
+[node name="Virus" type="Node" parent="AudioManager/SFX" unique_id=1799857939]
+
+[node name="SfxEmailVirusOpened01" type="AudioStreamPlayer" parent="AudioManager/SFX/Virus" unique_id=725634378]
+stream = ExtResource("69_t6wb6")
+
+[node name="SfxEmailVirusOpened02" type="AudioStreamPlayer" parent="AudioManager/SFX/Virus" unique_id=1134604535]
+stream = ExtResource("70_fvjqb")
+
+[node name="SfxEmailVirusOpened03" type="AudioStreamPlayer" parent="AudioManager/SFX/Virus" unique_id=1065261659]
+stream = ExtResource("71_b05pg")
+
+[node name="SfxEmailVirusOpened05" type="AudioStreamPlayer" parent="AudioManager/SFX/Virus" unique_id=1722868043]
+stream = ExtResource("72_bdqux")
+
+[node name="SfxEmailVirusOpened06" type="AudioStreamPlayer" parent="AudioManager/SFX/Virus" unique_id=470871287]
+stream = ExtResource("73_e1jjv")
+
+[node name="SfxEmailVirusOpened08" type="AudioStreamPlayer" parent="AudioManager/SFX/Virus" unique_id=1329275870]
+stream = ExtResource("74_stool")
+
+[node name="SfxEmailVirusOpened09" type="AudioStreamPlayer" parent="AudioManager/SFX/Virus" unique_id=155976242]
+stream = ExtResource("75_ci23i")
+
+[node name="Email" type="Node" parent="AudioManager/SFX" unique_id=1558851221]
+
+[node name="MxStingerCorrect" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=867031841]
 stream = ExtResource("15_k12tt")
 
-[node name="MxStingerIncorrect" type="AudioStreamPlayer" parent="AudioManager/SFX" unique_id=658714241]
+[node name="MxStingerIncorrect" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=658714241]
 stream = ExtResource("16_h1bgf")
 
-[connection signal="pressed" from="UpgradeBox/UpgradeChoice/UpgradeCard" to="." method="_on_upgrade_selected" flags=18]
-[connection signal="pressed" from="UpgradeBox/UpgradeChoice/UpgradeCard2" to="." method="_on_upgrade_selected" flags=18]
-[connection signal="pressed" from="UpgradeBox/UpgradeChoice/UpgradeCard3" to="." method="_on_upgrade_selected" flags=18]
-[connection signal="pressed" from="UpgradeBox/AcceptButton" to="." method="_on_accept_button_pressed"]
+[node name="SfxEmailDeleted01" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=1857889296]
+stream = ExtResource("45_64lof")
+
+[node name="SfxEmailDeleted02" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=1886489527]
+stream = ExtResource("46_b4mik")
+
+[node name="SfxEmailDeleted03" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=477853519]
+stream = ExtResource("47_urine")
+
+[node name="SfxEmailDeleted04" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=31880318]
+stream = ExtResource("48_5vy51")
+
+[node name="SfxEmailDeleted05" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=1403390713]
+stream = ExtResource("49_o2owy")
+
+[node name="SfxEmailDeleted06" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=1147626956]
+stream = ExtResource("50_ylsbi")
+
+[node name="SfxEmailDeleted07" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=1899479398]
+stream = ExtResource("51_ceghn")
+
+[node name="SfxEmailDeleted08" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=1196466466]
+stream = ExtResource("52_3h4bx")
+
+[node name="SfxEmailDeleted09" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=1032986052]
+stream = ExtResource("53_xg142")
+
+[node name="SfxEmailFileUploading01" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=1197764909]
+stream = ExtResource("54_rlvxq")
+
+[node name="SfxEmailFileUploading02" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=603873806]
+stream = ExtResource("55_0fjpc")
+
+[node name="SfxEmailFileUploading03" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=1357179947]
+stream = ExtResource("56_gdwd6")
+
+[node name="SfxEmailRecieved01" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=40530404]
+stream = ExtResource("57_cmq5c")
+
+[node name="SfxEmailRecieved02" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=811340665]
+stream = ExtResource("58_7t1gx")
+
+[node name="SfxEmailRecieved03" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=697011432]
+stream = ExtResource("59_mfvrx")
+
+[node name="SfxEmailRecieved04" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=1476148296]
+stream = ExtResource("60_ilwxp")
+
+[node name="SfxEmailRecieved05" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=1730829664]
+stream = ExtResource("61_xjjvj")
+
+[node name="SfxEmailSent01" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=24386927]
+stream = ExtResource("62_jab21")
+
+[node name="SfxEmailSent02" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=1726729215]
+stream = ExtResource("63_8dylv")
+
+[node name="SfxEmailSent03" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=432799932]
+stream = ExtResource("64_qv1an")
+
+[node name="SfxEmailSent04" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=1081991258]
+stream = ExtResource("65_ja2pg")
+
+[node name="SfxEmailSent05" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=1220794247]
+stream = ExtResource("66_0wopu")
+
+[node name="SfxEmailSent06" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=611001740]
+stream = ExtResource("67_na2ur")
+
+[node name="SfxEmailSent07" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=364134331]
+stream = ExtResource("68_rlvdk")
+
+[node name="Music" type="Node" parent="AudioManager" unique_id=504429347]
+
+[node name="MxLoopLevel" type="AudioStreamPlayer" parent="AudioManager/Music" unique_id=1448285014]
+stream = ExtResource("76_myryv")
+
+[node name="MxLoopVirus" type="AudioStreamPlayer" parent="AudioManager/Music" unique_id=1341203368]
+stream = ExtResource("77_bpr0e")
+
+[node name="SfxAmbienceLevelLoop" type="AudioStreamPlayer" parent="AudioManager/Music" unique_id=557117997]
+stream = ExtResource("78_14mkc")
+
+[node name="SfxAmbienceMenuLoop" type="AudioStreamPlayer" parent="AudioManager/Music" unique_id=606267836]
+stream = ExtResource("79_l78ku")
+
+[connection signal="pressed" from="Monitor/SubViewport/UpgradeBox/UpgradeChoice/UpgradeCard" to="." method="_on_upgrade_selected" flags=18]
+[connection signal="pressed" from="Monitor/SubViewport/UpgradeBox/UpgradeChoice/UpgradeCard2" to="." method="_on_upgrade_selected" flags=18]
+[connection signal="pressed" from="Monitor/SubViewport/UpgradeBox/UpgradeChoice/UpgradeCard3" to="." method="_on_upgrade_selected" flags=18]
+[connection signal="pressed" from="Monitor/SubViewport/UpgradeBox/AcceptButton" to="." method="_on_accept_button_pressed"]
 [connection signal="timeout" from="UpgradeTimer" to="." method="_on_upgrade_timer_timeout"]
