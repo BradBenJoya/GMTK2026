@@ -12,7 +12,7 @@ extends Node2D
 var emails : Array = []
 
 func create_emails():
-	for i in 50:
+	for i in 100:
 		var new_email = email_scene.instantiate()
 		new_email.position = Vector2(60, -1000)#Vector2(60, 350 - (i * 60))
 		new_email.type = "Normal"

@@ -74,6 +74,8 @@ grow_vertical = 2
 
 [node name="SubViewport" type="SubViewport" parent="Monitor" unique_id=997782579]
 handle_input_locally = false
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 size = Vector2i(1423, 1433)
 render_target_update_mode = 4
 
