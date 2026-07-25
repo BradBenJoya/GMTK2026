@@ -33,6 +33,21 @@ all = NodePath("Buttons")
 
 [node name="EmailsList" type="Node" parent="." unique_id=1816088348]
 script = ExtResource("2_6xuhd")
+email_starters = Array[String](["Hello!", "Job Stuff", "Bug Fix Report", "Your UI Sucks", "YOU JUST WON", "Ur haxed", "I need some more help"])
+"Hello! : Type" = "Normal"
+"Hello! : Extended" = "Hope you're having a great day!"
+"Job Stuff : Type" = "Accept"
+"Job Stuff : Extended" = "Hey, can you take care of the report later? I'm pretty busy with everything I've got and you just have to answer emails. I'll pay you for it too. Deal?"
+"Bug Fix Report : Type" = "Upload"
+"Bug Fix Report : Extended" = "I tested the code and tried to fix the bugs but only made more of a mess. Could you send me the backup copy?"
+"Your UI Sucks : Type" = "Normal"
+"Your UI Sucks : Extended" = "Its bad and I hate it. Fix it now or else you lost a customer."
+"YOU JUST WON : Type" = "Spam"
+"YOU JUST WON : Extended" = "WE HELD A DRAWING AND PULLED YOU'RE NAME! COME COLLECT YOUR PRIZE AT THE RADIO PLACE!"
+"Ur haxed : Type" = "Spam"
+"Ur haxed : Extended" = "Confrm ur acount on da not sketchy webcite \"confrm-acount-not-scame.fake\""
+"I need some more help : Type" = "Decline"
+"I need some more help : Extended" = "I know you want to go home tonight, but I really need help with the project I'm working on. I know I had the assignment for like a month now, and I haven't gotten anything done yet. But I really need help I swear! I mean it PLEASE"
 
 [node name="EmailBubble" type="NinePatchRect" parent="." unique_id=1209836565]
 layout_mode = 0
