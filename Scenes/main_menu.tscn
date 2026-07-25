@@ -13,7 +13,7 @@ default_font_size = 34
 
 [node name="MainMenu" type="Node2D" unique_id=371072770]
 process_mode = 3
-z_index = 4096
+z_index = 2024
 scale = Vector2(2, 2)
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=825915157]
@@ -48,4 +48,22 @@ offset_right = 150.0
 offset_bottom = 89.0
 theme = SubResource("Theme_1ehe0")
 text = "Play"
+script = ExtResource("1_28flt")
+
+[node name="TempOptionButton" type="Button" parent="." unique_id=1891978400]
+offset_left = -150.0
+offset_top = 105.0
+offset_right = 150.0
+offset_bottom = 205.0
+theme = SubResource("Theme_1ehe0")
+text = "Options"
+script = ExtResource("1_28flt")
+
+[node name="TempQuitButton" type="Button" parent="." unique_id=173807423]
+offset_left = -150.0
+offset_top = 221.0
+offset_right = 150.0
+offset_bottom = 321.0
+theme = SubResource("Theme_1ehe0")
+text = "Quit"
 script = ExtResource("1_28flt")

@@ -9,6 +9,7 @@ bg_color = Color(0.094867624, 0.22220978, 0.55057436, 1)
 bg_color = Color(0.24721333, 0.29866195, 0.31812525, 1)
 
 [node name="Options" type="PanelContainer" unique_id=550690077]
+process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -90,12 +90,18 @@ func _on_state_changed(new_state: GameState) -> void:
 		
 	match new_state:
 		GameState.MAIN_MENU:
-			current_scene_instance = main_menu.instantiate()
-			add_child(current_scene_instance)
-			var play_button = current_scene_instance.get_node("TempPlayButton")
+			$MainMenu.show()
+			#current_scene_instance = main_menu.instantiate()
+			#add_child(current_scene_instance)
+			var play_button = $MainMenu.get_node("TempPlayButton")
 			play_button.play_pressed.connect(_on_play_pressed)
+			var options_button = $MainMenu.get_node("TempOptionButton")
+			options_button.play_pressed.connect(_on_options_pressed)
+			var quit_button = $MainMenu.get_node("TempQuitButton")
+			quit_button.play_pressed.connect(_on_quit_pressed)
 			get_tree().paused = true
 		GameState.GAME:
+			$MainMenu.hide()
 			get_tree().paused = false
 		GameState.PAUSE_MENU:
 			get_tree().paused = true
@@ -107,6 +113,13 @@ func _on_play_pressed() -> void:
 # end ByDesign
 
 #start ampbeetle
+func _on_options_pressed() -> void:
+	$Options.show()
+
+func _on_quit_pressed() -> void:
+	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+	get_tree().quit()
+
 func choose_upgrade():
 	for child in %UpgradeChoice.get_children():
 		child.random_card()
@@ -163,6 +176,7 @@ func _on_exit_button_pressed() -> void:
 func _on_main_button_pressed() -> void:
 	#add a "are you sure?" later
 	game_state = GameState.MAIN_MENU
+	$Options.hide()
 
 func _on_apply_button_pressed() -> void:
 	if Global._window_mode == 0:  # window mode
