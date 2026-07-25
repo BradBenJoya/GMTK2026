@@ -14,7 +14,6 @@
 [ext_resource type="Resource" uid="uid://bxeglhgrv4qrr" path="res://Scripts/Cards/Upgrades/Router.tres" id="6_k12tt"]
 [ext_resource type="Resource" uid="uid://bsiba7mxpv537" path="res://Scripts/Cards/Upgrades/Go_fast.tres" id="7_h1bgf"]
 [ext_resource type="Resource" uid="uid://dbpeoebxmx4b3" path="res://Scripts/Cards/Upgrades/Firewall.tres" id="8_b3802"]
-[ext_resource type="Texture2D" uid="uid://cqaxhbvxkba7f" path="res://Sprites/temp_message_box.png" id="12_b3802"]
 [ext_resource type="Script" uid="uid://sqlam6id7o4t" path="res://Scripts/audio_manager.gd" id="15_h1bgf"]
 [ext_resource type="AudioStream" uid="uid://bw31mlg7d3t1q" path="res://Audio/SFX/Email/mx_stinger_correct.wav" id="15_k12tt"]
 [ext_resource type="AudioStream" uid="uid://baf3j6mtdkeit" path="res://Audio/SFX/Email/mx_stinger_incorrect.wav" id="16_h1bgf"]
@@ -85,13 +84,6 @@ font = ExtResource("4_21xkr")
 font_size = 64
 font_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
 
-[sub_resource type="Theme" id="Theme_b3802"]
-default_font = ExtResource("4_21xkr")
-
-[sub_resource type="Theme" id="Theme_g4v7s"]
-default_font = ExtResource("4_21xkr")
-default_font_size = 56
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wj5hs"]
 shader = ExtResource("2_kry3j")
 shader_parameter/brightness = 1.39600006631
@@ -117,6 +109,16 @@ shader_parameter/roll_strength = 0.15
 shader_parameter/glow_strength = 0.25
 shader_parameter/glow_threshold = 0.65
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v1mrv"]
+load_path = "res://.godot/imported/temp_message_box.png-e3a7c44b2f8600153f162d374c472e97.ctex"
+
+[sub_resource type="Theme" id="Theme_b3802"]
+default_font = ExtResource("4_21xkr")
+
+[sub_resource type="Theme" id="Theme_g4v7s"]
+default_font = ExtResource("4_21xkr")
+default_font_size = 56
+
 [node name="Main" type="Node2D" unique_id=1107406334 node_paths=PackedStringArray("counter", "time")]
 script = ExtResource("1_bo1nx")
 main_menu = ExtResource("2_6bp64")
@@ -128,6 +130,7 @@ time = NodePath("Monitor/SubViewport/Manager/BottomBar/Time")
 script = ExtResource("2_jjvhh")
 
 [node name="Monitor" type="SubViewportContainer" parent="." unique_id=1630699192]
+process_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -141,86 +144,12 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SubViewport" type="SubViewport" parent="Monitor" unique_id=997782579]
+process_mode = 3
 handle_input_locally = false
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
 size = Vector2i(1423, 1433)
 render_target_update_mode = 4
-
-[node name="UpgradeBox" type="NinePatchRect" parent="Monitor/SubViewport" unique_id=604761929]
-unique_name_in_owner = true
-process_mode = 3
-visible = false
-z_index = 15
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -645.5
-offset_top = -532.5
-offset_right = 642.0
-offset_bottom = 549.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("12_b3802")
-region_rect = Rect2(8, 8, 48, 48)
-
-[node name="UpgradeHeader" type="Label" parent="Monitor/SubViewport/UpgradeBox" unique_id=476790690]
-z_index = 11
-layout_mode = 0
-offset_left = 35.0
-offset_top = 40.0
-offset_right = 619.0
-offset_bottom = 97.0
-text = "Choose upgrade:"
-label_settings = SubResource("LabelSettings_up85j")
-
-[node name="UpgradeChoice" type="HBoxContainer" parent="Monitor/SubViewport/UpgradeBox" unique_id=1078353247]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -549.0
-offset_top = -340.0
-offset_right = 577.0
-offset_bottom = 294.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="UpgradeCard" parent="Monitor/SubViewport/UpgradeBox/UpgradeChoice" unique_id=56110472 instance=ExtResource("6_344ge")]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = SubResource("Theme_b3802")
-
-[node name="UpgradeCard2" parent="Monitor/SubViewport/UpgradeBox/UpgradeChoice" unique_id=2091806333 instance=ExtResource("6_344ge")]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = SubResource("Theme_b3802")
-
-[node name="UpgradeCard3" parent="Monitor/SubViewport/UpgradeBox/UpgradeChoice" unique_id=414813578 instance=ExtResource("6_344ge")]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = SubResource("Theme_b3802")
-
-[node name="AcceptButton" type="Button" parent="Monitor/SubViewport/UpgradeBox" unique_id=364760450]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -106.0
-offset_top = -112.0
-offset_right = 106.0
-offset_bottom = -54.0
-grow_horizontal = 2
-grow_vertical = 0
-theme = SubResource("Theme_g4v7s")
-text = "Accept"
 
 [node name="Manager" parent="Monitor/SubViewport" unique_id=1747145403 instance=ExtResource("1_jjgbg")]
 position = Vector2(700, 300)
@@ -274,6 +203,80 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="UpgradeBox" type="NinePatchRect" parent="Monitor/SubViewport" unique_id=604761929]
+unique_name_in_owner = true
+process_mode = 3
+z_index = 15
+offset_left = 70.0
+offset_top = 185.0
+offset_right = 1357.5
+offset_bottom = 1267.0
+texture = SubResource("CompressedTexture2D_v1mrv")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="UpgradeHeader" type="Label" parent="Monitor/SubViewport/UpgradeBox" unique_id=476790690]
+process_mode = 3
+z_index = 11
+layout_mode = 0
+offset_left = 35.0
+offset_top = 40.0
+offset_right = 619.0
+offset_bottom = 97.0
+text = "Choose upgrade:"
+label_settings = SubResource("LabelSettings_up85j")
+
+[node name="UpgradeChoice" type="HBoxContainer" parent="Monitor/SubViewport/UpgradeBox" unique_id=1078353247]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -549.0
+offset_top = -340.0
+offset_right = 577.0
+offset_bottom = 294.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UpgradeCard" parent="Monitor/SubViewport/UpgradeBox/UpgradeChoice" unique_id=56110472 instance=ExtResource("6_344ge")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_b3802")
+
+[node name="UpgradeCard2" parent="Monitor/SubViewport/UpgradeBox/UpgradeChoice" unique_id=2091806333 instance=ExtResource("6_344ge")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_b3802")
+
+[node name="UpgradeCard3" parent="Monitor/SubViewport/UpgradeBox/UpgradeChoice" unique_id=414813578 instance=ExtResource("6_344ge")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_b3802")
+
+[node name="AcceptButton" type="Button" parent="Monitor/SubViewport/UpgradeBox" unique_id=364760450]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = -112.0
+offset_right = 106.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_g4v7s")
+text = "Accept"
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1316030113]
 z_index = 4096

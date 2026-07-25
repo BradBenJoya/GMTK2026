@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://t2bvfrkkqyot" path="res://Sprites/antivirus.png" id="6_8kgka"]
 
 [node name="UpgradeButton" type="Button" unique_id=1073497964]
+process_mode = 3
 offset_right = 372.0
 offset_bottom = 634.0
 toggle_mode = true
@@ -17,6 +18,7 @@ upgrade_list = Array[ExtResource("2_w0hou")]([ExtResource("3_8kgka"), ExtResourc
 
 [node name="UpgradeName" type="Label" parent="." unique_id=920796065]
 unique_name_in_owner = true
+process_mode = 3
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 0
 offset_left = 14.0
@@ -31,6 +33,7 @@ autowrap_mode = 3
 
 [node name="UpgradeTexture" type="TextureRect" parent="." unique_id=807033298]
 unique_name_in_owner = true
+process_mode = 3
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 0
 offset_left = 18.000002
@@ -38,11 +41,13 @@ offset_top = 79.0
 offset_right = 315.0
 offset_bottom = 376.0
 scale = Vector2(1.1565566, 1.1565566)
+mouse_filter = 2
 texture = ExtResource("6_8kgka")
 expand_mode = 5
 
 [node name="UpgradeDescription" type="Label" parent="." unique_id=1180273715]
 unique_name_in_owner = true
+process_mode = 3
 custom_minimum_size = Vector2(120, 150)
 layout_mode = 0
 offset_left = 18.000002
@@ -58,6 +63,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2061914043]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

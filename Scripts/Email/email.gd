@@ -62,7 +62,7 @@ func _ready():
 	expanded_email_text.text = text[1]
 
 func _process(delta):
-	if Global.email_open and not open: # fixes the bug where you couldn't finish the email
+	if Global.email_open and not open || get_tree().paused: # fixes the bug where you couldn't finish the email
 		base_read_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	else:
 		base_read_button.mouse_filter = Control.MOUSE_FILTER_STOP

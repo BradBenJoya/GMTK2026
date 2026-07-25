@@ -45,11 +45,10 @@ var total_emails : int = 0
 var upgrade_time = false
 var tween_time
 
-@export var day_duration : float = 20.0  # was 300, but shortening for testing
+@export var day_duration : float = 300.0  # was 300, but shortening for testing
 
 func _ready():
 	$UpgradeTimer.start(day_duration / 8)
-	print($UpgradeTimer.wait_time)
 	
 	# start Psuedo Pakman
 	# trigger initial setup once
@@ -59,7 +58,6 @@ func _ready():
 	tween_time = create_tween().tween_property(self, "clock", 8.0, day_duration)
 	
 	await tween_time.finished
-	print("end game")
 
 func _process(delta):
 	counter.text = "Inbox " + str(total_emails)
@@ -73,7 +71,6 @@ func _process(delta):
 		time.text = str(int(fmod(floor(clock + 9), 12))) + ":%02.f" % floor(fmod(clock + 9, 1)*60) + " AM"
 	
 	if fmod(snappedf(clock, 0.01), 1) == 0 and upgrade_time:
-		print(clock)
 		choose_upgrade()
 		game_state = GameState.PAUSE_MENU
 		%UpgradeBox.show()
@@ -130,10 +127,6 @@ func _on_accept_button_pressed() -> void:
 						spam_chance += button.effects[effect]
 					UpgradeType.EMAIL_SPEED:
 						email_speed += button.effects[effect]
-			print("upload: " + str(upload_speed))
-			print("virus: " + str(virus_chance))
-			print("spam: " + str(spam_chance))
-			print("email: " + str(email_speed))
 			
 			# Don't want it to reappear
 			#await get_tree().create_timer(0.5).timeout

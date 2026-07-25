@@ -15,7 +15,7 @@ default_font = ExtResource("3_6xuhd")
 default_font_size = 26
 
 [node name="Email" type="Control" unique_id=1747348247 node_paths=PackedStringArray("flavor_text", "expanded_email_text", "upload_button", "upload_bar", "base_read_button", "email_list", "decision_stuff", "email_stuff", "upload_stuff", "all")]
-process_mode = 1
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 scale = Vector2(1.5, 1.5)
