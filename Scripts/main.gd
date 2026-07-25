@@ -27,6 +27,9 @@ enum UpgradeType {
 	EMAIL_SPEED
 }
 
+#bydesign
+var last_state
+
 var game_state: GameState = GameState.MAIN_MENU:
 	set(value):
 		if game_state == value:
@@ -46,6 +49,8 @@ var upgrade_time = false
 var tween_time
 
 @export var day_duration : float = 300.0  # was 300, but shortening for testing
+
+var started : bool = false # avoid infinite music and game repeats (including getting double emails)
 
 func _ready():
 	$UpgradeTimer.start(day_duration / 8)
@@ -105,13 +110,16 @@ func _on_state_changed(new_state: GameState) -> void:
 
 func _on_play_pressed() -> void:
 	game_state = GameState.GAME
-	Global.manager.create_emails()
-	Global.audio_manager.transition_from_menu()
+	if not started:
+		started = true
+		Global.manager.create_emails()
+		Global.audio_manager.transition_from_menu()
 # end Psuedo Pakman
 # end ByDesign
 
 #start ampbeetle
 func _on_options_pressed() -> void:
+	last_state = game_state
 	$Options.show()
 
 func _on_quit_pressed() -> void:
@@ -161,11 +169,12 @@ func _on_upgrade_timer_timeout() -> void:
 
 func _on_options_button_pressed() -> void:
 	$Options.show()
+	last_state = game_state
 	game_state = GameState.PAUSE_MENU
 
 func _on_exit_button_pressed() -> void:
 	$Options.hide()
-	game_state = GameState.GAME
+	game_state = last_state
 
 func _on_main_button_pressed() -> void:
 	#add a "are you sure?" later
@@ -178,6 +187,6 @@ func _on_apply_button_pressed() -> void:
 	elif Global._window_mode == 1:  # fullscreen mode
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	$Options.hide()
-	game_state = GameState.GAME
+	game_state = last_state
 
 #end ampbeetle

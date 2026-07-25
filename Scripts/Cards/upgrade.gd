@@ -39,7 +39,6 @@ func random_card() -> void:
 	# Pick a random upgrade from predefined list.
 	var random_element = randi_range(0, upgrade_list.size() - 1)
 	var random_upgrade = upgrade_list.pop_at(random_element)      #upgrade_list.pick_random()
-	print("picking random upgrade:" + str(random_upgrade))
 	
 	upgrade = random_upgrade
 	display_name = random_upgrade.name
