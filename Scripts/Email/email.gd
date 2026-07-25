@@ -23,6 +23,10 @@ class_name Email
 @export var upload_stuff : Control
 @export var all : Control
 
+@export_group("Sounds")
+@export var correct_sfx : AudioStreamPlayer
+@export var incorrect_sfx : AudioStreamPlayer
+
 var open := false # tells the manager that it shouldnt be accounted for
 
 var deleted : bool = false
@@ -72,6 +76,13 @@ func _process(delta):
 			scale += (base_scale - scale) / 5
 
 func delete_email(input : String): # delete email after doing little animation
+	if type == input:
+		Global.audio_manager.correct_sfx.pitch_scale = randf_range(0.99, 1.01)
+		Global.audio_manager.correct_sfx.play()
+	else:
+		Global.audio_manager.incorrect_sfx.pitch_scale = randf_range(0.99, 1.01)
+		Global.audio_manager.incorrect_sfx.play()
+	
 	expanded_email_text.visible = false
 	all.visible = false
 	Global.email_open = false # used to tell other emails to work again
@@ -174,8 +185,7 @@ func _on_upload_pressed(): # i think i did this one wrong (?)
 	if open:
 		while upload_button.button_pressed:
 			await get_tree().physics_frame
-			if [true, false].pick_random():
-				progress += 1
+			progress += 1
 			upload_bar.value = progress
 		
 		if progress >= 100:

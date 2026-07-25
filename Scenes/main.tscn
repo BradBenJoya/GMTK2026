@@ -7,6 +7,9 @@
 [ext_resource type="Shader" uid="uid://d33krf4ystq50" path="res://Shaders/crt.gdshader" id="2_kry3j"]
 [ext_resource type="FontFile" uid="uid://doe2y2s8d1bw7" path="res://Fonts/Monofrik Demo.ttf" id="4_21xkr"]
 [ext_resource type="Texture2D" uid="uid://ddh8dmaeup3fr" path="res://Sprites/game_jam_2026_gmtk_04.png" id="5_kry3j"]
+[ext_resource type="Script" uid="uid://sqlam6id7o4t" path="res://Scripts/audio_manager.gd" id="8_hptm8"]
+[ext_resource type="AudioStream" uid="uid://bw31mlg7d3t1q" path="res://Audio/SFX/mx_stinger_correct.wav" id="8_ynf5e"]
+[ext_resource type="AudioStream" uid="uid://baf3j6mtdkeit" path="res://Audio/SFX/mx_stinger_incorrect.wav" id="9_hptm8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_up85j"]
 font = ExtResource("4_21xkr")
@@ -62,6 +65,8 @@ grow_vertical = 2
 
 [node name="SubViewport" type="SubViewport" parent="Monitor" unique_id=997782579]
 handle_input_locally = false
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 size = Vector2i(1423, 1433)
 render_target_update_mode = 4
 
@@ -123,3 +128,16 @@ zoom = Vector2(0.335, 0.335)
 [node name="Background" type="Sprite2D" parent="." unique_id=318730638]
 z_index = 10
 texture = ExtResource("5_kry3j")
+
+[node name="AudioManager" type="Node" parent="." unique_id=2147465080 node_paths=PackedStringArray("correct_sfx", "incorrect_sfx")]
+script = ExtResource("8_hptm8")
+correct_sfx = NodePath("SFX/Correct")
+incorrect_sfx = NodePath("SFX/Incorrect")
+
+[node name="SFX" type="Node" parent="AudioManager" unique_id=2118257941]
+
+[node name="Correct" type="AudioStreamPlayer" parent="AudioManager/SFX" unique_id=1575081138]
+stream = ExtResource("8_ynf5e")
+
+[node name="Incorrect" type="AudioStreamPlayer" parent="AudioManager/SFX" unique_id=411498119]
+stream = ExtResource("9_hptm8")
