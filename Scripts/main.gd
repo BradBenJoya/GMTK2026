@@ -51,13 +51,15 @@ func _ready():
 	$UpgradeTimer.start(day_duration / 8)
 	print($UpgradeTimer.wait_time)
 	
+	for button in %UpgradeChoice.get_children():
+		button.upgrade_list = upgrade_list
+	
 	# start Psuedo Pakman
 	# trigger initial setup once
 	_on_state_changed(game_state)
 	# end Psuedo Pakman
 	
 	tween_time = create_tween().tween_property(self, "clock", 8.0, day_duration)
-	
 	await tween_time.finished
 	print("end game")
 
@@ -88,12 +90,18 @@ func _on_state_changed(new_state: GameState) -> void:
 		
 	match new_state:
 		GameState.MAIN_MENU:
-			current_scene_instance = main_menu.instantiate()
-			add_child(current_scene_instance)
-			var play_button = current_scene_instance.get_node("TempPlayButton")
+			$MainMenu.show()
+			#current_scene_instance = main_menu.instantiate()
+			#add_child(current_scene_instance)
+			var play_button = $MainMenu.get_node("TempPlayButton")
 			play_button.play_pressed.connect(_on_play_pressed)
+			var options_button = $MainMenu.get_node("TempOptionButton")
+			options_button.play_pressed.connect(_on_options_pressed)
+			var quit_button = $MainMenu.get_node("TempQuitButton")
+			quit_button.play_pressed.connect(_on_quit_pressed)
 			get_tree().paused = true
 		GameState.GAME:
+			$MainMenu.hide()
 			get_tree().paused = false
 		GameState.PAUSE_MENU:
 			get_tree().paused = true
@@ -105,6 +113,13 @@ func _on_play_pressed() -> void:
 # end ByDesign
 
 #start ampbeetle
+func _on_options_pressed() -> void:
+	$Options.show()
+
+func _on_quit_pressed() -> void:
+	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+	get_tree().quit()
+
 func choose_upgrade():
 	for child in %UpgradeChoice.get_children():
 		child.random_card()
@@ -135,10 +150,13 @@ func _on_accept_button_pressed() -> void:
 			print("email: " + str(email_speed))
 			
 			# Don't want it to reappear
-			#await get_tree().create_timer(0.5).timeout
 			game_state = GameState.GAME
 			upgrade_time = false
 			%UpgradeBox.hide()
+		
+		# Re-add upgrade (for now, at least)
+		upgrade_list.push_back(button.upgrade)
+		
 		# Making sure all buttons are unpressed for next go.
 		button.button_pressed = false
 
@@ -146,5 +164,26 @@ func _on_accept_button_pressed() -> void:
 
 func _on_upgrade_timer_timeout() -> void:
 	upgrade_time = true
+
+func _on_options_button_pressed() -> void:
+	$Options.show()
+	game_state = GameState.PAUSE_MENU
+
+func _on_exit_button_pressed() -> void:
+	$Options.hide()
+	game_state = GameState.GAME
+
+func _on_main_button_pressed() -> void:
+	#add a "are you sure?" later
+	game_state = GameState.MAIN_MENU
+	$Options.hide()
+
+func _on_apply_button_pressed() -> void:
+	if Global._window_mode == 0:  # window mode
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	elif Global._window_mode == 1:  # fullscreen mode
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	$Options.hide()
+	game_state = GameState.GAME
 
 #end ampbeetle

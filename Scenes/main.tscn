@@ -14,11 +14,20 @@
 [ext_resource type="Resource" uid="uid://bxeglhgrv4qrr" path="res://Scripts/Cards/Upgrades/Router.tres" id="6_k12tt"]
 [ext_resource type="Resource" uid="uid://bsiba7mxpv537" path="res://Scripts/Cards/Upgrades/Go_fast.tres" id="7_h1bgf"]
 [ext_resource type="Resource" uid="uid://dbpeoebxmx4b3" path="res://Scripts/Cards/Upgrades/Firewall.tres" id="8_b3802"]
+[ext_resource type="PackedScene" uid="uid://dc5sjd0r5rswo" path="res://Scenes/options.tscn" id="15_wsu2k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_up85j"]
 font = ExtResource("4_21xkr")
 font_size = 64
 font_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_57qmd"]
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.288518, 0.288518, 0.2885178, 1)
+border_blend = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wj5hs"]
 shader = ExtResource("2_kry3j")
@@ -121,6 +130,23 @@ text = "12:00"
 label_settings = SubResource("LabelSettings_up85j")
 horizontal_alignment = 2
 
+[node name="OptionsButton" type="Button" parent="Monitor/SubViewport/Manager/BottomBar" unique_id=1434195380]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_top = -145.0
+offset_right = 307.0
+offset_bottom = -58.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_21xkr")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_57qmd")
+text = "Options"
+
 [node name="CRTShader" type="ColorRect" parent="Monitor/SubViewport" unique_id=1163136055]
 z_index = 4096
 material = SubResource("ShaderMaterial_wj5hs")
@@ -143,7 +169,7 @@ texture = ExtResource("5_kry3j")
 unique_name_in_owner = true
 process_mode = 3
 visible = false
-z_index = 10
+z_index = 11
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -213,8 +239,30 @@ text = "Accept"
 [node name="UpgradeTimer" type="Timer" parent="." unique_id=768330774]
 wait_time = 2.5
 
+[node name="MainMenu" parent="." unique_id=371072770 instance=ExtResource("2_6bp64")]
+
+[node name="Options" parent="." unique_id=550690077 instance=ExtResource("15_wsu2k")]
+visible = false
+top_level = true
+z_index = 4096
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1565.0
+offset_top = -1043.0
+offset_right = 289.0
+offset_bottom = 357.0
+
+[connection signal="pressed" from="Monitor/SubViewport/Manager/BottomBar/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="UpgradeBox/UpgradeChoice/UpgradeCard" to="." method="_on_upgrade_selected" flags=18]
 [connection signal="pressed" from="UpgradeBox/UpgradeChoice/UpgradeCard2" to="." method="_on_upgrade_selected" flags=18]
 [connection signal="pressed" from="UpgradeBox/UpgradeChoice/UpgradeCard3" to="." method="_on_upgrade_selected" flags=18]
 [connection signal="pressed" from="UpgradeBox/AcceptButton" to="." method="_on_accept_button_pressed"]
 [connection signal="timeout" from="UpgradeTimer" to="." method="_on_upgrade_timer_timeout"]
+[connection signal="pressed" from="Options/MarginContainer/VBoxContainer/TopRow/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Options/MarginContainer/VBoxContainer/BottomOptions/ApplyButton" to="." method="_on_apply_button_pressed"]
+[connection signal="pressed" from="Options/MarginContainer/VBoxContainer/BottomOptions/MainButton" to="." method="_on_main_button_pressed"]
+
+[editable path="Options"]

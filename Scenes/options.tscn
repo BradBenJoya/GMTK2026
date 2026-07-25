@@ -1,0 +1,241 @@
+[gd_scene format=3 uid="uid://dc5sjd0r5rswo"]
+
+[ext_resource type="Script" uid="uid://eqnvksowyonl" path="res://Scripts/options.gd" id="1_prnvy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ww8vx"]
+bg_color = Color(0.094867624, 0.22220978, 0.55057436, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qyyw6"]
+bg_color = Color(0.24721333, 0.29866195, 0.31812525, 1)
+
+[node name="Options" type="PanelContainer" unique_id=550690077]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -452.0
+offset_top = -393.0
+offset_right = 452.0
+offset_bottom = 393.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_prnvy")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1896587023]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=544386041]
+layout_mode = 2
+theme_override_constants/separation = 13
+
+[node name="TopRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1816725141]
+layout_mode = 2
+
+[node name="OptionHeader" type="Label" parent="MarginContainer/VBoxContainer/TopRow" unique_id=1141333180]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 128
+theme_override_styles/normal = SubResource("StyleBoxFlat_ww8vx")
+text = "Options"
+horizontal_alignment = 1
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer/TopRow" unique_id=316639187]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = " X "
+
+[node name="AudioHeader" type="Label" parent="MarginContainer/VBoxContainer" unique_id=807643563]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_qyyw6")
+text = "Audio"
+horizontal_alignment = 1
+
+[node name="AudioGrid" type="GridContainer" parent="MarginContainer/VBoxContainer" unique_id=1991901240]
+layout_mode = 2
+columns = 3
+
+[node name="Master" type="Label" parent="MarginContainer/VBoxContainer/AudioGrid" unique_id=1095472056]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "Master"
+horizontal_alignment = 1
+
+[node name="MasterSlider" type="HSlider" parent="MarginContainer/VBoxContainer/AudioGrid" unique_id=986859999]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 80.0
+
+[node name="MasterValue" type="Label" parent="MarginContainer/VBoxContainer/AudioGrid" unique_id=2103445558]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "80%"
+horizontal_alignment = 1
+
+[node name="Music" type="Label" parent="MarginContainer/VBoxContainer/AudioGrid" unique_id=174648858]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "Music"
+horizontal_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer/AudioGrid" unique_id=1496994762]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 80.0
+
+[node name="MusicValue" type="Label" parent="MarginContainer/VBoxContainer/AudioGrid" unique_id=462577821]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "80%"
+horizontal_alignment = 1
+
+[node name="SFX" type="Label" parent="MarginContainer/VBoxContainer/AudioGrid" unique_id=1056568133]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "Sound effects"
+horizontal_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="MarginContainer/VBoxContainer/AudioGrid" unique_id=563019016]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+value = 80.0
+
+[node name="SFXValue" type="Label" parent="MarginContainer/VBoxContainer/AudioGrid" unique_id=454935537]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "80%"
+horizontal_alignment = 1
+
+[node name="MouseHeader" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1357399222]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_qyyw6")
+text = "Mouse"
+horizontal_alignment = 1
+
+[node name="MouseGrid" type="GridContainer" parent="MarginContainer/VBoxContainer" unique_id=999310136]
+layout_mode = 2
+columns = 3
+
+[node name="MouseX" type="Label" parent="MarginContainer/VBoxContainer/MouseGrid" unique_id=1340266405]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "X Axis"
+horizontal_alignment = 1
+
+[node name="MouseXSlider" type="HSlider" parent="MarginContainer/VBoxContainer/MouseGrid" unique_id=411019570]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 0.1
+max_value = 5.0
+step = 0.01
+value = 1.0
+
+[node name="MouseXValue" type="Label" parent="MarginContainer/VBoxContainer/MouseGrid" unique_id=675200826]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "1.00"
+horizontal_alignment = 1
+
+[node name="MouseY" type="Label" parent="MarginContainer/VBoxContainer/MouseGrid" unique_id=1950062430]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "Y Axis"
+horizontal_alignment = 1
+
+[node name="MouseYSlider" type="HSlider" parent="MarginContainer/VBoxContainer/MouseGrid" unique_id=586513018]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 0.1
+max_value = 5.0
+step = 0.01
+value = 1.0
+
+[node name="MouseYValue" type="Label" parent="MarginContainer/VBoxContainer/MouseGrid" unique_id=1158628035]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "1.00"
+horizontal_alignment = 1
+
+[node name="WindowHeader" type="Label" parent="MarginContainer/VBoxContainer" unique_id=311979969]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_qyyw6")
+text = "Window"
+horizontal_alignment = 1
+
+[node name="WindowGrid" type="GridContainer" parent="MarginContainer/VBoxContainer" unique_id=336297453]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 100
+columns = 2
+
+[node name="DisplayMode" type="Label" parent="MarginContainer/VBoxContainer/WindowGrid" unique_id=687626325]
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "Display mode"
+
+[node name="DisplayOptions" type="OptionButton" parent="MarginContainer/VBoxContainer/WindowGrid" unique_id=814323528]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "Window"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+
+[node name="BottomOptions" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=988776926]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 120
+
+[node name="ApplyButton" type="Button" parent="MarginContainer/VBoxContainer/BottomOptions" unique_id=1417179153]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Okay"
+
+[node name="MainButton" type="Button" parent="MarginContainer/VBoxContainer/BottomOptions" unique_id=474508660]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Main Menu"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TopRow/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="drag_ended" from="MarginContainer/VBoxContainer/AudioGrid/MasterSlider" to="." method="_on_master_slider_drag_ended"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/AudioGrid/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="drag_ended" from="MarginContainer/VBoxContainer/AudioGrid/MusicSlider" to="." method="_on_music_slider_drag_ended"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/AudioGrid/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="drag_ended" from="MarginContainer/VBoxContainer/AudioGrid/SFXSlider" to="." method="_on_sfx_slider_drag_ended"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/AudioGrid/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="drag_ended" from="MarginContainer/VBoxContainer/MouseGrid/MouseXSlider" to="." method="_on_mouse_x_slider_drag_ended"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/MouseGrid/MouseXSlider" to="." method="_on_mouse_x_slider_value_changed"]
+[connection signal="drag_ended" from="MarginContainer/VBoxContainer/MouseGrid/MouseYSlider" to="." method="_on_mouse_y_slider_drag_ended"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/MouseGrid/MouseYSlider" to="." method="_on_mouse_y_slider_value_changed"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/WindowGrid/DisplayOptions" to="." method="_on_option_button_item_selected"]

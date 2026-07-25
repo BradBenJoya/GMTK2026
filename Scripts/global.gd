@@ -7,3 +7,19 @@ extends Node # replace if desired
 @onready var audio_manager : Node = get_tree().get_root().get_node("Main/AudioManager") # adjust if needed
 var email_open : bool = false
 # end ByDesign
+
+#start ampbeetle
+
+var master_bus = AudioServer.get_bus_index("Master")
+var music_bus = AudioServer.get_bus_index("Music")
+var sfx_bus = AudioServer.get_bus_index("SFX")
+
+var _master = 0.8
+var _sfx = 0.8
+var _music = 0.8
+
+var _mouse_sensitivity: Vector2 = Vector2(1.0, 1.0)
+
+var _window_mode
+
+#end ampbeetle
