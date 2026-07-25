@@ -6,15 +6,13 @@ class_name Email
 @export var flavor_text : Label
 
 # start Psudeo Pakman
-@export var collapsed_email_text: Label
+@export var expanded_email_text: Label
 # end Psuedo Pakman
 
 @export var upload_button : Button
 @export var upload_bar : ProgressBar
 @export var base_read_button : Button
-
-@export_group("Scripts") # sorry, shoulda probably split this up (?)
-@export var flavor_text_controller : FlavorTextController
+@export var email_list : Node
 
 @export_group("Data")
 @export_enum("Normal", "Accept", "Decline", "Spam", "Upload", "Attachment") var type : String
@@ -36,58 +34,30 @@ var base_scale := Vector2.ONE # for easy scale animation tweaks
 func _ready():
 	base_scale = scale
 	all.visible = false
-	collapsed_email_text.visible = false
+	expanded_email_text.visible = false
 	
 	var random : float = randf_range(1, 100)
 	if random < 70:
 		type = "Normal"
-		#modulate = Color.WHITE
-		flavor_text.text = flavor_text_controller.read_text.pick_random().replace("\\n", "\n") # .replace fixes the line breaks
-		
-		# start Psuedo Pakman
-		# Im assuming normal means read
-		collapsed_email_text.text = flavor_text_controller.expanded_read_text.pick_random().replace("\\n", "\n")
-		# end Psuedo Pakman
 		
 	else:
 		var special_random : int = randi_range(1, 4)
 		
 		if special_random == 1:
 			type = "Accept"
-			#modulate = Color.LIGHT_GREEN
-			flavor_text.text = flavor_text_controller.decision_good_text.pick_random().replace("\\n", "\n") # .replace fixes the line breaks
-			
-			# start Psuedo Pakman
-			collapsed_email_text.text = flavor_text_controller.expanded_decision_good_text.pick_random().replace("\\n", "\n")
-			# end Psuedo Pakman
 		
 		elif special_random == 2:
 			type = "Decline"
-			#modulate = Color.LIGHT_CORAL
-			flavor_text.text = flavor_text_controller.decision_bad_text.pick_random().replace("\\n", "\n") # .replace fixes the line breaks
-			
-			# start Psuedo Pakman
-			collapsed_email_text.text = flavor_text_controller.expanded_decision_bad_text.pick_random().replace("\\n", "\n")
-			# end Psuedo Pakman
 		
 		elif special_random == 3:
 			type = "Spam"
-			#modulate = Color.LIGHT_SALMON
-			flavor_text.text = flavor_text_controller.spam_text.pick_random().replace("\\n", "\n") # .replace fixes the line breaks
-			
-			# start Psuedo Pakman
-			collapsed_email_text.text = flavor_text_controller.expanded_spam_text.pick_random().replace("\\n", "\n")
-			# end Psuedo Pakman
 		
 		elif special_random == 4:
 			type = "Upload"
-			#modulate = Color.LIGHT_SKY_BLUE
-			flavor_text.text = flavor_text_controller.upload_text.pick_random().replace("\\n", "\n") # .replace fixes the line breaks
-			
-			# start Psuedo Pakman
-			collapsed_email_text.text = flavor_text_controller.expanded_upload_text.pick_random().replace("\\n", "\n")
-			# end Psuedo Pakman
 		
+	var text = email_list.create_email(type) # creates the email, and sets text to an array. first value is the person and topic, second is the expanded text
+	flavor_text.text = text[0]
+	expanded_email_text.text = text[1]
 
 func _process(delta):
 	if Global.email_open and not open: # fixes the bug where you couldn't finish the email
@@ -102,7 +72,7 @@ func _process(delta):
 			scale += (base_scale - scale) / 5
 
 func delete_email(input : String): # delete email after doing little animation
-	collapsed_email_text.visible = false
+	expanded_email_text.visible = false
 	all.visible = false
 	Global.email_open = false # used to tell other emails to work again
 	open = false
@@ -162,7 +132,7 @@ func open_email(type):
 	open = true
 	base_read_button.visible = false # hide the regular read button used to open the email
 	all.visible = true # show the correct buttons for the email type, hidden earlier in the script
-	collapsed_email_text.visible = true
+	expanded_email_text.visible = true
 	
 	var scale_box_tween = create_tween().tween_property(self.get_node("EmailBubble"), "size", Vector2(800, 600), 0.2) # make box fit screen
 	var scale_text_tween = create_tween().tween_property(flavor_text, "size", Vector2(350, 400), 0.2) # make text fit screen
@@ -171,7 +141,7 @@ func open_email(type):
 	var move_buttons_tween = create_tween().tween_property(self.get_node("Buttons"), "position", Vector2(-30, 480), 0.2) # move buttons to bottom
 	z_index = 5
 	# start Psuedo Pakman
-	collapsed_email_text.visible = true
+	expanded_email_text.visible = true
 	# end Psuedo Pakman
 
 
