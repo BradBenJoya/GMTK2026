@@ -60,55 +60,70 @@ layout_mode = 2
 columns = 3
 
 [node name="Master" type="Label" parent="MarginContainer/VBoxContainer/AudioGrid" unique_id=1095472056]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 56
 text = "Master"
+horizontal_alignment = 1
 
 [node name="MasterSlider" type="HSlider" parent="MarginContainer/VBoxContainer/AudioGrid" unique_id=986859999]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 value = 80.0
 
 [node name="MasterValue" type="Label" parent="MarginContainer/VBoxContainer/AudioGrid" unique_id=2103445558]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 56
-text = "#"
+text = "80%"
+horizontal_alignment = 1
 
 [node name="Music" type="Label" parent="MarginContainer/VBoxContainer/AudioGrid" unique_id=174648858]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 56
 text = "Music"
+horizontal_alignment = 1
 
 [node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer/AudioGrid" unique_id=1496994762]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 value = 80.0
 
 [node name="MusicValue" type="Label" parent="MarginContainer/VBoxContainer/AudioGrid" unique_id=462577821]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 56
-text = "#"
+text = "80%"
+horizontal_alignment = 1
 
 [node name="SFX" type="Label" parent="MarginContainer/VBoxContainer/AudioGrid" unique_id=1056568133]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 56
 text = "Sound effects"
+horizontal_alignment = 1
 
 [node name="SFXSlider" type="HSlider" parent="MarginContainer/VBoxContainer/AudioGrid" unique_id=563019016]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 value = 80.0
 
 [node name="SFXValue" type="Label" parent="MarginContainer/VBoxContainer/AudioGrid" unique_id=454935537]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 56
-text = "#"
+text = "80%"
+horizontal_alignment = 1
 
 [node name="MouseHeader" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1357399222]
 layout_mode = 2
@@ -122,14 +137,17 @@ layout_mode = 2
 columns = 3
 
 [node name="MouseX" type="Label" parent="MarginContainer/VBoxContainer/MouseGrid" unique_id=1340266405]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 56
 text = "X Axis"
+horizontal_alignment = 1
 
 [node name="MouseXSlider" type="HSlider" parent="MarginContainer/VBoxContainer/MouseGrid" unique_id=411019570]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 min_value = 0.1
 max_value = 5.0
 step = 0.01
@@ -137,19 +155,24 @@ value = 1.0
 
 [node name="MouseXValue" type="Label" parent="MarginContainer/VBoxContainer/MouseGrid" unique_id=675200826]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 56
-text = "#"
+text = "1.00"
+horizontal_alignment = 1
 
 [node name="MouseY" type="Label" parent="MarginContainer/VBoxContainer/MouseGrid" unique_id=1950062430]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 56
 text = "Y Axis"
+horizontal_alignment = 1
 
 [node name="MouseYSlider" type="HSlider" parent="MarginContainer/VBoxContainer/MouseGrid" unique_id=586513018]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 min_value = 0.1
 max_value = 5.0
 step = 0.01
@@ -157,9 +180,11 @@ value = 1.0
 
 [node name="MouseYValue" type="Label" parent="MarginContainer/VBoxContainer/MouseGrid" unique_id=1158628035]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 56
-text = "#"
+text = "1.00"
+horizontal_alignment = 1
 
 [node name="WindowHeader" type="Label" parent="MarginContainer/VBoxContainer" unique_id=311979969]
 layout_mode = 2
@@ -204,8 +229,13 @@ text = "Main Menu"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/TopRow/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="drag_ended" from="MarginContainer/VBoxContainer/AudioGrid/MasterSlider" to="." method="_on_master_slider_drag_ended"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/AudioGrid/MasterSlider" to="." method="_on_master_slider_value_changed"]
 [connection signal="drag_ended" from="MarginContainer/VBoxContainer/AudioGrid/MusicSlider" to="." method="_on_music_slider_drag_ended"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/AudioGrid/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="drag_ended" from="MarginContainer/VBoxContainer/AudioGrid/SFXSlider" to="." method="_on_sfx_slider_drag_ended"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/AudioGrid/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="drag_ended" from="MarginContainer/VBoxContainer/MouseGrid/MouseXSlider" to="." method="_on_mouse_x_slider_drag_ended"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/MouseGrid/MouseXSlider" to="." method="_on_mouse_x_slider_value_changed"]
 [connection signal="drag_ended" from="MarginContainer/VBoxContainer/MouseGrid/MouseYSlider" to="." method="_on_mouse_y_slider_drag_ended"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/MouseGrid/MouseYSlider" to="." method="_on_mouse_y_slider_value_changed"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/WindowGrid/DisplayOptions" to="." method="_on_option_button_item_selected"]
