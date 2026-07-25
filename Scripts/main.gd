@@ -60,7 +60,6 @@ func _ready():
 	# end Psuedo Pakman
 	
 	tween_time = create_tween().tween_property(self, "clock", 8.0, day_duration)
-	
 	await tween_time.finished
 	print("end game")
 
@@ -152,5 +151,25 @@ func _on_accept_button_pressed() -> void:
 
 func _on_upgrade_timer_timeout() -> void:
 	upgrade_time = true
+
+func _on_options_button_pressed() -> void:
+	$Options.show()
+	game_state = GameState.PAUSE_MENU
+
+func _on_exit_button_pressed() -> void:
+	$Options.hide()
+	game_state = GameState.GAME
+
+func _on_main_button_pressed() -> void:
+	#add a "are you sure?" later
+	game_state = GameState.MAIN_MENU
+
+func _on_apply_button_pressed() -> void:
+	if Global._window_mode == 0:  # window mode
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	elif Global._window_mode == 1:  # fullscreen mode
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	$Options.hide()
+	game_state = GameState.GAME
 
 #end ampbeetle
