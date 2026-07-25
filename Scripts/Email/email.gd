@@ -23,10 +23,6 @@ class_name Email
 @export var upload_stuff : Control
 @export var all : Control
 
-@export_group("Sounds")
-@export var correct_sfx : AudioStreamPlayer
-@export var incorrect_sfx : AudioStreamPlayer
-
 var open := false # tells the manager that it shouldnt be accounted for
 
 var deleted : bool = false
@@ -36,6 +32,8 @@ var progress := 0.0
 var base_scale := Vector2.ONE # for easy scale animation tweaks
 
 func _ready():
+	Global.audio_manager.play_email_sfx("recieved")
+	
 	base_scale = scale
 	all.visible = false
 	expanded_email_text.visible = false
@@ -76,31 +74,33 @@ func _process(delta):
 			scale += (base_scale - scale) / 5
 
 func delete_email(input : String): # delete email after doing little animation
-	if input == "Spam":
+	if type != "Spam":
+		if input == "Normal":
+			Global.audio_manager.play_email_sfx("sent")
+		if input == "Accept":
+			Global.audio_manager.play_email_sfx("correct") # ignore names
+		if input == "Decline":
+			Global.audio_manager.play_email_sfx("incorrect") # ignore names
+	elif input == "Spam":
 		Global.audio_manager.play_email_sfx("deleted")
-	elif input == type:
-		Global.audio_manager.play_email_sfx("correct")
+	else:
+		Global.audio_manager.play_virus_opened()
+	
 	
 	if type == "Normal":
 		if input == "Upload":
 			pass # add boss
 		if input == "Accept" || input == "Decline":
-			Global.audio_manager.play_email_sfx("sent")
 			Global.manager.add_more_emails(1)
 	
 	if type == "Accept":
 		if input == "Accept":
 			pass # give upgrade
-		else:
-			Global.audio_manager.play_email_sfx("sent")
 	
 	if type == "Decline":
 		if input == "Upload":
 			Global.manager.add_more_emails(1)
-			Global.audio_manager.play_email_sfx("incorrect")
-			Global.audio_manager.play_email_sfx("sent")
 		if input == "Accept":
-			Global.audio_manager.play_email_sfx("incorrect")
 			Global.manager.add_more_emails(3)
 		if input == "Normal" || input == "Spam":
 			pass # add boss
@@ -110,20 +110,16 @@ func delete_email(input : String): # delete email after doing little animation
 			pass # add popups
 		if input == "Accept" || input == "Decline":
 			Global.manager.add_more_emails(5)
-			Global.audio_manager.play_email_sfx("incorrect")
 		if input == "Normal":
 			Global.manager.add_more_emails(1)
-			Global.audio_manager.play_email_sfx("incorrect")
 	
 	if type == "Upload":
 		if input == "Spam":
 			pass # add boss
 		if input == "Accept" || input == "Decline":
 			pass # add boss
-			Global.audio_manager.play_email_sfx("incorrect")
 		if input == "Normal":
 			Global.manager.add_more_emails(3)
-			Global.audio_manager.play_email_sfx("incorrect")
 	
 	expanded_email_text.visible = false
 	all.visible = false

@@ -101,6 +101,7 @@ func _on_state_changed(new_state: GameState) -> void:
 func _on_play_pressed() -> void:
 	game_state = GameState.GAME
 	Global.manager.create_emails()
+	Global.audio_manager.transition_from_menu()
 # end Psuedo Pakman
 # end ByDesign
 

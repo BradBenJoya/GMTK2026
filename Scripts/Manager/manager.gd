@@ -13,6 +13,10 @@ var emails : Array = []
 
 func create_emails():
 	for i in 100:
+		if get_tree().paused:
+			while get_tree().paused:
+				await get_tree().physics_frame
+		
 		var new_email = email_scene.instantiate()
 		new_email.position = Vector2(60, -1000)#Vector2(60, 350 - (i * 60))
 		new_email.type = "Normal"
