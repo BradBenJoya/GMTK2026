@@ -51,6 +51,9 @@ func _ready():
 	$UpgradeTimer.start(day_duration / 8)
 	print($UpgradeTimer.wait_time)
 	
+	for button in %UpgradeChoice.get_children():
+		button.upgrade_list = upgrade_list
+	
 	# start Psuedo Pakman
 	# trigger initial setup once
 	_on_state_changed(game_state)
@@ -135,10 +138,13 @@ func _on_accept_button_pressed() -> void:
 			print("email: " + str(email_speed))
 			
 			# Don't want it to reappear
-			#await get_tree().create_timer(0.5).timeout
 			game_state = GameState.GAME
 			upgrade_time = false
 			%UpgradeBox.hide()
+		
+		# Re-add upgrade (for now, at least)
+		upgrade_list.push_back(button.upgrade)
+		
 		# Making sure all buttons are unpressed for next go.
 		button.button_pressed = false
 

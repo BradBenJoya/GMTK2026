@@ -15,8 +15,8 @@ class_name BaseUpgrade
 	set(image):
 		display_image = image
 		%UpgradeTexture.texture = display_image
-
 var effects: Dictionary[UpgradeType, float]
+var upgrade: UpgradeItem
 
 @export var upgrade_list: Array[UpgradeItem]
 
@@ -37,14 +37,16 @@ func pressed() -> void:
 
 func random_card() -> void:
 	# Pick a random upgrade from predefined list.
-	var random_upgrade = upgrade_list.pick_random()
+	var random_element = randi_range(0, upgrade_list.size() - 1)
+	var random_upgrade = upgrade_list.pop_at(random_element)      #upgrade_list.pick_random()
 	print("picking random upgrade:" + str(random_upgrade))
 	
+	upgrade = random_upgrade
 	display_name = random_upgrade.name
 	display_desc = random_upgrade.desc
 	effects = random_upgrade.effects
 	
-	if random_upgrade != null:
+	if random_upgrade.image != null:
 		display_image = random_upgrade.image
 	
 	#Cycles through upgrade effects if more than one, and appends everything to description.
