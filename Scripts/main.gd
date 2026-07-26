@@ -131,6 +131,8 @@ func _on_state_changed(new_state: GameState) -> void:
 			get_tree().paused = true
 
 func end_game():
+	Global.reset_mouse_position()
+	Global.set_mouse_invert(false)
 	Global.game_end = true
 	var dark_screen_tween_in = create_tween().tween_property(dark_screen, "modulate:a", 1.0, 1.0)
 	await dark_screen_tween_in.finished

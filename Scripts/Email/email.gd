@@ -140,7 +140,7 @@ func fake_cursor_hover_behavior() -> void:
 	button_arr.reverse()
 	for button in button_arr:
 		if button != null:
-			if not button.is_visible_in_tree() or not button.is_inside_tree() or (Global.email_open and button == base_read_button):
+			if not button.is_visible_in_tree() or not button.is_inside_tree() or (Global.email_open and button == base_read_button) or Global.main.game_state != Global.main.GameState.GAME:
 				continue
 			elif button.get_global_rect().abs().has_point(fake_pos):
 				new_hovered = button
@@ -251,9 +251,9 @@ func open_email(type):
 	expanded_email_text.visible = true
 	# end Psuedo Pakman
 	# startJT
-	#if(type == "Spam"):
-		#Global.set_mouse_invert(true)
-		#Global.cursor_sprite.flip_v = true
+	if(type == "Spam"):
+		Global.set_mouse_invert(true)
+		Global.cursor_sprite.flip_v = true
 	#end JT
 	
 # special interaction stuff
