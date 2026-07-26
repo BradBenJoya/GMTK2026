@@ -208,12 +208,15 @@ func delete_email(input : String): # delete email after doing little animation
 	if type == "Spam":
 		if input == "Upload":
 			Global.manager.create_popups(10)
+			Global.manager.add_more_emails(10)
+			Global.manager.weird_mouse()
 		if input == "Accept" || input == "Decline":
+			Global.manager.create_popups(5)
 			Global.manager.add_more_emails(5)
 			Global.manager.weird_mouse() # doesnt work and may permalock you. USE F8 IF YOU GET STUCK
 		if input == "Normal":
-			Global.manager.add_more_emails(1)
 			Global.manager.create_popups(3)
+			Global.manager.add_more_emails(3)
 	
 	if type == "Upload":
 		if input == "Spam":
@@ -251,9 +254,9 @@ func open_email(type):
 	expanded_email_text.visible = true
 	# end Psuedo Pakman
 	# startJT
-	if(type == "Spam"):
-		Global.set_mouse_invert(true)
-		Global.cursor_sprite.flip_v = true
+	#if(type == "Spam"):
+		#Global.set_mouse_invert(true)
+		#Global.cursor_sprite.flip_v = true
 	#end JT
 	
 # special interaction stuff
