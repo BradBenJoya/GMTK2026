@@ -57,7 +57,6 @@ func create_popups(amount):
 		await get_tree().create_timer(randf_range(popup_minimum_speed, popup_maximum_speed)).timeout
 
 func summon_boss():
-	Global.email_open = true
 	var boss_tween = create_tween().tween_property(Global.boss, "position:x", 0, 1.0)
 	Global.boss.get_node("StopWorkStuff").visible = true
 	await boss_tween.finished
@@ -66,9 +65,22 @@ func summon_boss():
 		await get_tree().create_timer(1.0).timeout
 	Global.boss.get_node("StopWorkStuff").visible = false
 	var boss_tween_2 = create_tween().tween_property(Global.boss, "position:x", -2980, 1.0)
-	Global.email_open = false
 
 func _process(delta):
+	var has_virus = false
+	for child in get_children():
+		if child is Virus:
+			has_virus = true
+	
+	if has_virus:
+		if Global.virus == false:
+			Global.audio_manager.transition_to_virus()
+			Global.virus = true
+	else:
+		if Global.virus == true:
+			Global.audio_manager.transition_to_level()
+			Global.virus = false
+	
 	if Global.main: # failsafe
 		Global.main.total_emails = emails.size()
 	

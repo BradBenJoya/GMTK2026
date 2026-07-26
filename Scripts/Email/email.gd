@@ -131,8 +131,7 @@ func delete_email(input : String): # delete email after doing little animation
 	elif input == "Spam":
 		Global.audio_manager.play_email_sfx("deleted")
 	else:
-		Global.audio_manager.incorrect_sfx.pitch_scale = randf_range(0.99, 1.01)
-		Global.audio_manager.incorrect_sfx.play()
+		Global.audio_manager.play_email_sfx("sent")
 	
 	expanded_email_text.visible = false
 	all.visible = false
@@ -220,9 +219,9 @@ func open_email(type):
 	expanded_email_text.visible = true
 	# end Psuedo Pakman
 	# startJT
-	if(type == "Spam"):
-		Global.set_mouse_invert(true)
-		Global.cursor_sprite.flip_v = true
+	#if(type == "Spam"):
+		#Global.set_mouse_invert(true)
+		#Global.cursor_sprite.flip_v = true
 	#end JT
 	
 # special interaction stuff

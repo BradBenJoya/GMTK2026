@@ -54,6 +54,9 @@ func _ready():
 	
 func _process(delta: float) -> void:
 	cursor_sprite.global_position = cursor_position
+	
+	if Input.is_action_just_pressed("Click"):
+		audio_manager.play_mouse_click()
 
 func _input(event):
 	if event is InputEventMouseMotion:

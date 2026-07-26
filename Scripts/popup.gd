@@ -1,5 +1,6 @@
 #bydesign start
 extends Control
+class_name Virus
 
 func _ready():
 	var text_transition = create_tween().tween_property($Text, "visible_ratio", 1.0, 3.0).from(0.0)
