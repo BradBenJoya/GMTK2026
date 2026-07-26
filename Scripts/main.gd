@@ -57,10 +57,10 @@ var started : bool = false # avoid infinite music and game repeats (including ge
 
 func _ready():
 	Global.reset() # reset globals to be sure globals are properly set once the scene reloads
-	$UpgradeTimer.start(day_duration / 8)
-	
-	for button in %UpgradeChoice.get_children():
-		button.upgrade_list = upgrade_list
+	#$UpgradeTimer.start(day_duration / 8)
+	#
+	#for button in %UpgradeChoice.get_children():
+		#button.upgrade_list = upgrade_list
 	
 	# start Psuedo Pakman
 	# trigger initial setup once
@@ -83,10 +83,10 @@ func _process(delta):
 	else:
 		time.text = str(int(fmod(floor(clock + 9), 12))) + ":%02.f" % floor(fmod(clock + 9, 1)*60) + " AM"
 	
-	if fmod(snappedf(clock, 0.01), 1) == 0 and upgrade_time and clock != 8.0:
-		choose_upgrade()
-		game_state = GameState.PAUSE_MENU
-		%UpgradeBox.show()
+	#if fmod(snappedf(clock, 0.01), 1) == 0 and upgrade_time and clock != 8.0:
+		#choose_upgrade()
+		#game_state = GameState.PAUSE_MENU
+		#%UpgradeBox.show()
 
 
 # start Psuedo Pakman
@@ -187,7 +187,7 @@ func _on_accept_button_pressed() -> void:
 
 func _on_upgrade_timer_timeout() -> void:
 	#print("timoout")
-	upgrade_time = true
+	pass#upgrade_time = true
 
 func _on_options_button_pressed() -> void:
 	$Options.show()
