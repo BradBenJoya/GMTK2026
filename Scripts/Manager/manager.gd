@@ -16,6 +16,11 @@ extends Node2D
 
 var emails : Array = []
 
+func weird_mouse():
+	Global.set_mouse_invert(true)
+	await get_tree().create_timer(10.0).timeout
+	Global.set_mouse_invert(false)
+
 func create_emails():
 	for i in 100:
 		if get_tree().paused:

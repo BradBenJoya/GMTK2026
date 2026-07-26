@@ -5,16 +5,28 @@
 [ext_resource type="Resource" uid="uid://bxeglhgrv4qrr" path="res://Scripts/Cards/Upgrades/Router.tres" id="3_8kgka"]
 [ext_resource type="Resource" uid="uid://uyr82ts4pmvq" path="res://Scripts/Cards/Upgrades/Antivirus.tres" id="4_jke0c"]
 [ext_resource type="Resource" uid="uid://birtg8agljg6n" path="res://Scripts/Cards/Upgrades/Spam_filter.tres" id="5_eelos"]
-[ext_resource type="Texture2D" uid="uid://t2bvfrkkqyot" path="res://Sprites/antivirus.png" id="6_8kgka"]
+[ext_resource type="FontFile" uid="uid://doe2y2s8d1bw7" path="res://Fonts/Monofrik Demo.ttf" id="6_jke0c"]
+[ext_resource type="Resource" uid="uid://bsiba7mxpv537" path="res://Scripts/Cards/Upgrades/Go_fast.tres" id="6_u5r0k"]
+[ext_resource type="Resource" uid="uid://dbpeoebxmx4b3" path="res://Scripts/Cards/Upgrades/Firewall.tres" id="7_a8yql"]
+[ext_resource type="Texture2D" uid="uid://x2e3dnwolqe6" path="res://Sprites/spam.png" id="7_jke0c"]
 
-[node name="UpgradeButton" type="Button" unique_id=1073497964]
+[sub_resource type="LabelSettings" id="LabelSettings_8kgka"]
+font = ExtResource("6_jke0c")
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_jke0c"]
+font = ExtResource("6_jke0c")
+font_size = 32
+
+[node name="UpgradeButton" type="Button" unique_id=1073497964 node_paths=PackedStringArray("new_display")]
 process_mode = 3
 offset_right = 372.0
 offset_bottom = 634.0
 toggle_mode = true
 vertical_icon_alignment = 0
 script = ExtResource("1_7wruj")
-upgrade_list = Array[ExtResource("2_w0hou")]([ExtResource("3_8kgka"), ExtResource("4_jke0c"), ExtResource("5_eelos")])
+upgrade_list = Array[ExtResource("2_w0hou")]([ExtResource("4_jke0c"), ExtResource("7_a8yql"), ExtResource("6_u5r0k"), ExtResource("3_8kgka"), ExtResource("5_eelos")])
+new_display = [NodePath("Antivirus"), NodePath("FireWall"), NodePath("Go_fast"), NodePath("Router"), NodePath("Spam_filter")]
 
 [node name="UpgradeName" type="Label" parent="." unique_id=920796065]
 unique_name_in_owner = true
@@ -27,6 +39,7 @@ offset_right = 357.0
 offset_bottom = 94.0
 theme_override_font_sizes/font_size = 50
 text = "Upgrade"
+label_settings = SubResource("LabelSettings_8kgka")
 horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 3
@@ -34,6 +47,7 @@ autowrap_mode = 3
 [node name="UpgradeTexture" type="TextureRect" parent="." unique_id=807033298]
 unique_name_in_owner = true
 process_mode = 3
+visible = false
 custom_minimum_size = Vector2(160, 160)
 layout_mode = 0
 offset_left = 18.000002
@@ -42,7 +56,7 @@ offset_right = 315.0
 offset_bottom = 376.0
 scale = Vector2(1.1565566, 1.1565566)
 mouse_filter = 2
-texture = ExtResource("6_8kgka")
+texture = ExtResource("7_jke0c")
 expand_mode = 5
 
 [node name="UpgradeDescription" type="Label" parent="." unique_id=1180273715]
@@ -58,6 +72,7 @@ scale = Vector2(1.1565566, 1.1565566)
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 32
 text = "TEST TEST TEST TEST TEST TEST TEST TEST TEST"
+label_settings = SubResource("LabelSettings_jke0c")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -70,3 +85,36 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Antivirus" type="Polygon2D" parent="." unique_id=2140775194]
+visible = false
+position = Vector2(190, 162)
+color = Color(0, 0.6833334, 1, 1)
+polygon = PackedVector2Array(0, 200, 100, 160, 120, 0, 50, 20, 0, 0, -50, 20, -120, 0, -100, 160)
+
+[node name="FireWall" type="Polygon2D" parent="." unique_id=354990747]
+visible = false
+position = Vector2(176.00002, 113)
+scale = Vector2(1.365, 1.365)
+color = Color(1, 0.51666665, 0, 1)
+polygon = PackedVector2Array(0, 200, 80, 150, 100, 80, 60, 100, 20, 0, -20, 70, -60, 40, -80, 140)
+
+[node name="Go_fast" type="Polygon2D" parent="." unique_id=1266637900]
+visible = false
+position = Vector2(190, 264)
+scale = Vector2(1.2603445, 1.2603445)
+color = Color(0.5500002, 0, 1, 1)
+polygon = PackedVector2Array(0, 100, 80, 80, 100, 0, 80, -80, 0, -100, -80, -80, -100, 0, -80, 80)
+
+[node name="Router" type="Polygon2D" parent="." unique_id=2091533213]
+visible = false
+position = Vector2(190, 387)
+scale = Vector2(1.1413516, 1.1413516)
+polygon = PackedVector2Array(1, -200, 120, -140, 0, -180, 0, -160, 80, -120, 0, -140, 0, -100, 20, -80, 0, -60, -20, -80, 0, -100, 0, -140, -80, -120, 0, -160, 0, -180, -120, -140, 0, -200)
+
+[node name="Spam_filter" type="Polygon2D" parent="." unique_id=1470301042]
+visible = false
+position = Vector2(189, 243)
+scale = Vector2(1.3638653, 1.3638653)
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(0, 20, 80, 80, 20, 0, 80, -80, 0, -20, -80, -80, -20, 0, -80, 80)

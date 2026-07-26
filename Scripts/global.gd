@@ -49,7 +49,7 @@ signal fake_mouse_clicked
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	cursor_position = get_viewport().get_mouse_position()
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN # stop from leaving screen
 
 	
 func _process(delta: float) -> void:
