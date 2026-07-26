@@ -156,9 +156,9 @@ func delete_email(input : String): # delete email after doing little animation
 	if type == "Normal":
 		Global.audio_manager.play_email_sfx("sent")
 	if type == "Accept":
-		Global.audio_manager.play_email_sfx("accept")
+		Global.audio_manager.play_email_sfx("correct")
 	if type == "Decline":
-		Global.audio_manager.play_email_sfx("decline")
+		Global.audio_manager.play_email_sfx("incorrect")
 	if type == "Spam":
 		Global.audio_manager.play_email_sfx("deleted")
 	if type == "Upload":
