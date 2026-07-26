@@ -32,6 +32,7 @@ var progress := 0.0
 var base_scale := Vector2.ONE # for easy scale animation tweaks
 
 func _ready():
+	Global.total_emails += 1
 	Global.audio_manager.play_email_sfx("recieved")
 	
 	base_scale = scale
@@ -74,6 +75,7 @@ func _process(delta):
 			scale += (base_scale - scale) / 5
 
 func delete_email(input : String): # delete email after doing little animation
+	Global.emails_complete += 1
 	if type != "Spam":
 		if input == "Normal":
 			Global.audio_manager.play_email_sfx("sent")

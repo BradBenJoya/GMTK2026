@@ -20,7 +20,11 @@ func create_emails():
 	for i in 100:
 		if get_tree().paused:
 			while get_tree().paused:
+				if Global.game_end:
+					break
 				await get_tree().physics_frame
+		if Global.game_end:
+			break
 		
 		var new_email = email_scene.instantiate()
 		new_email.position = Vector2(60, -1000)#Vector2(60, 350 - (i * 60))
@@ -35,7 +39,11 @@ func create_popups(amount):
 	for i in amount:
 		if get_tree().paused:
 			while get_tree().paused:
+				if Global.game_end:
+					break
 				await get_tree().physics_frame
+		if Global.game_end:
+			break
 		
 		var new_popup = popup_scene.instantiate()
 		
@@ -64,6 +72,8 @@ func _process(delta):
 				emails.erase(email)
 			elif not email.open:
 				email.position += (Vector2(60, 930 - (i * 90)) - email.position) / 5 * (60 * delta) # smooth interpolation of emails (current += (target - current) / smoothness)
+		else:
+			emails.erase(email)
 		
 		i += 1
 

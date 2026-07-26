@@ -4,7 +4,8 @@ extends Node2D
 # start Psuedo Pakman
 @export_group("Scenes")
 @export var main_menu: PackedScene
-@export var monitor: PackedScene
+@export var end_screen : PackedScene
+@export var dark_screen : ColorRect
 
 @export var upgrade_list: Array[UpgradeItem]
 
@@ -55,6 +56,7 @@ var tween_time
 var started : bool = false # avoid infinite music and game repeats (including getting double emails)
 
 func _ready():
+	Global.reset() # reset globals to be sure globals are properly set once the scene reloads
 	$UpgradeTimer.start(day_duration / 8)
 	
 	for button in %UpgradeChoice.get_children():
@@ -67,6 +69,8 @@ func _ready():
 	
 	tween_time = create_tween().tween_property(self, "clock", 8.0, day_duration)
 	await tween_time.finished
+	
+	end_game()
 
 func _process(delta):
 	counter.text = "Inbox " + str(total_emails)
@@ -79,7 +83,7 @@ func _process(delta):
 	else:
 		time.text = str(int(fmod(floor(clock + 9), 12))) + ":%02.f" % floor(fmod(clock + 9, 1)*60) + " AM"
 	
-	if fmod(snappedf(clock, 0.01), 1) == 0 and upgrade_time:
+	if fmod(snappedf(clock, 0.01), 1) == 0 and upgrade_time and clock != 8.0:
 		choose_upgrade()
 		game_state = GameState.PAUSE_MENU
 		%UpgradeBox.show()
@@ -114,6 +118,13 @@ func _on_state_changed(new_state: GameState) -> void:
 			var girl_tween = create_tween().tween_property(girl_sprite, "position:x", 3062, 1.0)
 		GameState.PAUSE_MENU:
 			get_tree().paused = true
+
+func end_game():
+	Global.game_end = true
+	var dark_screen_tween_in = create_tween().tween_property(dark_screen, "modulate:a", 1.0, 1.0)
+	await dark_screen_tween_in.finished
+	var end_screen_instance = end_screen.instantiate()
+	add_child(end_screen_instance)
 
 func _on_play_pressed() -> void:
 	game_state = GameState.GAME
