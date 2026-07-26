@@ -17,6 +17,7 @@ config/icon="res://Sprites/icon.svg"
 
 [autoload]
 
+FakeCursorCanvas="*uid://bt27yl5p3clj6"
 Global="*uid://chc3tjbnn10ur"
 
 [display]
