@@ -341,15 +341,15 @@ level_loop = NodePath("Music/MxLoopLevel")
 virus_loop = NodePath("Music/MxLoopVirus")
 level_ambience = NodePath("Music/SfxAmbienceLevelLoop")
 menu_loop = NodePath("Music/SfxAmbienceMenuLoop")
-mouse_click = [NodePath("SFX/Mouse/SfxPlayerMouseClick01"), NodePath("SFX/Mouse/SfxPlayerMouseClick02"), NodePath("SFX/Mouse/SfxPlayerMouseClick03"), NodePath("SFX/Mouse/SfxPlayerMouseClick04"), NodePath("SFX/Mouse/SfxPlayerMouseClick05"), NodePath("SFX/Mouse/SfxPlayerMouseClick06"), NodePath("SFX/Mouse/SfxPlayerMouseClick07"), NodePath("SFX/Mouse/SfxPlayerMouseClick08"), NodePath("SFX/Mouse/SfxPlayerMouseClick09"), NodePath("SFX/Mouse/SfxPlayerMouseClick10"), NodePath("SFX/Mouse/SfxPlayerMouseClick11"), NodePath("SFX/Mouse/SfxPlayerMouseClick12"), NodePath("SFX/Mouse/SfxPlayerMouseClick13"), NodePath("SFX/Mouse/SfxPlayerMouseClick14"), NodePath("SFX/Mouse/SfxPlayerMouseClick15"), NodePath("SFX/Mouse/SfxPlayerMouseClick16"), NodePath("SFX/Mouse/SfxPlayerMouseClick17"), NodePath("SFX/Mouse/SfxPlayerMouseClick18"), NodePath("SFX/Mouse/SfxPlayerMouseClick19"), NodePath("SFX/Mouse/SfxPlayerMouseClick20")]
-boss_yell = [NodePath("SFX/Boss/SfxBossAngry01"), NodePath("SFX/Boss/SfxBossAngry02"), NodePath("SFX/Boss/SfxBossAngry03"), NodePath("SFX/Boss/SfxBossAngry04"), NodePath("SFX/Boss/SfxBossAngry05"), NodePath("SFX/Boss/SfxBossAngry06")]
-virus_opened = [NodePath("SFX/Virus/SfxEmailVirusOpened01"), NodePath("SFX/Virus/SfxEmailVirusOpened02"), NodePath("SFX/Virus/SfxEmailVirusOpened03"), NodePath("SFX/Virus/SfxEmailVirusOpened05"), NodePath("SFX/Virus/SfxEmailVirusOpened06"), NodePath("SFX/Virus/SfxEmailVirusOpened08"), NodePath("SFX/Virus/SfxEmailVirusOpened09")]
+mouse_click = [NodePath("SFX/Mouse/SfxPlayerMouseClick01"), null]
+boss_yell = [NodePath("SFX/Boss/SfxBossAngry01")]
+virus_opened = [NodePath("SFX/Virus/SfxEmailVirusOpened01")]
 correct = [NodePath("SFX/Email/MxStingerCorrect")]
 incorrect = [NodePath("SFX/Email/MxStingerIncorrect")]
-deleted = [NodePath("SFX/Email/SfxEmailDeleted01"), NodePath("SFX/Email/SfxEmailDeleted02"), NodePath("SFX/Email/SfxEmailDeleted03"), NodePath("SFX/Email/SfxEmailDeleted04"), NodePath("SFX/Email/SfxEmailDeleted05"), NodePath("SFX/Email/SfxEmailDeleted06"), NodePath("SFX/Email/SfxEmailDeleted07"), NodePath("SFX/Email/SfxEmailDeleted08"), NodePath("SFX/Email/SfxEmailDeleted09")]
-uploading = [NodePath("SFX/Email/SfxEmailFileUploading01"), NodePath("SFX/Email/SfxEmailFileUploading02"), NodePath("SFX/Email/SfxEmailFileUploading03")]
-recieved = [NodePath("SFX/Email/SfxEmailRecieved01"), NodePath("SFX/Email/SfxEmailRecieved02"), NodePath("SFX/Email/SfxEmailRecieved03"), NodePath("SFX/Email/SfxEmailRecieved04"), NodePath("SFX/Email/SfxEmailRecieved05")]
-sent = [NodePath("SFX/Email/SfxEmailSent01"), NodePath("SFX/Email/SfxEmailSent02"), NodePath("SFX/Email/SfxEmailSent03"), NodePath("SFX/Email/SfxEmailSent04"), NodePath("SFX/Email/SfxEmailSent05"), NodePath("SFX/Email/SfxEmailSent06"), NodePath("SFX/Email/SfxEmailSent07")]
+deleted = [NodePath("SFX/Email/SfxEmailDeleted01")]
+uploading = [NodePath("SFX/Email/SfxEmailFileUploading01")]
+recieved = [NodePath("SFX/Email/SfxEmailRecieved01")]
+sent = [NodePath("SFX/Email/SfxEmailSent01")]
 
 [node name="SFX" type="Node" parent="AudioManager" unique_id=710531874]
 process_mode = 1

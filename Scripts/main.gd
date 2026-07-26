@@ -56,6 +56,7 @@ var tween_time
 var started : bool = false # avoid infinite music and game repeats (including getting double emails)
 
 func _ready():
+	Global.email_correctly_answered.connect(_on_correct_email)
 	Global.reset() # reset globals to be sure globals are properly set once the scene reloads
 	#$UpgradeTimer.start(day_duration / 8)
 	#
@@ -71,6 +72,13 @@ func _ready():
 	await tween_time.finished
 	
 	end_game()
+
+func _on_correct_email():
+	if (Global.correct_emails % 5 == 0):
+		choose_upgrade()
+		game_state = GameState.PAUSE_MENU
+		%UpgradeBox.show()
+	
 
 func _process(delta):
 	counter.text = "Inbox " + str(total_emails)
