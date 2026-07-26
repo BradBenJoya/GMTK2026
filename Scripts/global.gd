@@ -22,6 +22,21 @@ func reset(): # reset the values to make sure restarting the game actually sets 
 	manager = get_tree().get_root().get_node("Main/Monitor/SubViewport/Manager") # adjust if needed
 	audio_manager = get_tree().get_root().get_node("Main/AudioManager") # adjust if needed
 	boss = get_tree().get_root().get_node("Main/Boss") # adjust if needed
+	
+	main.started = false
+	
+	email_open = false
+	virus = false
+	
+	emails_complete = 0
+	total_emails = 0
+	total_viruses = 0
+	total_boss_yells = 0
+	
+	game_end = false
+	
+	cursor_sprite = FakeCursorCanvas.get_node("CursorSprite")
+	monitor_container = get_tree().get_root().get_node("Main/Monitor")
 # end ByDesign
 
 #start ampbeetle
@@ -35,6 +50,8 @@ var _sfx = 0.8
 var _music = 0.8
 
 var _mouse_sensitivity: Vector2 = Vector2(1.0, 1.0)
+
+var _scroll_speed = 1.0
 
 var _window_mode
 
@@ -72,6 +89,7 @@ func _process(delta: float) -> void:
 	cursor_sprite.global_position = cursor_position
 	
 	if Input.is_action_just_pressed("Click"):
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 		audio_manager.play_mouse_click()
 
 func _input(event):
