@@ -12,12 +12,15 @@ extends Node2D
 @export var upload_speed: float = 1.0:
 	set(new_value):
 		upload_speed = new_value
-		$Button.text = ("Speed: " + str(new_value))
 		for message in %Manager.emails:
 			message.upload_speed = new_value
 @export var virus_chance: float = 1.0
 @export var spam_chance: float = 1.0
-@export var email_speed: float = 1.0
+@export var email_speed: float = 5.0:
+	set(new_value):
+		email_speed = new_value
+		%Manager.email_interval = new_value
+		%Manager.email_timer.wait_time = new_value
 
 enum GameState {
 	MAIN_MENU,
@@ -51,10 +54,6 @@ var upgrade_time = false
 var tween_time
 
 @export var day_duration : float = 300.0  # was 300, but shortening for testing
-
-# start ampbeetle 
-signal update_upload_speed(new_value: float)
-# end ampbeetle
 
 func _ready():
 	$UpgradeTimer.start(day_duration / 8)
@@ -199,5 +198,8 @@ func _on_apply_button_pressed() -> void:
 
 
 func _on_button_pressed() -> void:
-	upload_speed += 0.2
+	#upload_speed += 0.2
+	#$StatTest.text = ("Speed: " + str(upload_speed))
+	email_speed -= 1.0
+	$StatTest.text = ("Speed: " + str(email_speed))
 	pass # Replace with function body.

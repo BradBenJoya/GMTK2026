@@ -272,8 +272,7 @@ stream = ExtResource("15_k12tt")
 [node name="MxStingerIncorrect" type="AudioStreamPlayer" parent="AudioManager/SFX" unique_id=658714241]
 stream = ExtResource("16_h1bgf")
 
-[node name="UploadSpeedTest" type="Button" parent="." unique_id=1993961730]
-unique_name_in_owner = true
+[node name="StatTest" type="Button" parent="." unique_id=1993961730]
 offset_left = -196.0
 offset_top = -861.0
 offset_right = 125.0
@@ -290,6 +289,6 @@ text = "Speed: 1.0"
 [connection signal="pressed" from="Options/MarginContainer/VBoxContainer/TopRow/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Options/MarginContainer/VBoxContainer/BottomOptions/ApplyButton" to="." method="_on_apply_button_pressed"]
 [connection signal="pressed" from="Options/MarginContainer/VBoxContainer/BottomOptions/MainButton" to="." method="_on_main_button_pressed"]
-[connection signal="pressed" from="UploadSpeedTest" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="StatTest" to="." method="_on_button_pressed"]
 
 [editable path="Options"]

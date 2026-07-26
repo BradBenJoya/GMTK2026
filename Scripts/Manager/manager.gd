@@ -87,5 +87,6 @@ func add_more_emails(amount : int):
 
 # start ampbeetle
 func _on_email_timer_timeout() -> void:
+	print("ADDING MORE EMAILS!!!!!!")
 	add_more_emails(1)
 # end ampbeetle
