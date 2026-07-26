@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bt27yl5p3clj6"]
+
+[ext_resource type="Texture2D" uid="uid://cxlw7qxtevgah" path="res://Sprites/mouse.png" id="1_1xy42"]
+
+[node name="FakeCursorCanvas" type="CanvasLayer" unique_id=406733454]
+
+[node name="CursorSprite" type="Sprite2D" parent="." unique_id=456028485]
+scale = Vector2(2, 2)
+texture = ExtResource("1_1xy42")
+offset = Vector2(4, 5)

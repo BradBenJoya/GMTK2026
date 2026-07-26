@@ -80,6 +80,9 @@ func _process(delta):
 
 # start Psuedo Pakman
 func _on_state_changed(new_state: GameState) -> void:
+	# start JT
+	Global.reset_mouse_position() # just insurance to make sure the cursor doesnt get out of sync
+	#end JT
 	# clear out whatever was there before
 	if new_state != GameState.PAUSE_MENU and current_scene_instance:
 		current_scene_instance.queue_free()
@@ -157,6 +160,7 @@ func _on_accept_button_pressed() -> void:
 #add something to disable accept button unless an upgrade is selected
 
 func _on_upgrade_timer_timeout() -> void:
+	#print("timoout")
 	upgrade_time = true
 
 func _on_options_button_pressed() -> void:
