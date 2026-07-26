@@ -33,11 +33,17 @@ var base_scale := Vector2.ONE # for easy scale animation tweaks
 # start JT
 var clickable_buttons: Array[Button] = [] 
 var hovered_button: Button = null
+var held_button : Button = null
+@export var upload_fill_rate : float = 100.0 / 2.0   # % per second while held (fills in 2s, tune as needed)
+@export var upload_drain_rate : float = 100.0 / 1.0  # % per second while released (drains in 1s, tune as needed)
+
 #end JT
 
 func _ready():
 	# start JT
 	Global.fake_mouse_clicked.connect(_on_fake_mouse_clicked)
+	Global.fake_mouse_pressed.connect(_on_fake_mouse_pressed)
+	Global.fake_mouse_released.connect(_on_fake_mouse_released)
 	for node in find_children("*", "Button", true, false):
 		clickable_buttons.append(node)
 		node.mouse_filter = Control.MOUSE_FILTER_IGNORE # We want all of the buttons to react only to the fake cursor 
@@ -75,6 +81,16 @@ func _ready():
 
 func _process(delta):
 	fake_cursor_hover_behavior()
+	if open:
+		if held_button == upload_button and hovered_button == upload_button:
+			progress = min(progress + upload_fill_rate * delta, 100.0)
+		else:
+			progress = max(progress - upload_drain_rate * delta, 0.0)
+
+		upload_bar.value = progress
+
+		if progress >= 100.0:
+			delete_email("Upload")
 	if Global.email_open and not open || get_tree().paused: # fixes the bug where you couldn't finish the email
 		base_read_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	else:
@@ -84,9 +100,15 @@ func _process(delta):
 func _on_fake_mouse_clicked() -> void:
 	if hovered_button != null and not hovered_button.disabled:
 		hovered_button.emit_signal("pressed")
+		
+func _on_fake_mouse_pressed():
+	if hovered_button != null and not hovered_button.disabled:
+		held_button = hovered_button
+
+func _on_fake_mouse_released():
+	held_button = null
 			
 func _set_hover(button: Button, is_hovered: bool) -> void:
-	#print("setting hover")
 	if button == null:
 		return
 	if is_hovered:
@@ -119,18 +141,17 @@ func fake_cursor_hover_behavior() -> void:
 #end JT
 
 func delete_email(input : String): # delete email after doing little animation
-	if type != "Spam":
-		if input == "Normal":
-			Global.audio_manager.play_email_sfx("sent")
-		if input == "Accept":
-			Global.audio_manager.play_email_sfx("correct") # ignore names
-		if input == "Decline":
-			Global.audio_manager.play_email_sfx("incorrect") # ignore names
-	elif input == "Spam":
-		Global.audio_manager.play_email_sfx("deleted")
+	if type == input:
+		Global.audio_manager.play_email_sfx("correct")
+		Global.correct_emails += 1
+		Global.email_correctly_answered.emit()
+	elif type == "Spam" and input == "Upload":
+		Global.audio_manager.play_email_sfx("incorrect")
+		#Global.audio_manager.incorrect.pitch_scale = randf_range(0.99, 1.01)
+		#Global.audio_manager.incorrect.play()
+		pass # put virus or smth here
 	else:
-		Global.audio_manager.incorrect_sfx.pitch_scale = randf_range(0.99, 1.01)
-		Global.audio_manager.incorrect_sfx.play()
+		Global.audio_manager.play_email_sfx("incorrect")
 	
 	expanded_email_text.visible = false
 	all.visible = false
@@ -244,21 +265,8 @@ func _on_delete_pressed():
 		open_email(type)
 
 func _on_upload_pressed(): # i think i did this one wrong (?)
-	if open:
-		Global.audio_manager.play_email_sfx("uploading")
-		while upload_button.button_pressed:
-			await get_tree().physics_frame
-			progress += 1
-			upload_bar.value = progress
-		
-		if progress >= 100:
-			delete_email("Upload")
-		else:
-			if not upload_button.button_pressed:
-				progress = 0
-				upload_bar.value = progress
-				Global.audio_manager.stop_uploading()
+	# moved functionality to process due to fake cursor 
 	
-	elif not Global.email_open:
+	if not Global.email_open:
 		open_email(type)
 # end ByDesign

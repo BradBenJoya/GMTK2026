@@ -36,6 +36,8 @@ func _process(delta):
 			emails.erase(email)
 		elif not email.open:
 			email.position += (Vector2(60, 930 - (i * 90)) - email.position) / 5 * (60 * delta) # smooth interpolation of emails (current += (target - current) / smoothness)
+		else:
+			emails.erase(email) 
 		
 		i += 1
 

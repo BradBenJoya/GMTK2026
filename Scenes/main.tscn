@@ -14,10 +14,8 @@
 [ext_resource type="Resource" uid="uid://bsiba7mxpv537" path="res://Scripts/Cards/Upgrades/Go_fast.tres" id="7_h1bgf"]
 [ext_resource type="Resource" uid="uid://dbpeoebxmx4b3" path="res://Scripts/Cards/Upgrades/Firewall.tres" id="8_b3802"]
 [ext_resource type="Script" uid="uid://sqlam6id7o4t" path="res://Scripts/audio_manager.gd" id="15_h1bgf"]
-[ext_resource type="AudioStream" uid="uid://bw31mlg7d3t1q" path="res://Audio/SFX/mx_stinger_correct.wav" id="15_k12tt"]
-[ext_resource type="PackedScene" uid="uid://dc5sjd0r5rswo" path="res://Scenes/options.tscn" id="15_wsu2k"]
-[ext_resource type="AudioStream" uid="uid://baf3j6mtdkeit" path="res://Audio/SFX/mx_stinger_incorrect.wav" id="16_h1bgf"]
 [ext_resource type="AudioStream" uid="uid://bw31mlg7d3t1q" path="res://Audio/SFX/Email/mx_stinger_correct.wav" id="15_k12tt"]
+[ext_resource type="PackedScene" uid="uid://dc5sjd0r5rswo" path="res://Scenes/options.tscn" id="15_wsu2k"]
 [ext_resource type="AudioStream" uid="uid://baf3j6mtdkeit" path="res://Audio/SFX/Email/mx_stinger_incorrect.wav" id="16_h1bgf"]
 [ext_resource type="AudioStream" uid="uid://bcl7ayc6347t6" path="res://Audio/SFX/Mouse/sfx_player_MouseClick01.wav" id="17_fd3ed"]
 [ext_resource type="AudioStream" uid="uid://hfc14xxnknxj" path="res://Audio/SFX/Mouse/sfx_player_MouseClick02.wav" id="18_qnggo"]
@@ -331,23 +329,21 @@ offset_top = -1043.0
 offset_right = 289.0
 offset_bottom = 357.0
 
-[node name="AudioManager" type="Node" parent="." unique_id=1887426924 node_paths=PackedStringArray("correct_sfx", "incorrect_sfx")]
 [node name="AudioManager" type="Node" parent="." unique_id=1887426924 node_paths=PackedStringArray("level_loop", "virus_loop", "level_ambience", "menu_loop", "mouse_click", "boss_yell", "virus_opened", "correct", "incorrect", "deleted", "uploading", "recieved", "sent")]
-process_mode = 1
 script = ExtResource("15_h1bgf")
 level_loop = NodePath("Music/MxLoopLevel")
 virus_loop = NodePath("Music/MxLoopVirus")
 level_ambience = NodePath("Music/SfxAmbienceLevelLoop")
 menu_loop = NodePath("Music/SfxAmbienceMenuLoop")
-mouse_click = [NodePath("SFX/Mouse/SfxPlayerMouseClick01"), NodePath("SFX/Mouse/SfxPlayerMouseClick02"), NodePath("SFX/Mouse/SfxPlayerMouseClick03"), NodePath("SFX/Mouse/SfxPlayerMouseClick04"), NodePath("SFX/Mouse/SfxPlayerMouseClick05"), NodePath("SFX/Mouse/SfxPlayerMouseClick06"), NodePath("SFX/Mouse/SfxPlayerMouseClick07"), NodePath("SFX/Mouse/SfxPlayerMouseClick08"), NodePath("SFX/Mouse/SfxPlayerMouseClick09"), NodePath("SFX/Mouse/SfxPlayerMouseClick10"), NodePath("SFX/Mouse/SfxPlayerMouseClick11"), NodePath("SFX/Mouse/SfxPlayerMouseClick12"), NodePath("SFX/Mouse/SfxPlayerMouseClick13"), NodePath("SFX/Mouse/SfxPlayerMouseClick14"), NodePath("SFX/Mouse/SfxPlayerMouseClick15"), NodePath("SFX/Mouse/SfxPlayerMouseClick16"), NodePath("SFX/Mouse/SfxPlayerMouseClick17"), NodePath("SFX/Mouse/SfxPlayerMouseClick18"), NodePath("SFX/Mouse/SfxPlayerMouseClick19"), NodePath("SFX/Mouse/SfxPlayerMouseClick20")]
-boss_yell = [NodePath("SFX/Boss/SfxBossAngry01"), NodePath("SFX/Boss/SfxBossAngry02"), NodePath("SFX/Boss/SfxBossAngry03"), NodePath("SFX/Boss/SfxBossAngry04"), NodePath("SFX/Boss/SfxBossAngry05"), NodePath("SFX/Boss/SfxBossAngry06")]
-virus_opened = [NodePath("SFX/Virus/SfxEmailVirusOpened01"), NodePath("SFX/Virus/SfxEmailVirusOpened02"), NodePath("SFX/Virus/SfxEmailVirusOpened03"), NodePath("SFX/Virus/SfxEmailVirusOpened05"), NodePath("SFX/Virus/SfxEmailVirusOpened06"), NodePath("SFX/Virus/SfxEmailVirusOpened08"), NodePath("SFX/Virus/SfxEmailVirusOpened09")]
+mouse_click = [NodePath("SFX/Mouse/SfxPlayerMouseClick01"), null]
+boss_yell = [NodePath("SFX/Boss/SfxBossAngry01")]
+virus_opened = [NodePath("SFX/Virus/SfxEmailVirusOpened01")]
 correct = [NodePath("SFX/Email/MxStingerCorrect")]
 incorrect = [NodePath("SFX/Email/MxStingerIncorrect")]
-deleted = [NodePath("SFX/Email/SfxEmailDeleted01"), NodePath("SFX/Email/SfxEmailDeleted02"), NodePath("SFX/Email/SfxEmailDeleted03"), NodePath("SFX/Email/SfxEmailDeleted04"), NodePath("SFX/Email/SfxEmailDeleted05"), NodePath("SFX/Email/SfxEmailDeleted06"), NodePath("SFX/Email/SfxEmailDeleted07"), NodePath("SFX/Email/SfxEmailDeleted08"), NodePath("SFX/Email/SfxEmailDeleted09")]
-uploading = [NodePath("SFX/Email/SfxEmailFileUploading01"), NodePath("SFX/Email/SfxEmailFileUploading02"), NodePath("SFX/Email/SfxEmailFileUploading03")]
-recieved = [NodePath("SFX/Email/SfxEmailRecieved01"), NodePath("SFX/Email/SfxEmailRecieved02"), NodePath("SFX/Email/SfxEmailRecieved03"), NodePath("SFX/Email/SfxEmailRecieved04"), NodePath("SFX/Email/SfxEmailRecieved05")]
-sent = [NodePath("SFX/Email/SfxEmailSent01"), NodePath("SFX/Email/SfxEmailSent02"), NodePath("SFX/Email/SfxEmailSent03"), NodePath("SFX/Email/SfxEmailSent04"), NodePath("SFX/Email/SfxEmailSent05"), NodePath("SFX/Email/SfxEmailSent06"), NodePath("SFX/Email/SfxEmailSent07")]
+deleted = [NodePath("SFX/Email/SfxEmailDeleted01")]
+uploading = [NodePath("SFX/Email/SfxEmailFileUploading01")]
+recieved = [NodePath("SFX/Email/SfxEmailRecieved01")]
+sent = [NodePath("SFX/Email/SfxEmailSent01")]
 
 [node name="SFX" type="Node" parent="AudioManager" unique_id=710531874]
 process_mode = 1
@@ -504,11 +500,6 @@ stream = ExtResource("15_k12tt")
 process_mode = 1
 stream = ExtResource("16_h1bgf")
 
-[connection signal="pressed" from="Monitor/SubViewport/Manager/BottomBar/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="UpgradeBox/UpgradeChoice/UpgradeCard" to="." method="_on_upgrade_selected" flags=18]
-[connection signal="pressed" from="UpgradeBox/UpgradeChoice/UpgradeCard2" to="." method="_on_upgrade_selected" flags=18]
-[connection signal="pressed" from="UpgradeBox/UpgradeChoice/UpgradeCard3" to="." method="_on_upgrade_selected" flags=18]
-[connection signal="pressed" from="UpgradeBox/AcceptButton" to="." method="_on_accept_button_pressed"]
 [node name="SfxEmailDeleted01" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=1857889296]
 process_mode = 1
 stream = ExtResource("45_64lof")
@@ -624,6 +615,7 @@ stream = ExtResource("78_14mkc")
 process_mode = 3
 stream = ExtResource("79_l78ku")
 
+[connection signal="pressed" from="Monitor/SubViewport/Manager/BottomBar/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Monitor/SubViewport/UpgradeBox/UpgradeChoice/UpgradeCard" to="." method="_on_upgrade_selected" flags=18]
 [connection signal="pressed" from="Monitor/SubViewport/UpgradeBox/UpgradeChoice/UpgradeCard2" to="." method="_on_upgrade_selected" flags=18]
 [connection signal="pressed" from="Monitor/SubViewport/UpgradeBox/UpgradeChoice/UpgradeCard3" to="." method="_on_upgrade_selected" flags=18]

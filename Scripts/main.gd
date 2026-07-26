@@ -4,7 +4,7 @@ extends Node2D
 # start Psuedo Pakman
 @export_group("Scenes")
 @export var main_menu: PackedScene
-@export var monitor: PackedScene
+#@export var monitor: PackedScene
 
 @export var upgrade_list: Array[UpgradeItem]
 
@@ -48,6 +48,7 @@ var tween_time
 @export var day_duration : float = 300.0  # was 300, but shortening for testing
 
 func _ready():
+	Global.email_correctly_answered.connect(_on_correct_email)
 	$UpgradeTimer.start(day_duration / 8)
 	
 	for button in %UpgradeChoice.get_children():
@@ -61,6 +62,13 @@ func _ready():
 	tween_time = create_tween().tween_property(self, "clock", 8.0, day_duration)
 	await tween_time.finished
 
+func _on_correct_email():
+	if (Global.correct_emails % 5 == 0):
+		choose_upgrade()
+		game_state = GameState.PAUSE_MENU
+		%UpgradeBox.show()
+	
+
 func _process(delta):
 	counter.text = "Inbox " + str(total_emails)
 	
@@ -71,11 +79,6 @@ func _process(delta):
 		time.text = "12" + ":%02.f" % floor(fmod(clock + 9, 1)*60) + " PM"
 	else:
 		time.text = str(int(fmod(floor(clock + 9), 12))) + ":%02.f" % floor(fmod(clock + 9, 1)*60) + " AM"
-	
-	if fmod(snappedf(clock, 0.01), 1) == 0 and upgrade_time:
-		choose_upgrade()
-		game_state = GameState.PAUSE_MENU
-		%UpgradeBox.show()
 
 
 # start Psuedo Pakman
