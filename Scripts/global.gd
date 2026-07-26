@@ -73,7 +73,7 @@ var mouse_held : bool = false  # new: true for every frame the button is down
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	cursor_position = get_viewport().get_mouse_position()
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN # stop from leaving screen
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN # stop from leaving screen
 	boss_summoned.connect(_on_boss_summoned)
 	boss_left.connect(_on_boss_left)
 	
@@ -89,7 +89,7 @@ func _process(delta: float) -> void:
 	cursor_sprite.global_position = cursor_position
 	
 	if Input.is_action_just_pressed("Click"):
-		Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 		audio_manager.play_mouse_click()
 
 func _input(event):
