@@ -63,6 +63,7 @@ func create_popups(amount):
 		await get_tree().create_timer(randf_range(popup_minimum_speed, popup_maximum_speed)).timeout
 
 func summon_boss():
+	Global.total_boss_yells += 1
 	Global.boss_summoned.emit()
 	Global.email_open = true
 	var boss_tween = create_tween().tween_property(Global.boss, "position:x", 0, 1.0)

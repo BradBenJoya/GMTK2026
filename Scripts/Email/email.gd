@@ -210,13 +210,16 @@ func delete_email(input : String): # delete email after doing little animation
 			Global.manager.create_popups(10)
 			Global.manager.add_more_emails(10)
 			Global.manager.weird_mouse()
+			Global.total_viruses += 1
 		if input == "Accept" || input == "Decline":
 			Global.manager.create_popups(5)
 			Global.manager.add_more_emails(5)
 			Global.manager.weird_mouse() # doesnt work and may permalock you. USE F8 IF YOU GET STUCK
+			Global.total_viruses += 1
 		if input == "Normal":
 			Global.manager.create_popups(3)
 			Global.manager.add_more_emails(3)
+			Global.total_viruses += 1
 	
 	if type == "Upload":
 		if input == "Spam":
@@ -235,6 +238,7 @@ func delete_email(input : String): # delete email after doing little animation
 	var slide_out = create_tween().tween_property(self, "position", Vector2(-2000.0, position.y), 0.5)
 	await slide_out.finished
 	
+	Global.emails_complete += 1
 	queue_free()
 
 func open_email(type):
