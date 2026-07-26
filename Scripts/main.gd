@@ -45,7 +45,7 @@ var total_emails : int = 0
 var upgrade_time = false
 var tween_time
 
-@export var day_duration : float = 20.0  # was 300, but shortening for testing
+@export var day_duration : float = 300.0  # was 300, but shortening for testing
 
 func _ready():
 	$UpgradeTimer.start(day_duration / 8)
@@ -83,6 +83,9 @@ func _process(delta):
 
 # start Psuedo Pakman
 func _on_state_changed(new_state: GameState) -> void:
+	# start JT
+	Global.reset_mouse_position() # just insurance to make sure the cursor doesnt get out of sync
+	#end JT
 	# clear out whatever was there before
 	if new_state != GameState.PAUSE_MENU and current_scene_instance:
 		current_scene_instance.queue_free()
@@ -163,6 +166,7 @@ func _on_accept_button_pressed() -> void:
 #add something to disable accept button unless an upgrade is selected
 
 func _on_upgrade_timer_timeout() -> void:
+	#print("timoout")
 	upgrade_time = true
 
 func _on_options_button_pressed() -> void:

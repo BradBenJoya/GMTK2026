@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://edk5gupnbidp" path="res://Scripts/main.gd" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://bs2gvfj1541lm" path="res://Scenes/manager.tscn" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://pcq8rppqacnt" path="res://Scenes/main_menu.tscn" id="2_6bp64"]
-[ext_resource type="Script" uid="uid://chc3tjbnn10ur" path="res://Scripts/global.gd" id="2_jjvhh"]
 [ext_resource type="Shader" uid="uid://d33krf4ystq50" path="res://Shaders/crt.gdshader" id="2_kry3j"]
 [ext_resource type="Script" uid="uid://coryhq6i1gdc0" path="res://Scripts/upgrade_item.gd" id="3_ynf5e"]
 [ext_resource type="FontFile" uid="uid://doe2y2s8d1bw7" path="res://Fonts/Monofrik Demo.ttf" id="4_21xkr"]
@@ -14,9 +13,9 @@
 [ext_resource type="Resource" uid="uid://bxeglhgrv4qrr" path="res://Scripts/Cards/Upgrades/Router.tres" id="6_k12tt"]
 [ext_resource type="Resource" uid="uid://bsiba7mxpv537" path="res://Scripts/Cards/Upgrades/Go_fast.tres" id="7_h1bgf"]
 [ext_resource type="Resource" uid="uid://dbpeoebxmx4b3" path="res://Scripts/Cards/Upgrades/Firewall.tres" id="8_b3802"]
-[ext_resource type="PackedScene" uid="uid://dc5sjd0r5rswo" path="res://Scenes/options.tscn" id="15_wsu2k"]
 [ext_resource type="Script" uid="uid://sqlam6id7o4t" path="res://Scripts/audio_manager.gd" id="15_h1bgf"]
 [ext_resource type="AudioStream" uid="uid://bw31mlg7d3t1q" path="res://Audio/SFX/mx_stinger_correct.wav" id="15_k12tt"]
+[ext_resource type="PackedScene" uid="uid://dc5sjd0r5rswo" path="res://Scenes/options.tscn" id="15_wsu2k"]
 [ext_resource type="AudioStream" uid="uid://baf3j6mtdkeit" path="res://Audio/SFX/mx_stinger_incorrect.wav" id="16_h1bgf"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_up85j"]
@@ -69,7 +68,6 @@ counter = NodePath("Monitor/SubViewport/Manager/TopBar/Score")
 time = NodePath("Monitor/SubViewport/Manager/BottomBar/Time")
 
 [node name="Global" type="Node" parent="." unique_id=1780935722]
-script = ExtResource("2_jjvhh")
 
 [node name="Monitor" type="SubViewportContainer" parent="." unique_id=1630699192]
 anchors_preset = 8
@@ -240,7 +238,7 @@ theme = SubResource("Theme_g4v7s")
 text = "Accept"
 
 [node name="UpgradeTimer" type="Timer" parent="." unique_id=768330774]
-wait_time = 2.5
+wait_time = 100.0
 
 [node name="MainMenu" parent="." unique_id=371072770 instance=ExtResource("2_6bp64")]
 
@@ -258,7 +256,6 @@ offset_top = -1043.0
 offset_right = 289.0
 offset_bottom = 357.0
 
-[connection signal="pressed" from="Monitor/SubViewport/Manager/BottomBar/OptionsButton" to="." method="_on_options_button_pressed"]
 [node name="AudioManager" type="Node" parent="." unique_id=1887426924 node_paths=PackedStringArray("correct_sfx", "incorrect_sfx")]
 script = ExtResource("15_h1bgf")
 correct_sfx = NodePath("SFX/MxStingerCorrect")
@@ -272,6 +269,7 @@ stream = ExtResource("15_k12tt")
 [node name="MxStingerIncorrect" type="AudioStreamPlayer" parent="AudioManager/SFX" unique_id=658714241]
 stream = ExtResource("16_h1bgf")
 
+[connection signal="pressed" from="Monitor/SubViewport/Manager/BottomBar/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="UpgradeBox/UpgradeChoice/UpgradeCard" to="." method="_on_upgrade_selected" flags=18]
 [connection signal="pressed" from="UpgradeBox/UpgradeChoice/UpgradeCard2" to="." method="_on_upgrade_selected" flags=18]
 [connection signal="pressed" from="UpgradeBox/UpgradeChoice/UpgradeCard3" to="." method="_on_upgrade_selected" flags=18]
