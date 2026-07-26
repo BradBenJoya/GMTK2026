@@ -338,9 +338,7 @@ offset_top = -1043.0
 offset_right = 289.0
 offset_bottom = 357.0
 
-
 [node name="AudioManager" type="Node" parent="." unique_id=1887426924 node_paths=PackedStringArray("level_loop", "virus_loop", "level_ambience", "menu_loop", "mouse_click", "boss_yell", "virus_opened", "correct", "incorrect", "deleted", "uploading", "recieved", "sent")]
-
 script = ExtResource("15_h1bgf")
 level_loop = NodePath("Music/MxLoopLevel")
 virus_loop = NodePath("Music/MxLoopVirus")
@@ -511,24 +509,6 @@ stream = ExtResource("15_k12tt")
 process_mode = 1
 stream = ExtResource("16_h1bgf")
 
-[node name="StatTest" type="Button" parent="." unique_id=1993961730]
-visible = false
-offset_left = -196.0
-offset_top = -861.0
-offset_right = 125.0
-offset_bottom = -750.0
-theme_override_font_sizes/font_size = 48
-text = "Spam: "
-
-[node name="StatTest2" type="Button" parent="." unique_id=706251885]
-visible = false
-offset_left = 165.0
-offset_top = -861.0
-offset_right = 486.0
-offset_bottom = -750.0
-theme_override_font_sizes/font_size = 48
-text = "Upload: "
-
 [node name="SfxEmailDeleted01" type="AudioStreamPlayer" parent="AudioManager/SFX/Email" unique_id=1857889296]
 process_mode = 1
 stream = ExtResource("45_64lof")
@@ -644,6 +624,24 @@ stream = ExtResource("78_14mkc")
 [node name="SfxAmbienceMenuLoop" type="AudioStreamPlayer" parent="AudioManager/Music" unique_id=606267836]
 process_mode = 3
 stream = ExtResource("79_l78ku")
+
+[node name="StatTest" type="Button" parent="." unique_id=1993961730]
+visible = false
+offset_left = -196.0
+offset_top = -861.0
+offset_right = 125.0
+offset_bottom = -750.0
+theme_override_font_sizes/font_size = 48
+text = "Spam: "
+
+[node name="StatTest2" type="Button" parent="." unique_id=706251885]
+visible = false
+offset_left = 165.0
+offset_top = -861.0
+offset_right = 486.0
+offset_bottom = -750.0
+theme_override_font_sizes/font_size = 48
+text = "Upload: "
 
 [node name="Boss" type="Sprite2D" parent="." unique_id=2100833913]
 z_index = 2025

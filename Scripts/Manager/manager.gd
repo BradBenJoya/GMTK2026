@@ -141,9 +141,9 @@ func add_more_emails(amount : int):
 		var random_chance = randf()
 		if random_chance <= spam_chance:
 			new_email.type = "Spam"
-		elif random_chance <= spam_chance + virus_chance:
-			new_email.type = "Virus"
-		elif random_chance <= spam_chance + virus_chance + upload_chance:
+		#elif random_chance <= spam_chance + virus_chance:
+			#new_email.type = "Virus"
+		elif random_chance <= spam_chance + upload_chance: # + virus_chance
 			new_email.type = "Upload"
 		else:
 			new_email.type = "Normal"
