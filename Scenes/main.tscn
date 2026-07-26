@@ -139,7 +139,6 @@ dark_screen = NodePath("DarkScreen")
 upgrade_list = Array[ExtResource("3_ynf5e")]([ExtResource("4_jkdf5"), ExtResource("5_wsu2k"), ExtResource("6_k12tt"), ExtResource("7_h1bgf"), ExtResource("8_b3802")])
 counter = NodePath("Monitor/SubViewport/Manager/TopBar/Score")
 time = NodePath("Monitor/SubViewport/Manager/BottomBar/Time")
-day_duration = 1.0
 boss_sprite = NodePath("Boss")
 girl_sprite = NodePath("Girl")
 

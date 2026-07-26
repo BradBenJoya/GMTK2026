@@ -97,9 +97,9 @@ func _process(delta):
 			
 			progress = max(progress - upload_drain_rate * delta, 0.0)
 			
-		
+	upload_bar.value = progress
+	
 	if held_down:
-		upload_bar.value = progress
 		if progress >= 100.0 and not deleted:
 			deleted = true
 			delete_email("Upload")
