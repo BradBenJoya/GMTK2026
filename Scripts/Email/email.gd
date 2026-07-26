@@ -102,9 +102,9 @@ func _process(delta):
 			
 			progress = max(progress - upload_drain_rate * delta, 0.0)
 			
-		
+	upload_bar.value = progress
+	
 	if held_down:
-		upload_bar.value = progress
 		if progress >= 100.0 and not deleted:
 			deleted = true
 			delete_email("Upload")
@@ -145,7 +145,7 @@ func fake_cursor_hover_behavior() -> void:
 	button_arr.reverse()
 	for button in button_arr:
 		if button != null:
-			if not button.is_visible_in_tree() or not button.is_inside_tree() or (Global.email_open and button == base_read_button):
+			if not button.is_visible_in_tree() or not button.is_inside_tree() or (Global.email_open and button == base_read_button) or Global.main.game_state != Global.main.GameState.GAME:
 				continue
 			elif button.get_global_rect().abs().has_point(fake_pos):
 				new_hovered = button
@@ -213,12 +213,15 @@ func delete_email(input : String): # delete email after doing little animation
 	if type == "Spam":
 		if input == "Upload":
 			Global.manager.create_popups(10)
+			Global.manager.add_more_emails(10)
+			Global.manager.weird_mouse()
 		if input == "Accept" || input == "Decline":
+			Global.manager.create_popups(5)
 			Global.manager.add_more_emails(5)
-			#Global.manager.weird_mouse() # doesnt work and may permalock you. USE F8 IF YOU GET STUCK
+			Global.manager.weird_mouse() # doesnt work and may permalock you. USE F8 IF YOU GET STUCK
 		if input == "Normal":
-			Global.manager.add_more_emails(1)
 			Global.manager.create_popups(3)
+			Global.manager.add_more_emails(3)
 	
 	if type == "Upload":
 		if input == "Spam":

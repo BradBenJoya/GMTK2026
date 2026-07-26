@@ -46,6 +46,11 @@ func _on_mouse_y_slider_drag_ended(value_changed: bool) -> void:
 	%MouseYValue.text = str(%MouseYSlider.value)
 	print(Global._mouse_sensitivity)
 
+func _on_scroll_speed_slider_drag_ended(value_changed: bool) -> void:
+	Global._scroll_speed = %ScrollSpeedSlider.value
+	%ScrollSpeedValue.text = str(%ScrollSpeedSlider.value)
+	print(Global._mouse_sensitivity)
+
 func _on_master_slider_value_changed(value: float) -> void:
 	%MasterValue.text = str(int(value)) + "%"
 
@@ -60,6 +65,9 @@ func _on_mouse_x_slider_value_changed(value: float) -> void:
 
 func _on_mouse_y_slider_value_changed(value: float) -> void:
 	%MouseYValue.text = "%.2f" % value
+
+func _on_scroll_speed_slider_value_changed(value: float) -> void:
+	%ScrollSpeedValue.text = "%.2f" % value
 
 func _on_option_button_item_selected(index: int) -> void:
 	Global._window_mode = index
