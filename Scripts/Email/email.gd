@@ -23,10 +23,6 @@ class_name Email
 @export var upload_stuff : Control
 @export var all : Control
 
-@export_group("Sounds")
-@export var correct_sfx : AudioStreamPlayer
-@export var incorrect_sfx : AudioStreamPlayer
-
 var open := false # tells the manager that it shouldnt be accounted for
 
 var deleted : bool = false
@@ -46,6 +42,8 @@ func _ready():
 		clickable_buttons.append(node)
 		node.mouse_filter = Control.MOUSE_FILTER_IGNORE # We want all of the buttons to react only to the fake cursor 
 	#end JT
+	Global.audio_manager.play_email_sfx("recieved")
+	
 	base_scale = scale
 	all.visible = false
 	expanded_email_text.visible = false
@@ -77,8 +75,7 @@ func _ready():
 
 func _process(delta):
 	fake_cursor_hover_behavior()
-
-	if Global.email_open and not open: # fixes the bug where you couldn't finish the email
+	if Global.email_open and not open || get_tree().paused: # fixes the bug where you couldn't finish the email
 		base_read_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	else:
 		base_read_button.mouse_filter = Control.MOUSE_FILTER_STOP
@@ -122,9 +119,15 @@ func fake_cursor_hover_behavior() -> void:
 #end JT
 
 func delete_email(input : String): # delete email after doing little animation
-	if type == input:
-		Global.audio_manager.correct_sfx.pitch_scale = randf_range(0.99, 1.01)
-		Global.audio_manager.correct_sfx.play()
+	if type != "Spam":
+		if input == "Normal":
+			Global.audio_manager.play_email_sfx("sent")
+		if input == "Accept":
+			Global.audio_manager.play_email_sfx("correct") # ignore names
+		if input == "Decline":
+			Global.audio_manager.play_email_sfx("incorrect") # ignore names
+	elif input == "Spam":
+		Global.audio_manager.play_email_sfx("deleted")
 	else:
 		Global.audio_manager.incorrect_sfx.pitch_scale = randf_range(0.99, 1.01)
 		Global.audio_manager.incorrect_sfx.play()
@@ -145,11 +148,8 @@ func delete_email(input : String): # delete email after doing little animation
 	var move_buttons_tween = create_tween().tween_property(self.get_node("Buttons"), "position", Vector2(0, 0), 0.2) # move buttons to original place
 	
 	await move_buttons_tween.finished
+		Global.audio_manager.play_virus_opened()
 	
-	deleted = true # let the manager know that it shouldnt account for this email anymore
-	z_index = -1 # get it out of the way to avoid overlap
-	var slide_out = create_tween().tween_property(self, "position", Vector2(-2000.0, position.y), 0.5)
-	await slide_out.finished
 	
 	if type == "Normal":
 		if input == "Upload":
@@ -166,7 +166,6 @@ func delete_email(input : String): # delete email after doing little animation
 			Global.manager.add_more_emails(1)
 		if input == "Accept":
 			Global.manager.add_more_emails(3)
-		
 		if input == "Normal" || input == "Spam":
 			pass # add boss
 	
@@ -175,7 +174,6 @@ func delete_email(input : String): # delete email after doing little animation
 			pass # add popups
 		if input == "Accept" || input == "Decline":
 			Global.manager.add_more_emails(5)
-		
 		if input == "Normal":
 			Global.manager.add_more_emails(1)
 	
@@ -186,6 +184,23 @@ func delete_email(input : String): # delete email after doing little animation
 			pass # add boss
 		if input == "Normal":
 			Global.manager.add_more_emails(3)
+	
+	expanded_email_text.visible = false
+	all.visible = false
+	Global.email_open = false # used to tell other emails to work again
+	open = false
+	
+	var scale_box_tween = create_tween().tween_property(self.get_node("EmailBubble"), "size", Vector2(800, 50), 0.1) # make box fit screen
+	var scale_text_tween = create_tween().tween_property(flavor_text, "size", Vector2(350, 24), 0.2) # make text fit screen
+	var change_text_tween = create_tween().tween_property(flavor_text, "custom_maximum_size", Vector2(350, 30), 0.2) # stop ellipses from appearing
+	var move_buttons_tween = create_tween().tween_property(self.get_node("Buttons"), "position", Vector2(0, 0), 0.2) # move buttons to original place
+	
+	await move_buttons_tween.finished
+	
+	deleted = true # let the manager know that it shouldnt account for this email anymore
+	z_index = -1 # get it out of the way to avoid overlap
+	var slide_out = create_tween().tween_property(self, "position", Vector2(-2000.0, position.y), 0.5)
+	await slide_out.finished
 	
 	queue_free()
 
@@ -238,6 +253,7 @@ func _on_delete_pressed():
 
 func _on_upload_pressed(): # i think i did this one wrong (?)
 	if open:
+		Global.audio_manager.play_email_sfx("uploading")
 		while upload_button.button_pressed:
 			await get_tree().physics_frame
 			progress += 1
@@ -249,6 +265,7 @@ func _on_upload_pressed(): # i think i did this one wrong (?)
 			if not upload_button.button_pressed:
 				progress = 0
 				upload_bar.value = progress
+				Global.audio_manager.stop_uploading()
 	
 	elif not Global.email_open:
 		open_email(type)

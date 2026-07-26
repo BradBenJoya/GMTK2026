@@ -49,7 +49,6 @@ var tween_time
 
 func _ready():
 	$UpgradeTimer.start(day_duration / 8)
-	print($UpgradeTimer.wait_time)
 	
 	for button in %UpgradeChoice.get_children():
 		button.upgrade_list = upgrade_list
@@ -61,7 +60,6 @@ func _ready():
 	
 	tween_time = create_tween().tween_property(self, "clock", 8.0, day_duration)
 	await tween_time.finished
-	print("end game")
 
 func _process(delta):
 	counter.text = "Inbox " + str(total_emails)
@@ -75,7 +73,6 @@ func _process(delta):
 		time.text = str(int(fmod(floor(clock + 9), 12))) + ":%02.f" % floor(fmod(clock + 9, 1)*60) + " AM"
 	
 	if fmod(snappedf(clock, 0.01), 1) == 0 and upgrade_time:
-		print(clock)
 		choose_upgrade()
 		game_state = GameState.PAUSE_MENU
 		%UpgradeBox.show()
@@ -112,6 +109,7 @@ func _on_state_changed(new_state: GameState) -> void:
 func _on_play_pressed() -> void:
 	game_state = GameState.GAME
 	Global.manager.create_emails()
+	Global.audio_manager.transition_from_menu()
 # end Psuedo Pakman
 # end ByDesign
 
@@ -147,10 +145,6 @@ func _on_accept_button_pressed() -> void:
 						spam_chance += button.effects[effect]
 					UpgradeType.EMAIL_SPEED:
 						email_speed += button.effects[effect]
-			print("upload: " + str(upload_speed))
-			print("virus: " + str(virus_chance))
-			print("spam: " + str(spam_chance))
-			print("email: " + str(email_speed))
 			
 			# Don't want it to reappear
 			game_state = GameState.GAME

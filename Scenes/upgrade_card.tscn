@@ -5,43 +5,68 @@
 [ext_resource type="Resource" uid="uid://bxeglhgrv4qrr" path="res://Scripts/Cards/Upgrades/Router.tres" id="3_8kgka"]
 [ext_resource type="Resource" uid="uid://uyr82ts4pmvq" path="res://Scripts/Cards/Upgrades/Antivirus.tres" id="4_jke0c"]
 [ext_resource type="Resource" uid="uid://birtg8agljg6n" path="res://Scripts/Cards/Upgrades/Spam_filter.tres" id="5_eelos"]
+[ext_resource type="Texture2D" uid="uid://t2bvfrkkqyot" path="res://Sprites/antivirus.png" id="6_8kgka"]
 
 [node name="UpgradeButton" type="Button" unique_id=1073497964]
-offset_right = 297.0
-offset_bottom = 399.0
+process_mode = 3
+offset_right = 372.0
+offset_bottom = 634.0
+toggle_mode = true
 vertical_icon_alignment = 0
 script = ExtResource("1_7wruj")
 upgrade_list = Array[ExtResource("2_w0hou")]([ExtResource("3_8kgka"), ExtResource("4_jke0c"), ExtResource("5_eelos")])
 
+[node name="UpgradeName" type="Label" parent="." unique_id=920796065]
+unique_name_in_owner = true
+process_mode = 3
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 0
+offset_left = 14.0
+offset_top = 17.0
+offset_right = 357.0
+offset_bottom = 94.0
+theme_override_font_sizes/font_size = 50
+text = "Upgrade"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="UpgradeTexture" type="TextureRect" parent="." unique_id=807033298]
+unique_name_in_owner = true
+process_mode = 3
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 0
+offset_left = 18.000002
+offset_top = 79.0
+offset_right = 315.0
+offset_bottom = 376.0
+scale = Vector2(1.1565566, 1.1565566)
+mouse_filter = 2
+texture = ExtResource("6_8kgka")
+expand_mode = 5
+
+[node name="UpgradeDescription" type="Label" parent="." unique_id=1180273715]
+unique_name_in_owner = true
+process_mode = 3
+custom_minimum_size = Vector2(120, 150)
+layout_mode = 0
+offset_left = 18.000002
+offset_top = 400.0
+offset_right = 315.0
+offset_bottom = 591.5025
+scale = Vector2(1.1565566, 1.1565566)
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 32
+text = "TEST TEST TEST TEST TEST TEST TEST TEST TEST"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2061914043]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="UpgradeName" type="Label" parent="VBoxContainer" unique_id=920796065]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 56
-text = "Upgrade"
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="UpgradeTexture" type="TextureRect" parent="VBoxContainer" unique_id=807033298]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(160, 160)
-layout_mode = 2
-expand_mode = 5
-
-[node name="UpgradeDescription" type="Label" parent="VBoxContainer" unique_id=1180273715]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(120, 150)
-layout_mode = 2
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
