@@ -630,6 +630,7 @@ texture = ExtResource("80_qnggo")
 
 [node name="StopWorkStuff" type="ColorRect" parent="Boss" unique_id=1000049223]
 visible = false
+z_index = 4096
 offset_left = -10160.0
 offset_top = -5533.7495
 offset_right = 10271.248

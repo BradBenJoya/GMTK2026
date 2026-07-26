@@ -140,7 +140,7 @@ func delete_email(input : String): # delete email after doing little animation
 	open = false
 	#start JT
 	#Global.reset_mouse_position()
-	Global.cursor_sprite.flip_v = false
+	#Global.cursor_sprite.flip_v = false
 	#end JT
 	
 	var scale_box_tween = create_tween().tween_property(self.get_node("EmailBubble"), "size", Vector2(800, 50), 0.1) # make box fit screen
