@@ -93,15 +93,15 @@ func _process(delta):
 		else:
 			if held_down:
 				held_down = false
-				Global.audio_manager.stop_upload()
+				Global.audio_manager.stop_uploading()
 			
 			progress = max(progress - upload_drain_rate * delta, 0.0)
 			
 		
-	if held_down and not deleted:
-		
+	if held_down:
 		upload_bar.value = progress
-		if progress >= 100.0:
+		if progress >= 100.0 and not deleted:
+			deleted = true
 			delete_email("Upload")
 	if Global.email_open and not open || get_tree().paused: # fixes the bug where you couldn't finish the email
 		base_read_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
