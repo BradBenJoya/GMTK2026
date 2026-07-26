@@ -241,9 +241,9 @@ func open_email(type):
 	expanded_email_text.visible = true
 	# end Psuedo Pakman
 	# startJT
-	if(type == "Spam"):
-		Global.set_mouse_invert(true)
-		Global.cursor_sprite.flip_v = true
+	#if(type == "Spam"):
+		#Global.set_mouse_invert(true)
+		#Global.cursor_sprite.flip_v = true
 	#end JT
 	
 # special interaction stuff

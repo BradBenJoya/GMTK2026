@@ -71,6 +71,20 @@ func summon_boss():
 	Global.boss_left.emit()
 
 func _process(delta):
+	var has_virus = false
+	for child in get_children():
+		if child is Virus:
+			has_virus = true
+	
+	if has_virus:
+		if Global.virus == false:
+			Global.audio_manager.transition_to_virus()
+			Global.virus = true
+	else:
+		if Global.virus == true:
+			Global.audio_manager.transition_to_level()
+			Global.virus = false
+	
 	if Global.main: # failsafe
 		Global.main.total_emails = emails.size()
 	
