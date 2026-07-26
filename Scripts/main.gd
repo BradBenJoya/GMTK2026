@@ -9,10 +9,15 @@ extends Node2D
 @export var upgrade_list: Array[UpgradeItem]
 
 @export_group("Stats")
-@export var upload_speed: float = 100
-@export var virus_chance: float = 100
-@export var spam_chance: float = 100
-@export var email_speed: float = 100
+@export var upload_speed: float = 1.0:
+	set(new_value):
+		upload_speed = new_value
+		$Button.text = ("Speed: " + str(new_value))
+		for message in %Manager.emails:
+			message.upload_speed = new_value
+@export var virus_chance: float = 1.0
+@export var spam_chance: float = 1.0
+@export var email_speed: float = 1.0
 
 enum GameState {
 	MAIN_MENU,
@@ -45,7 +50,11 @@ var total_emails : int = 0
 var upgrade_time = false
 var tween_time
 
-@export var day_duration : float = 20.0  # was 300, but shortening for testing
+@export var day_duration : float = 300.0  # was 300, but shortening for testing
+
+# start ampbeetle 
+signal update_upload_speed(new_value: float)
+# end ampbeetle
 
 func _ready():
 	$UpgradeTimer.start(day_duration / 8)
@@ -187,3 +196,8 @@ func _on_apply_button_pressed() -> void:
 	game_state = GameState.GAME
 
 #end ampbeetle
+
+
+func _on_button_pressed() -> void:
+	upload_speed += 0.2
+	pass # Replace with function body.
