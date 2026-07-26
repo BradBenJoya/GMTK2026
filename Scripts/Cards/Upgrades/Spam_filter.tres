@@ -9,6 +9,6 @@ name = "Spam filter"
 desc = "Get rid of that junk! Well, some of it."
 image = ExtResource("1_vhq0r")
 effects = Dictionary[int, float]({
-2: -5.0
+3: -0.05
 })
 metadata/_custom_type_script = "uid://coryhq6i1gdc0"

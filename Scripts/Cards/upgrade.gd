@@ -21,11 +21,11 @@ var upgrade: UpgradeItem
 @export var upgrade_list: Array[UpgradeItem]
 
 enum UpgradeType {
-	UPLOAD_SPEED,
-	UPLOAD_CHANCE,
-	VIRUS_CHANCE,
-	SPAM_CHANCE,
-	EMAIL_SPEED
+	UPLOAD_SPEED = 1,
+	UPLOAD_CHANCE = 2,
+	VIRUS_CHANCE = 3,
+	SPAM_CHANCE = 4,
+	EMAIL_SPEED = 5
 }
 
 func _ready() -> void:

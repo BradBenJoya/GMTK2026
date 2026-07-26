@@ -39,11 +39,11 @@ enum GameState {
 }
 
 enum UpgradeType {
-	UPLOAD_SPEED,
-	UPLOAD_CHANCE,
-	VIRUS_CHANCE,
-	SPAM_CHANCE,
-	EMAIL_SPEED
+	UPLOAD_SPEED = 1,
+	UPLOAD_CHANCE = 2,
+	VIRUS_CHANCE = 3,
+	SPAM_CHANCE = 4,
+	EMAIL_SPEED = 5
 }
 
 var game_state: GameState = GameState.MAIN_MENU:

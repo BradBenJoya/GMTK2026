@@ -9,7 +9,7 @@ name = "Firewall"
 desc = "Blocks bad stuff, but also a lil good stuff."
 image = ExtResource("1_6pf6y")
 effects = Dictionary[int, float]({
-0: -5.0,
-1: -5.0
+0: -0.03,
+2: -0.05
 })
 metadata/_custom_type_script = "uid://coryhq6i1gdc0"

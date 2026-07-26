@@ -9,6 +9,6 @@ name = "Antivirus"
 desc = "Finally get round to that update."
 image = ExtResource("1_okv8x")
 effects = Dictionary[int, float]({
-1: -2.0
+2: -0.02
 })
 metadata/_custom_type_script = "uid://coryhq6i1gdc0"

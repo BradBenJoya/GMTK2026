@@ -7,7 +7,8 @@ class_name UpgradeItem
 @export var effects: Dictionary[UpgradeType, float]
 
 enum UpgradeType {
-	UPLOAD_SPEED,
+	UPLOAD_SPEED = 0,
+	UPLOAD_CHANCE,
 	VIRUS_CHANCE,
 	SPAM_CHANCE,
 	EMAIL_SPEED
