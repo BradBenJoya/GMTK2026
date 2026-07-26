@@ -22,6 +22,21 @@ func reset(): # reset the values to make sure restarting the game actually sets 
 	manager = get_tree().get_root().get_node("Main/Monitor/SubViewport/Manager") # adjust if needed
 	audio_manager = get_tree().get_root().get_node("Main/AudioManager") # adjust if needed
 	boss = get_tree().get_root().get_node("Main/Boss") # adjust if needed
+	
+	main.started = false
+	
+	email_open = false
+	virus = false
+	
+	emails_complete = 0
+	total_emails = 0
+	total_viruses = 0
+	total_boss_yells = 0
+	
+	game_end = false
+	
+	cursor_sprite = FakeCursorCanvas.get_node("CursorSprite")
+	monitor_container = get_tree().get_root().get_node("Main/Monitor")
 # end ByDesign
 
 #start ampbeetle
