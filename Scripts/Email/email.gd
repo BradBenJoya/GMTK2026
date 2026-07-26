@@ -37,6 +37,7 @@ var held_button : Button = null
 @export var upload_fill_rate : float = 100.0 / 2.0   # % per second while held (fills in 2s, tune as needed)
 @export var upload_drain_rate : float = 100.0 / 1.0  # % per second while released (drains in 1s, tune as needed)
 
+var held_down : bool = false
 #end JT
 
 func _ready():
@@ -84,12 +85,22 @@ func _process(delta):
 	fake_cursor_hover_behavior()
 	if open:
 		if held_button == upload_button and hovered_button == upload_button:
+			if not held_down:
+				held_down = true
+				Global.audio_manager.play_email_sfx("uploading")
+			
 			progress = min(progress + upload_fill_rate * delta, 100.0)
 		else:
+			if held_down:
+				held_down = false
+				Global.audio_manager.stop_upload()
+			
 			progress = max(progress - upload_drain_rate * delta, 0.0)
-
+			
+		
+	if held_down:
+		
 		upload_bar.value = progress
-
 		if progress >= 100.0:
 			delete_email("Upload")
 	if Global.email_open and not open || get_tree().paused: # fixes the bug where you couldn't finish the email
@@ -142,17 +153,16 @@ func fake_cursor_hover_behavior() -> void:
 #end JT
 
 func delete_email(input : String): # delete email after doing little animation
-	if type == input:
-		Global.audio_manager.play_email_sfx("correct")
-		Global.correct_emails += 1
-		Global.email_correctly_answered.emit()
-	elif type == "Spam" and input == "Upload":
-		Global.audio_manager.play_email_sfx("incorrect")
-		#Global.audio_manager.incorrect.pitch_scale = randf_range(0.99, 1.01)
-		#Global.audio_manager.incorrect.play()
-		pass # put virus or smth here
-	else:
-		Global.audio_manager.play_email_sfx("incorrect")
+	if type == "Normal":
+		Global.audio_manager.play_email_sfx("sent")
+	if type == "Accept":
+		Global.audio_manager.play_email_sfx("accept")
+	if type == "Decline":
+		Global.audio_manager.play_email_sfx("decline")
+	if type == "Spam":
+		Global.audio_manager.play_email_sfx("deleted")
+	if type == "Upload":
+		Global.audio_manager.play_email_sfx("sent")
 	
 	expanded_email_text.visible = false
 	all.visible = false
