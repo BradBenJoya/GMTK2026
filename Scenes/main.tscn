@@ -79,6 +79,8 @@
 [ext_resource type="AudioStream" uid="uid://bijhsl5edk7n7" path="res://Audio/Music/mx_loop_virus.wav" id="77_bpr0e"]
 [ext_resource type="AudioStream" uid="uid://bj02qcr423axl" path="res://Audio/Music/sfx_ambience_LevelLoop.wav" id="78_14mkc"]
 [ext_resource type="AudioStream" uid="uid://o8nkvv458ngd" path="res://Audio/Music/sfx_ambience_MenuLoop.wav" id="79_l78ku"]
+[ext_resource type="Texture2D" uid="uid://2t4ehctoamgr" path="res://Sprites/boss_final_02.png" id="80_qnggo"]
+[ext_resource type="Texture2D" uid="uid://codohwthpowcf" path="res://Sprites/happy_girl.png" id="81_tab3y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_up85j"]
 font = ExtResource("4_21xkr")
@@ -128,12 +130,14 @@ default_font = ExtResource("4_21xkr")
 default_font = ExtResource("4_21xkr")
 default_font_size = 56
 
-[node name="Main" type="Node2D" unique_id=1107406334 node_paths=PackedStringArray("counter", "time")]
+[node name="Main" type="Node2D" unique_id=1107406334 node_paths=PackedStringArray("counter", "time", "boss_sprite", "girl_sprite")]
 script = ExtResource("1_bo1nx")
 main_menu = ExtResource("2_6bp64")
 upgrade_list = Array[ExtResource("3_ynf5e")]([ExtResource("4_jkdf5"), ExtResource("5_wsu2k"), ExtResource("6_k12tt"), ExtResource("7_h1bgf"), ExtResource("8_b3802")])
 counter = NodePath("Monitor/SubViewport/Manager/TopBar/Score")
 time = NodePath("Monitor/SubViewport/Manager/BottomBar/Time")
+boss_sprite = NodePath("Boss")
+girl_sprite = NodePath("Girl")
 
 [node name="Global" type="Node" parent="." unique_id=1780935722]
 script = ExtResource("2_jjvhh")
@@ -162,7 +166,6 @@ render_target_update_mode = 4
 
 [node name="Manager" parent="Monitor/SubViewport" unique_id=1747145403 instance=ExtResource("1_jjgbg")]
 position = Vector2(700, 300)
-maximum_speed = 0.5
 
 [node name="Sprite2D" type="Sprite2D" parent="Monitor/SubViewport/Manager" unique_id=1265509594]
 position = Vector2(223.99998, 413.99997)
@@ -605,6 +608,7 @@ process_mode = 1
 [node name="MxLoopLevel" type="AudioStreamPlayer" parent="AudioManager/Music" unique_id=1448285014]
 process_mode = 3
 stream = ExtResource("76_myryv")
+volume_db = -25.0
 
 [node name="MxLoopVirus" type="AudioStreamPlayer" parent="AudioManager/Music" unique_id=1341203368]
 process_mode = 3
@@ -617,6 +621,26 @@ stream = ExtResource("78_14mkc")
 [node name="SfxAmbienceMenuLoop" type="AudioStreamPlayer" parent="AudioManager/Music" unique_id=606267836]
 process_mode = 3
 stream = ExtResource("79_l78ku")
+
+[node name="Boss" type="Sprite2D" parent="." unique_id=2100833913]
+z_index = 2025
+position = Vector2(-1552.0001, 691)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("80_qnggo")
+
+[node name="StopWorkStuff" type="ColorRect" parent="Boss" unique_id=1000049223]
+visible = false
+offset_left = -10160.0
+offset_top = -5533.7495
+offset_right = 10271.248
+offset_bottom = 5494.9995
+color = Color(1, 1, 1, 0)
+
+[node name="Girl" type="Sprite2D" parent="." unique_id=938364646]
+z_index = 2025
+position = Vector2(1644, 868)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("81_tab3y")
 
 [connection signal="pressed" from="Monitor/SubViewport/Manager/BottomBar/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Monitor/SubViewport/UpgradeBox/UpgradeChoice/UpgradeCard" to="." method="_on_upgrade_selected" flags=18]

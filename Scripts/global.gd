@@ -5,7 +5,9 @@ extends Node # replace if desired
 @onready var main : Node2D = get_tree().get_root().get_node("Main") # adjust if needed
 @onready var manager : Node2D = get_tree().get_root().get_node("Main/Monitor/SubViewport/Manager") # adjust if needed
 @onready var audio_manager : Node = get_tree().get_root().get_node("Main/AudioManager") # adjust if needed
+@onready var boss : Node = get_tree().get_root().get_node("Main/Boss") # adjust if needed
 var email_open : bool = false
+var virus : bool = false
 # end ByDesign
 
 #start ampbeetle

@@ -89,13 +89,17 @@ func delete_email(input : String): # delete email after doing little animation
 	
 	if type == "Normal":
 		if input == "Upload":
-			pass # add boss
+			Global.manager.summon_boss()
 		if input == "Accept" || input == "Decline":
 			Global.manager.add_more_emails(1)
 	
 	if type == "Accept":
-		if input == "Accept":
-			pass # give upgrade
+		if input == "Normal" || input == "Spam":
+			Global.manager.summon_boss()
+		if input == "Decline":
+			Global.manager.add_more_emails(3)
+		if input == "Upload":
+			Global.manager.add_more_emails(1)
 	
 	if type == "Decline":
 		if input == "Upload":
@@ -103,21 +107,23 @@ func delete_email(input : String): # delete email after doing little animation
 		if input == "Accept":
 			Global.manager.add_more_emails(3)
 		if input == "Normal" || input == "Spam":
-			pass # add boss
+			Global.manager.summon_boss()
 	
 	if type == "Spam":
 		if input == "Upload":
-			pass # add popups
+			Global.manager.create_popups(10)
 		if input == "Accept" || input == "Decline":
 			Global.manager.add_more_emails(5)
+			# add mouse weird stuff
 		if input == "Normal":
 			Global.manager.add_more_emails(1)
+			Global.manager.create_popups(3)
 	
 	if type == "Upload":
 		if input == "Spam":
-			pass # add boss
+			Global.manager.summon_boss()
 		if input == "Accept" || input == "Decline":
-			pass # add boss
+			Global.manager.summon_boss()
 		if input == "Normal":
 			Global.manager.add_more_emails(3)
 	

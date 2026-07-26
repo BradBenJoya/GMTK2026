@@ -38,7 +38,7 @@ func stop_uploading():
 		sound.stop()
 
 func transition_to_level():
-	var loop_tween = create_tween().tween_property(level_loop, "volume_linear", 1.0, 0.5).from(0.0)
+	var loop_tween = create_tween().tween_property(level_loop, "volume_linear", 0.3, 0.5).from(0.0)
 	var ambience_tween = create_tween().tween_property(level_ambience, "volume_linear", 1.0, 0.5).from(0.0)
 	var virus_tween = create_tween().tween_property(virus_loop, "volume_linear", 0.0, 0.5).from(1.0)
 
@@ -47,11 +47,11 @@ func transition_from_menu():
 	level_ambience.play()
 	virus_loop.play()
 	virus_loop.volume_linear = 0.0
-	var loop_tween = create_tween().tween_property(level_loop, "volume_linear", 1.0, 0.5).from(0.0)
+	var loop_tween = create_tween().tween_property(level_loop, "volume_linear", 0.3, 0.5).from(0.0)
 	var ambience_tween = create_tween().tween_property(level_ambience, "volume_linear", 1.0, 0.5).from(0.0)
 	var menu_tween = create_tween().tween_property(menu_loop, "volume_linear", 0.0, 0.5).from(1.0)
 
 func transition_to_virus():
-	var loop_tween = create_tween().tween_property(level_loop, "volume_linear", 0.0, 0.5).from(1.0)
+	var loop_tween = create_tween().tween_property(level_loop, "volume_linear", 0.0, 0.5).from(0.3)
 	var ambience_tween = create_tween().tween_property(level_ambience, "volume_linear", 0.0, 0.5).from(1.0)
 	var virus_tween = create_tween().tween_property(virus_loop, "volume_linear", 1.0, 0.5).from(0.0)

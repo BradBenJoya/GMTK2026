@@ -49,6 +49,8 @@ var upgrade_time = false
 var tween_time
 
 @export var day_duration : float = 300.0  # was 300, but shortening for testing
+@export var boss_sprite : Sprite2D
+@export var girl_sprite : Sprite2D
 
 var started : bool = false # avoid infinite music and game repeats (including getting double emails)
 
@@ -95,16 +97,21 @@ func _on_state_changed(new_state: GameState) -> void:
 			$MainMenu.show()
 			#current_scene_instance = main_menu.instantiate()
 			#add_child(current_scene_instance)
-			var play_button = $MainMenu.get_node("TempPlayButton")
+			var play_button = $MainMenu.get_node("TempPlayButton") # gives error but not fatal so... idk
 			play_button.play_pressed.connect(_on_play_pressed)
-			var options_button = $MainMenu.get_node("TempOptionButton")
+			var options_button = $MainMenu.get_node("TempOptionButton") # gives error but not fatal so... idk
 			options_button.play_pressed.connect(_on_options_pressed)
-			var quit_button = $MainMenu.get_node("TempQuitButton")
+			var quit_button = $MainMenu.get_node("TempQuitButton") # gives error but not fatal so... idk
 			quit_button.play_pressed.connect(_on_quit_pressed)
 			get_tree().paused = true
+			
+			var boss_tween = create_tween().tween_property(boss_sprite, "position:x", -1552, 1.0)
+			var girl_tween = create_tween().tween_property(girl_sprite, "position:x", 1664, 1.0)
 		GameState.GAME:
 			$MainMenu.hide()
 			get_tree().paused = false
+			var boss_tween = create_tween().tween_property(boss_sprite, "position:x", -2980, 1.0)
+			var girl_tween = create_tween().tween_property(girl_sprite, "position:x", 3062, 1.0)
 		GameState.PAUSE_MENU:
 			get_tree().paused = true
 
