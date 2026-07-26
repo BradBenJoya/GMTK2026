@@ -110,10 +110,10 @@ func _process(delta):
 	else:
 		time.text = str(int(fmod(floor(clock + 9), 12))) + ":%02.f" % floor(fmod(clock + 9, 1)*60) + " AM"
 	
-	if fmod(snappedf(clock, 0.01), 1) == 0 and upgrade_time and clock != 8.0:
-		choose_upgrade()
-		game_state = GameState.PAUSE_MENU
-		%UpgradeBox.show()
+	#if fmod(snappedf(clock, 0.01), 1) == 0 and upgrade_time and clock != 8.0:
+		#choose_upgrade()
+		#game_state = GameState.PAUSE_MENU
+		#%UpgradeBox.show()
 
 
 # start Psuedo Pakman
