@@ -47,6 +47,8 @@ var invert : bool = false
 signal fake_mouse_clicked
 signal fake_mouse_pressed   # new: fires once on mouse-down
 signal fake_mouse_released  # new: fires once on mouse-up
+signal boss_summoned
+signal boss_left
 var mouse_held : bool = false  # new: true for every frame the button is down
 @onready var cursor_sprite: Sprite2D = FakeCursorCanvas.get_node("CursorSprite")
 @onready var monitor_container : SubViewportContainer = get_tree().get_root().get_node("Main/Monitor")
@@ -55,6 +57,15 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	cursor_position = get_viewport().get_mouse_position()
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN # stop from leaving screen
+	boss_summoned.connect(_on_boss_summoned)
+	boss_left.connect(_on_boss_left)
+	
+func _on_boss_summoned():
+	process_mode = Node.PROCESS_MODE_DISABLED
+	
+func _on_boss_left():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	reset_mouse_position()
 
 	
 func _process(delta: float) -> void:

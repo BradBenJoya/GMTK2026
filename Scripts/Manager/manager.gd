@@ -57,6 +57,7 @@ func create_popups(amount):
 		await get_tree().create_timer(randf_range(popup_minimum_speed, popup_maximum_speed)).timeout
 
 func summon_boss():
+	Global.boss_summoned.emit()
 	Global.email_open = true
 	var boss_tween = create_tween().tween_property(Global.boss, "position:x", 0, 1.0)
 	Global.boss.get_node("StopWorkStuff").visible = true
@@ -67,6 +68,7 @@ func summon_boss():
 	Global.boss.get_node("StopWorkStuff").visible = false
 	var boss_tween_2 = create_tween().tween_property(Global.boss, "position:x", -2980, 1.0)
 	Global.email_open = false
+	Global.boss_left.emit()
 
 func _process(delta):
 	if Global.main: # failsafe
@@ -81,7 +83,7 @@ func _process(delta):
 				email.position += (Vector2(60, 930 - (i * 90)) - email.position) / 5 * (60 * delta) # smooth interpolation of emails (current += (target - current) / smoothness)
 		else:
 			emails.erase(email)
-		elif not email.open:
+		if not email.open:
 			email.position += (Vector2(60, 930 - (i * 90)) - email.position) / 5 * (60 * delta) # smooth interpolation of emails (current += (target - current) / smoothness)
 		else:
 			emails.erase(email) 

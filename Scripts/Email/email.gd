@@ -159,8 +159,9 @@ func delete_email(input : String): # delete email after doing little animation
 	Global.email_open = false # used to tell other emails to work again
 	open = false
 	#start JT
-	#Global.reset_mouse_position()
-	#Global.cursor_sprite.flip_v = false
+	Global.reset_mouse_position()
+	Global.cursor_sprite.flip_v = false
+	Global.set_mouse_invert(false)
 	#end JT
 	
 	var scale_box_tween = create_tween().tween_property(self.get_node("EmailBubble"), "size", Vector2(800, 50), 0.1) # make box fit screen
