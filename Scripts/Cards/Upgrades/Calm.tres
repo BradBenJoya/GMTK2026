@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeItem" format=3 uid="uid://bep5e1cderp2j"]
+
+[ext_resource type="Script" uid="uid://coryhq6i1gdc0" path="res://Scripts/upgrade_item.gd" id="1_4u3qy"]
+
+[resource]
+script = ExtResource("1_4u3qy")
+name = "Calm"
+desc = "Things seemed to have quieten a bit..."
+effects = Dictionary[int, float]({
+1: -0.05,
+4: -2.0
+})
+metadata/_custom_type_script = "uid://coryhq6i1gdc0"

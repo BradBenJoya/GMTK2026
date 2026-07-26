@@ -10,10 +10,28 @@ extends Node2D
 @export var upgrade_list: Array[UpgradeItem]
 
 @export_group("Stats")
-@export var upload_speed: float = 100
-@export var virus_chance: float = 100
-@export var spam_chance: float = 100
-@export var email_speed: float = 100
+@export var upload_speed: float = 1.0:
+	set(new_value):
+		upload_speed = new_value
+		for message in %Manager.emails:
+			message.upload_speed = new_value
+@export var upload_chance: float = 0.20:
+	set(new_value):
+		upload_chance = new_value
+		%Manager.upload_chance = new_value
+@export var spam_chance: float = 0.15:
+	set(new_value):
+		spam_chance = new_value
+		%Manager.spam_chance = new_value
+@export var virus_chance: float = 0.10:
+	set(new_value):
+		virus_chance = new_value
+		%Manager.virus_chance = new_value
+@export var email_speed: float = 5.0:
+	set(new_value):
+		email_speed = new_value
+		%Manager.email_interval = new_value
+		%Manager.email_timer.wait_time = new_value
 
 enum GameState {
 	MAIN_MENU,
@@ -23,6 +41,7 @@ enum GameState {
 
 enum UpgradeType {
 	UPLOAD_SPEED,
+	UPLOAD_CHANCE,
 	VIRUS_CHANCE,
 	SPAM_CHANCE,
 	EMAIL_SPEED
@@ -49,7 +68,7 @@ var total_emails : int = 0
 var upgrade_time = false
 var tween_time
 
-@export var day_duration : float = 300.0  # was 300, but shortening for testing
+@export var day_duration : float = 30.0  # was 300, but shortening for testing
 @export var boss_sprite : Sprite2D
 @export var girl_sprite : Sprite2D
 
@@ -58,10 +77,10 @@ var started : bool = false # avoid infinite music and game repeats (including ge
 func _ready():
 	Global.email_correctly_answered.connect(_on_correct_email)
 	Global.reset() # reset globals to be sure globals are properly set once the scene reloads
-	#$UpgradeTimer.start(day_duration / 8)
-	#
-	#for button in %UpgradeChoice.get_children():
-		#button.upgrade_list = upgrade_list
+	$UpgradeTimer.start(day_duration / 8)
+	
+	for button in %UpgradeChoice.get_children():
+		button.upgrade_list = upgrade_list
 	
 	# start Psuedo Pakman
 	# trigger initial setup once
@@ -175,6 +194,8 @@ func _on_accept_button_pressed() -> void:
 				match effect:
 					UpgradeType.UPLOAD_SPEED:
 						upload_speed += button.effects[effect]
+					UpgradeType.UPLOAD_CHANCE:
+						upload_chance += button.effects[effect]
 					UpgradeType.VIRUS_CHANCE:
 						virus_chance += button.effects[effect]
 					UpgradeType.SPAM_CHANCE:
@@ -192,12 +213,13 @@ func _on_accept_button_pressed() -> void:
 		
 		# Making sure all buttons are unpressed for next go.
 		button.button_pressed = false
-
+		
 #add something to disable accept button unless an upgrade is selected
 
 func _on_upgrade_timer_timeout() -> void:
+	upgrade_time = true
 	#print("timoout")
-	pass#upgrade_time = true
+	pass
 
 func _on_options_button_pressed() -> void:
 	$Options.show()
@@ -222,3 +244,20 @@ func _on_apply_button_pressed() -> void:
 	game_state = last_state
 
 #end ampbeetle
+
+
+func _on_button_pressed() -> void:
+	#upload_speed += 0.2
+	#$StatTest.text = ("Speed: " + str(upload_speed))
+	#email_speed -= 1.0
+	#$StatTest.text = ("Speed: " + str(email_speed))
+	spam_chance += 0.1
+	$StatTest.text = ("Spam: " + str(spam_chance))
+	
+	pass # Replace with function body.
+
+
+func _on_button2_pressed() -> void:
+	upload_chance += 0.1
+	$StatTest2.text = ("Upload: " + str(upload_chance))
+	pass # Replace with function body.

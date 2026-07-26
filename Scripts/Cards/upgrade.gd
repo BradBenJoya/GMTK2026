@@ -23,6 +23,7 @@ var upgrade: UpgradeItem
 
 enum UpgradeType {
 	UPLOAD_SPEED,
+	UPLOAD_CHANCE,
 	VIRUS_CHANCE,
 	SPAM_CHANCE,
 	EMAIL_SPEED
@@ -43,7 +44,7 @@ func random_card() -> void:
 	
 	upgrade = random_upgrade
 	display_name = random_upgrade.name
-	display_desc = random_upgrade.desc
+	display_desc = random_upgrade.desc + "\n"
 	effects = random_upgrade.effects
 	
 	if random_upgrade.image != null:
@@ -56,12 +57,27 @@ func random_card() -> void:
 	for effect in random_upgrade.effects:
 		match effect:
 			UpgradeType.UPLOAD_SPEED:
-				display_desc += "\nUpload speed "
+				display_desc += "\nUpload (s) "
 			UpgradeType.VIRUS_CHANCE:
-				display_desc += "\nVirus chance "
+				display_desc += "\nVirus "
 			UpgradeType.SPAM_CHANCE:
-				display_desc += "\nSpam chance "
+				display_desc += "\nSpam "
+			UpgradeType.UPLOAD_CHANCE:
+				display_desc += "\nUpload "
+			UpgradeType.EMAIL_SPEED:
+				display_desc += "\nEmail (s) "
 		# Adds a plus if a positive number.
 		if random_upgrade.effects[effect] > 0:
-			display_desc += " + "
-		display_desc += str(int(random_upgrade.effects[effect]))
+			display_desc += "+"
+		#display_desc += str(int(random_upgrade.effects[effect]*100)) 
+		match effect:
+			UpgradeType.UPLOAD_SPEED:
+				display_desc += str(random_upgrade.effects[effect])
+			UpgradeType.VIRUS_CHANCE:
+				display_desc += str(random_upgrade.effects[effect]*100) + "%"
+			UpgradeType.SPAM_CHANCE:
+				display_desc += str(random_upgrade.effects[effect]*100) + "%"
+			UpgradeType.UPLOAD_CHANCE:
+				display_desc += str(random_upgrade.effects[effect]*100) + "%"
+			UpgradeType.EMAIL_SPEED:
+				display_desc += str(random_upgrade.effects[effect])

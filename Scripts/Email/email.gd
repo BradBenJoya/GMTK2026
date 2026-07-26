@@ -13,6 +13,7 @@ class_name Email
 @export var upload_bar : ProgressBar
 @export var base_read_button : Button
 @export var email_list : Node
+@export var upload_speed : float = 1.0
 
 @export_group("Data")
 @export_enum("Normal", "Accept", "Decline", "Spam", "Upload", "Attachment") var type : String
@@ -40,6 +41,10 @@ var held_button : Button = null
 var held_down : bool = false
 #end JT
 
+# start ampbeetle
+signal activate_virus
+# end ampbeetle
+
 func _ready():
 	Global.total_emails += 1
 	# start JT
@@ -56,24 +61,24 @@ func _ready():
 	all.visible = false
 	expanded_email_text.visible = false
 	
-	var random : float = randf_range(1, 100)
-	if random < 70:
-		type = "Normal"
-		
-	else:
-		var special_random : int = randi_range(1, 4)
-		
-		if special_random == 1:
-			type = "Accept"
-		
-		elif special_random == 2:
-			type = "Decline"
-		
-		elif special_random == 3:
-			type = "Spam"
-		
-		elif special_random == 4:
-			type = "Upload"
+	#var random : float = randf_range(1, 100)
+	#if random < 70:
+		#type = "Normal"
+		#
+	#else:
+		#var special_random : int = randi_range(1, 4)
+		#
+		#if special_random == 1:
+			#type = "Accept"
+		#
+		#elif special_random == 2:
+			#type = "Decline"
+		#
+		#elif special_random == 3:
+			#type = "Spam"
+		#
+		#elif special_random == 4:
+			#type = "Upload"
 		
 	var text = email_list.create_email(type) # creates the email, and sets text to an array. first value is the person and topic, second is the expanded text
 	flavor_text.text = text[0]
@@ -288,9 +293,29 @@ func _on_delete_pressed():
 	elif not Global.email_open:
 		open_email(type)
 
-func _on_upload_pressed(): # i think i did this one wrong (?)
-	# moved functionality to process due to fake cursor 
+#func _on_upload_pressed(): # i think i did this one wrong (?)
+#<<<<<<< HEAD
+	#if open:
+		#while upload_button.button_pressed:
+			#await get_tree().physics_frame
+			#progress += 1 * upload_speed
+			#upload_bar.value = progress
+		#
+		#if progress >= 100:
+			#delete_email("Upload")
+		#else:
+			#if not upload_button.button_pressed:
+				#progress = 0
+				#upload_bar.value = progress
+#=======
+	## moved functionality to process due to fake cursor 
+#>>>>>>> master
 	
 	if not Global.email_open:
 		open_email(type)
 # end ByDesign
+
+# start ampbeetle
+func update_upload_speed(new_value: float) -> void:
+	upload_speed = new_value
+# end ampbeetle

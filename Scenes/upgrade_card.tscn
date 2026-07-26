@@ -10,13 +10,13 @@
 [ext_resource type="Resource" uid="uid://dbpeoebxmx4b3" path="res://Scripts/Cards/Upgrades/Firewall.tres" id="7_a8yql"]
 [ext_resource type="Texture2D" uid="uid://x2e3dnwolqe6" path="res://Sprites/spam.png" id="7_jke0c"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_8kgka"]
-font = ExtResource("6_jke0c")
-font_size = 64
+[sub_resource type="FontVariation" id="FontVariation_u5r0k"]
+base_font = ExtResource("6_jke0c")
+variation_embolden = 0.4
 
-[sub_resource type="LabelSettings" id="LabelSettings_jke0c"]
-font = ExtResource("6_jke0c")
-font_size = 32
+[sub_resource type="FontVariation" id="FontVariation_a8yql"]
+base_font = ExtResource("6_jke0c")
+variation_embolden = 0.3
 
 [node name="UpgradeButton" type="Button" unique_id=1073497964 node_paths=PackedStringArray("new_display")]
 process_mode = 3
@@ -37,9 +37,9 @@ offset_left = 14.0
 offset_top = 17.0
 offset_right = 357.0
 offset_bottom = 94.0
-theme_override_font_sizes/font_size = 50
+theme_override_fonts/font = SubResource("FontVariation_u5r0k")
+theme_override_font_sizes/font_size = 56
 text = "Upgrade"
-label_settings = SubResource("LabelSettings_8kgka")
 horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 3
@@ -65,14 +65,14 @@ process_mode = 3
 custom_minimum_size = Vector2(120, 150)
 layout_mode = 0
 offset_left = 18.000002
-offset_top = 400.0
+offset_top = 325.0
 offset_right = 315.0
-offset_bottom = 591.5025
+offset_bottom = 581.3501
 scale = Vector2(1.1565566, 1.1565566)
 size_flags_vertical = 6
+theme_override_fonts/font = SubResource("FontVariation_a8yql")
 theme_override_font_sizes/font_size = 32
 text = "TEST TEST TEST TEST TEST TEST TEST TEST TEST"
-label_settings = SubResource("LabelSettings_jke0c")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

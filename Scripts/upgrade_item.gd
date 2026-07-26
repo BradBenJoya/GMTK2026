@@ -8,6 +8,7 @@ class_name UpgradeItem
 
 enum UpgradeType {
 	UPLOAD_SPEED,
+	UPLOAD_CHANCE,
 	VIRUS_CHANCE,
 	SPAM_CHANCE,
 	EMAIL_SPEED
