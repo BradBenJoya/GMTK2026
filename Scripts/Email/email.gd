@@ -148,7 +148,7 @@ func delete_email(input : String): # delete email after doing little animation
 	var move_buttons_tween = create_tween().tween_property(self.get_node("Buttons"), "position", Vector2(0, 0), 0.2) # move buttons to original place
 	
 	await move_buttons_tween.finished
-		Global.audio_manager.play_virus_opened()
+	Global.audio_manager.play_virus_opened()
 	
 	
 	if type == "Normal":
@@ -189,14 +189,6 @@ func delete_email(input : String): # delete email after doing little animation
 	all.visible = false
 	Global.email_open = false # used to tell other emails to work again
 	open = false
-	
-	var scale_box_tween = create_tween().tween_property(self.get_node("EmailBubble"), "size", Vector2(800, 50), 0.1) # make box fit screen
-	var scale_text_tween = create_tween().tween_property(flavor_text, "size", Vector2(350, 24), 0.2) # make text fit screen
-	var change_text_tween = create_tween().tween_property(flavor_text, "custom_maximum_size", Vector2(350, 30), 0.2) # stop ellipses from appearing
-	var move_buttons_tween = create_tween().tween_property(self.get_node("Buttons"), "position", Vector2(0, 0), 0.2) # move buttons to original place
-	
-	await move_buttons_tween.finished
-	
 	deleted = true # let the manager know that it shouldnt account for this email anymore
 	z_index = -1 # get it out of the way to avoid overlap
 	var slide_out = create_tween().tween_property(self, "position", Vector2(-2000.0, position.y), 0.5)
