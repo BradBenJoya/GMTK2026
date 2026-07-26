@@ -36,6 +36,8 @@ var _music = 0.8
 
 var _mouse_sensitivity: Vector2 = Vector2(1.0, 1.0)
 
+var _scroll_speed = 1.0
+
 var _window_mode
 
 #end ampbeetle

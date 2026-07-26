@@ -4,17 +4,23 @@ extends Node2D
 @export_group("Email Speed")
 @export var minimum_speed : float = 0.1
 @export var maximum_speed : float = 2.0
+@export var scroll_speed := 40.0
 
 @export_group("Popup Speed")
 @export var popup_minimum_speed : float = 0.1
 @export var popup_maximum_speed : float = 1.0
 
+@export_group("Scenes")
 # start Psuedo Pakman
 @export var email_scene : PackedScene
 # end Psuedo Pakman
 @export var popup_scene : PackedScene
 
 var emails : Array = []
+
+var current_scroll := 0.0
+var min_scroll := 0.0
+var max_scroll := 0.0
 
 func weird_mouse():
 	Global.set_mouse_invert(true)
@@ -70,7 +76,22 @@ func summon_boss():
 	Global.email_open = false
 	Global.boss_left.emit()
 
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				current_scroll += scroll_speed * Global._scroll_speed
+			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				current_scroll -= scroll_speed * Global._scroll_speed
+	
+	current_scroll = clamp(current_scroll, min_scroll, max_scroll)
+
+
 func _process(delta):
+	max_scroll = (emails.size() - 12) * 90
+	if max_scroll < 0:
+		max_scroll = 0
+	
 	var has_virus = false
 	for child in get_children():
 		if child is Virus:
@@ -94,11 +115,11 @@ func _process(delta):
 			if email.deleted:
 				emails.erase(email)
 			elif not email.open:
-				email.position += (Vector2(60, 930 - (i * 90)) - email.position) / 5 * (60 * delta) # smooth interpolation of emails (current += (target - current) / smoothness)
+				email.position += (Vector2(60, 930 - (i * 90) + current_scroll) - email.position) / 5 * (60 * delta) # smooth interpolation of emails (current += (target - current) / smoothness)
 		else:
 			emails.erase(email)
 		if not email.open:
-			email.position += (Vector2(60, 930 - (i * 90)) - email.position) / 5 * (60 * delta) # smooth interpolation of emails (current += (target - current) / smoothness)
+			email.position += (Vector2(60, 930 - (i * 90) + current_scroll) - email.position) / 5 * (60 * delta) # smooth interpolation of emails (current += (target - current) / smoothness)
 		else:
 			emails.erase(email) 
 		

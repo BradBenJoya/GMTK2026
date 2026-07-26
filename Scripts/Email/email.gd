@@ -210,7 +210,7 @@ func delete_email(input : String): # delete email after doing little animation
 			Global.manager.create_popups(10)
 		if input == "Accept" || input == "Decline":
 			Global.manager.add_more_emails(5)
-			#Global.manager.weird_mouse() # doesnt work and may permalock you. USE F8 IF YOU GET STUCK
+			Global.manager.weird_mouse() # doesnt work and may permalock you. USE F8 IF YOU GET STUCK
 		if input == "Normal":
 			Global.manager.add_more_emails(1)
 			Global.manager.create_popups(3)
