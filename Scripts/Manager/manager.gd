@@ -28,20 +28,21 @@ func create_emails():
 		new_email.position = Vector2(60, -1000)#Vector2(60, 350 - (i * 60))
 		var random_chance = randf()
 		
-		new_email.type = "Upload"
-		#if random_chance <= spam_chance:
-			#new_email.type = "Spam"
+		#new_email.type = "Upload"
+		if random_chance <= spam_chance:
+			new_email.type = "Spam"
 		#elif random_chance <= spam_chance + virus_chance:
 			#new_email.type = "Virus"
-		#elif random_chance <= spam_chance + virus_chance + upload_chance:
-			#new_email.type = "Upload"
-		#else:
-			#new_email.type = "Normal"
+		elif random_chance <= spam_chance + upload_chance:  # readd + virus_chance later if wanted
+			new_email.type = "Upload"
+		else:
+			new_email.type = "Normal"
 		
 		add_child(new_email)
 		emails.append(new_email)
 		
 		await get_tree().create_timer(randf_range(minimum_speed, maximum_speed)).timeout
+		print(new_email.type)
 
 func _ready() -> void:
 	add_child(email_timer)
@@ -81,12 +82,11 @@ func add_more_emails(amount : int):
 		add_child(new_email)
 		emails.append(new_email)
 		
-		await get_tree().create_timer(randf_range(minimum_speed, maximum_speed)).timeout
+		await get_tree().create_timer(0.2).timeout
 
 # end ByDesign
 
 # start ampbeetle
 func _on_email_timer_timeout() -> void:
-	print("ADDING MORE EMAILS!!!!!!")
 	add_more_emails(1)
 # end ampbeetle

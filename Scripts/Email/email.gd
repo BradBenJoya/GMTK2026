@@ -63,9 +63,6 @@ func _ready():
 		#
 		#elif special_random == 4:
 			#type = "Upload"
-		#
-		##elif special_random == 5:
-			##type = "Virus"
 		
 	var text = email_list.create_email(type) # creates the email, and sets text to an array. first value is the person and topic, second is the expanded text
 	flavor_text.text = text[0]

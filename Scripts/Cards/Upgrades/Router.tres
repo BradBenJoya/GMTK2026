@@ -9,6 +9,6 @@ name = "Router"
 desc = "Upgrade internet for higher speed!"
 image = ExtResource("1_2x81x")
 effects = Dictionary[int, float]({
-0: 10.0
+0: 1.0
 })
 metadata/_custom_type_script = "uid://coryhq6i1gdc0"

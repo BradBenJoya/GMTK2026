@@ -14,8 +14,18 @@ extends Node2D
 		upload_speed = new_value
 		for message in %Manager.emails:
 			message.upload_speed = new_value
-@export var virus_chance: float = 1.0
-@export var spam_chance: float = 1.0
+@export var upload_chance: float = 0.20:
+	set(new_value):
+		upload_chance = new_value
+		%Manager.upload_chance = new_value
+@export var spam_chance: float = 0.15:
+	set(new_value):
+		spam_chance = new_value
+		%Manager.spam_chance = new_value
+@export var virus_chance: float = 0.10:
+	set(new_value):
+		virus_chance = new_value
+		%Manager.virus_chance = new_value
 @export var email_speed: float = 5.0:
 	set(new_value):
 		email_speed = new_value
@@ -30,6 +40,7 @@ enum GameState {
 
 enum UpgradeType {
 	UPLOAD_SPEED,
+	UPLOAD_CHANCE,
 	VIRUS_CHANCE,
 	SPAM_CHANCE,
 	EMAIL_SPEED
@@ -146,6 +157,8 @@ func _on_accept_button_pressed() -> void:
 				match effect:
 					UpgradeType.UPLOAD_SPEED:
 						upload_speed += button.effects[effect]
+					UpgradeType.UPLOAD_CHANCE:
+						upload_chance += button.effects[effect]
 					UpgradeType.VIRUS_CHANCE:
 						virus_chance += button.effects[effect]
 					UpgradeType.SPAM_CHANCE:
@@ -200,6 +213,15 @@ func _on_apply_button_pressed() -> void:
 func _on_button_pressed() -> void:
 	#upload_speed += 0.2
 	#$StatTest.text = ("Speed: " + str(upload_speed))
-	email_speed -= 1.0
-	$StatTest.text = ("Speed: " + str(email_speed))
+	#email_speed -= 1.0
+	#$StatTest.text = ("Speed: " + str(email_speed))
+	spam_chance += 0.1
+	$StatTest.text = ("Spam: " + str(spam_chance))
+	
+	pass # Replace with function body.
+
+
+func _on_button2_pressed() -> void:
+	upload_chance += 0.1
+	$StatTest2.text = ("Upload: " + str(upload_chance))
 	pass # Replace with function body.

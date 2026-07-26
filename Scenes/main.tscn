@@ -273,12 +273,22 @@ stream = ExtResource("15_k12tt")
 stream = ExtResource("16_h1bgf")
 
 [node name="StatTest" type="Button" parent="." unique_id=1993961730]
+visible = false
 offset_left = -196.0
 offset_top = -861.0
 offset_right = 125.0
 offset_bottom = -750.0
-theme_override_font_sizes/font_size = 64
-text = "Speed: 1.0"
+theme_override_font_sizes/font_size = 48
+text = "Spam: "
+
+[node name="StatTest2" type="Button" parent="." unique_id=706251885]
+visible = false
+offset_left = 165.0
+offset_top = -861.0
+offset_right = 486.0
+offset_bottom = -750.0
+theme_override_font_sizes/font_size = 48
+text = "Upload: "
 
 [connection signal="pressed" from="Monitor/SubViewport/Manager/BottomBar/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="UpgradeBox/UpgradeChoice/UpgradeCard" to="." method="_on_upgrade_selected" flags=18]
@@ -290,5 +300,6 @@ text = "Speed: 1.0"
 [connection signal="pressed" from="Options/MarginContainer/VBoxContainer/BottomOptions/ApplyButton" to="." method="_on_apply_button_pressed"]
 [connection signal="pressed" from="Options/MarginContainer/VBoxContainer/BottomOptions/MainButton" to="." method="_on_main_button_pressed"]
 [connection signal="pressed" from="StatTest" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="StatTest2" to="." method="_on_button2_pressed"]
 
 [editable path="Options"]
