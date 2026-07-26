@@ -8,6 +8,9 @@ bg_color = Color(0.094867624, 0.22220978, 0.55057436, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qyyw6"]
 bg_color = Color(0.24721333, 0.29866195, 0.31812525, 1)
 
+[sub_resource type="Theme" id="Theme_fd3ed"]
+default_font_size = 50
+
 [node name="Options" type="PanelContainer" unique_id=550690077]
 process_mode = 3
 anchors_preset = 15
@@ -206,6 +209,7 @@ text = "Display mode"
 
 [node name="DisplayOptions" type="OptionButton" parent="MarginContainer/VBoxContainer/WindowGrid" unique_id=814323528]
 layout_mode = 2
+theme = SubResource("Theme_fd3ed")
 item_count = 2
 popup/item_0/text = "Window"
 popup/item_0/id = 0

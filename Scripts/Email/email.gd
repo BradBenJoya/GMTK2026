@@ -40,6 +40,7 @@ var held_button : Button = null
 #end JT
 
 func _ready():
+	Global.total_emails += 1
 	# start JT
 	Global.fake_mouse_clicked.connect(_on_fake_mouse_clicked)
 	Global.fake_mouse_pressed.connect(_on_fake_mouse_pressed)
@@ -158,9 +159,8 @@ func delete_email(input : String): # delete email after doing little animation
 	Global.email_open = false # used to tell other emails to work again
 	open = false
 	#start JT
-	Global.set_mouse_invert(false)
-	Global.reset_mouse_position()
-	Global.cursor_sprite.flip_v = false
+	#Global.reset_mouse_position()
+	#Global.cursor_sprite.flip_v = false
 	#end JT
 	
 	var scale_box_tween = create_tween().tween_property(self.get_node("EmailBubble"), "size", Vector2(800, 50), 0.1) # make box fit screen
@@ -174,13 +174,17 @@ func delete_email(input : String): # delete email after doing little animation
 	
 	if type == "Normal":
 		if input == "Upload":
-			pass # add boss
+			Global.manager.summon_boss()
 		if input == "Accept" || input == "Decline":
 			Global.manager.add_more_emails(1)
 	
 	if type == "Accept":
-		if input == "Accept":
-			pass # give upgrade
+		if input == "Normal" || input == "Spam":
+			Global.manager.summon_boss()
+		if input == "Decline":
+			Global.manager.add_more_emails(3)
+		if input == "Upload":
+			Global.manager.add_more_emails(1)
 	
 	if type == "Decline":
 		if input == "Upload":
@@ -188,21 +192,23 @@ func delete_email(input : String): # delete email after doing little animation
 		if input == "Accept":
 			Global.manager.add_more_emails(3)
 		if input == "Normal" || input == "Spam":
-			pass # add boss
+			Global.manager.summon_boss()
 	
 	if type == "Spam":
 		if input == "Upload":
-			pass # add popups
+			Global.manager.create_popups(10)
 		if input == "Accept" || input == "Decline":
 			Global.manager.add_more_emails(5)
+			#Global.manager.weird_mouse() # doesnt work and may permalock you. USE F8 IF YOU GET STUCK
 		if input == "Normal":
 			Global.manager.add_more_emails(1)
+			Global.manager.create_popups(3)
 	
 	if type == "Upload":
 		if input == "Spam":
-			pass # add boss
+			Global.manager.summon_boss()
 		if input == "Accept" || input == "Decline":
-			pass # add boss
+			Global.manager.summon_boss()
 		if input == "Normal":
 			Global.manager.add_more_emails(3)
 	

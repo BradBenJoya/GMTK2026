@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://d36dqgmdusqot"]
+
+[ext_resource type="Texture2D" uid="uid://cqaxhbvxkba7f" path="res://Sprites/temp_message_box.png" id="1_2nprw"]
+[ext_resource type="Script" uid="uid://d23hw7fmmvnc1" path="res://Scripts/popup.gd" id="1_kksav"]
+[ext_resource type="FontFile" uid="uid://doe2y2s8d1bw7" path="res://Fonts/Monofrik Demo.ttf" id="2_qml6d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7veuk"]
+font = ExtResource("2_qml6d")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vjsy5"]
+font = ExtResource("2_qml6d")
+font_color = Color(0, 0, 0, 1)
+
+[node name="Popup" type="Control" unique_id=1509142094]
+z_index = 6
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+script = ExtResource("1_kksav")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=577163758]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 250.0
+texture = ExtResource("1_2nprw")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Button" type="Button" parent="." unique_id=543459431]
+layout_mode = 0
+offset_left = 266.0
+offset_top = 6.0
+offset_right = 293.0
+offset_bottom = 37.0
+text = " X "
+
+[node name="POPUP" type="Label" parent="." unique_id=133824313]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 51.0
+text = "POPUP"
+label_settings = SubResource("LabelSettings_7veuk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text" type="Label" parent="." unique_id=175734724]
+custom_minimum_size = Vector2(250, 200)
+custom_maximum_size = Vector2(250, 200)
+layout_mode = 0
+offset_left = 27.0
+offset_top = 43.0
+offset_right = 277.0
+offset_bottom = 94.0
+text = "hehehe... hacking is fun :D
+
+prepare to lose all your data! It's being directly transfered to my com...
+
+wait. your just an email worker. ugh."
+label_settings = SubResource("LabelSettings_vjsy5")
+autowrap_mode = 3
+
+[node name="Timer" type="Timer" parent="." unique_id=911300264]
+wait_time = 15.0
+autostart = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
