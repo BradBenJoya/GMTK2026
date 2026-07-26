@@ -14,7 +14,8 @@ font_color = Color(0, 0, 0, 1)
 default_font = ExtResource("3_6xuhd")
 default_font_size = 26
 
-[node name="Email" type="Control" unique_id=1747348247 node_paths=PackedStringArray("flavor_text", "expanded_email_text", "upload_button", "upload_bar", "base_read_button", "email_list", "decision_stuff", "email_stuff", "upload_stuff", "all", "correct_sfx", "incorrect_sfx")]
+[node name="Email" type="Control" unique_id=1747348247 node_paths=PackedStringArray("flavor_text", "expanded_email_text", "upload_button", "upload_bar", "base_read_button", "email_list", "decision_stuff", "email_stuff", "upload_stuff", "all")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 scale = Vector2(1.5, 1.5)
@@ -30,26 +31,50 @@ decision_stuff = NodePath("Buttons/Decisions")
 email_stuff = NodePath("Buttons/EmailStuff")
 upload_stuff = NodePath("Buttons/Upload")
 all = NodePath("Buttons")
-correct_sfx = NodePath("")
-incorrect_sfx = NodePath("")
 
 [node name="EmailsList" type="Node" parent="." unique_id=1816088348]
 script = ExtResource("2_6xuhd")
-email_starters = Array[String](["Hello!", "Job Stuff", "Bug Fix Report", "Your UI Sucks", "YOU JUST WON", "Ur haxed", "I need some more help"])
+email_starters = Array[String](["Hello!", "Job Stuff", "Lost my copy of your file", "Terrible Experience", "YOU JUST WON", "Pls Confurm Acct", "I need some more help", "Consulting opportunity ", "Donation request ", "Influencer partnership", "Office PSA", "How was your weekend? ", "Can you believe it ? ", "Quick question ", "Weekly Executive summary ", "Performance evaluations ", "Customer relations ", "Linkedin ", "IT support ", "FIScon 2026 "])
 "Hello! : Type" = "Normal"
-"Hello! : Extended" = "Hope you're having a great day!"
+"Hello! : Extended" = "This is Declan the intern! Hope you're having a great day! Its my first day! I'm so excited! "
 "Job Stuff : Type" = "Accept"
-"Job Stuff : Extended" = "Hey, can you take care of the report later? I'm pretty busy with everything I've got and you just have to answer emails. I'll pay you for it too. Deal?"
-"Bug Fix Report : Type" = "Upload"
-"Bug Fix Report : Extended" = "I tested the code and tried to fix the bugs but only made more of a mess. Could you send me the backup copy?"
-"Your UI Sucks : Type" = "Normal"
-"Your UI Sucks : Extended" = "Its bad and I hate it. Fix it now or else you lost a customer."
+"Job Stuff : Extended" = "Yo its Jerry, can you do me a huge favor and get that report for our priority client done today? I don't have time and I heard they'll give you a huge rating boost if you get it done. I'll owe you big time. Sound good?"
+"Lost my copy of your file : Type" = "Upload"
+"Lost my copy of your file : Extended" = "Hey, You emailed me a report a couple weeks ago but I seem to have misplaced it or accidentally deleted it - Could you send me it again? Thanks a bunch! Justin Jenkins, Head of Technology"
+"Terrible Experience : Type" = "Normal"
+"Terrible Experience : Extended" = "I've been WAITING on HOLD for 30 MINUTES! You call this acceptable customer service? I'm leaving a 1 star review."
 "YOU JUST WON : Type" = "Spam"
 "YOU JUST WON : Extended" = "WE HELD A DRAWING AND PULLED YOU'RE NAME! COME COLLECT YOUR PRIZE AT THE RADIO PLACE!"
-"Ur haxed : Type" = "Spam"
-"Ur haxed : Extended" = "Confrm ur acount on da not sketchy webcite \"confrm-acount-not-scame.fake\""
+"Pls Confurm Acct : Type" = "Spam"
+"Pls Confurm Acct : Extended" = "Confrm ur acount on da not sketchy webcite \"confrm-acount-not-scame.fake\""
 "I need some more help : Type" = "Decline"
 "I need some more help : Extended" = "I know you want to go home tonight, but I really need help with the project I'm working on. I know I had the assignment for like a month now, and I haven't gotten anything done yet. But I really need help I swear! I mean it PLEASE"
+"Consulting opportunity  : Type" = "Decline"
+"Consulting opportunity  : Extended" = "Greetings! My name is John and I'm with WYTAM Consulting. Id like to offer you a special one percent discount on our Deluxe consulting package if you commit to to a five year contract. is that something youre interested in? \\n Best, John (Waste Your Time And Money Consulting) "
+"Donation request  : Type" = "Accept"
+"Donation request  : Extended" = "Would you like to make a donation to stop the execution of puppies? were currently donation matching 100x the value of your donation. "
+"Influencer partnership : Type" = "Decline"
+"Influencer partnership : Extended" = "Heyyyyy so my name is totally like Trisha and Im like a super popular influencer. I would totally love if your company like gave me a bunch of free stuff!I also have a posting fee of $3000 Want me to actually post a review and $10,000 if you want it to be positive. So totes get back to me asappp"
+"Office PSA : Type" = "Normal"
+"Office PSA : Extended" = "Just a friendly reminder that the 4 ply toilet paper is only for VP and above level employees. All others should use the one ply we provide. Thank you. \\n -Management "
+"How was your weekend?  : Type" = "Upload"
+"How was your weekend?  : Extended" = "Hey I heard from Jerry you had an unbelievable weekend at the lake. He said you hit it off with someone and have a date? Anyways, send me some pics of your adventures this weekend."
+"Can you believe it ?  : Type" = "Normal"
+"Can you believe it ?  : Extended" = "Did you get the email about the new toilet paper policy ? Its so ridiculous!! Actually, Im so mad I dont even want to know so dont even respond to this email."
+"Quick question  : Type" = "Accept"
+"Quick question  : Extended" = "Is revenue up or down from last week ? I already deleted the weekly executive summary email and I forgot what it said. Doh!"
+"Weekly Executive summary  : Type" = "Normal"
+"Weekly Executive summary  : Extended" = "This is the weekly executive summary where we report key Kpis from the business. Active Users: +10%. Email Response Time: -20%. Revenue: +7%. Toilet Paper Costs: -45%. Thank you, we will update you again next week."
+"Performance evaluations  : Type" = "Normal"
+"Performance evaluations  : Extended" = "Performance evaluations are being conducted next week. You will be judged on your email responsiveness, your phone call duration, and your customer satisfaction rating (CSR). Any employee who scores in the bottom 25th percentile will be subject to a Performance Improvement Program immediately. We look forward to conducting the evaluations."
+"Customer relations  : Type" = "Normal"
+"Customer relations  : Extended" = "Hello! this is the customer relations team here to report your current customer relations score. Your 36 customers have rated you an average of 3.8/5. This currently puts you in the 26th percentile for overall customer satisfaction. have a nice day."
+"Linkedin  : Type" = "Normal"
+"Linkedin  : Extended" = "Hear what the Linkedin community's thoughts are on Jeff Job's latest post. You wont want to miss out on insightful comments such as: \"This guy is an idiot\", \"Who even names their kid Jeff Job?\", and so much more! "
+"IT support  : Type" = "Normal"
+"IT support  : Extended" = "Hello. We wanted to send a reminder out to be wary of suspicious emails that could have viruses attached. We've seen a recent influx in attacks such as these and want to advise caution. Thank you and remember to update your drivers."
+"FIScon 2026  : Type" = "Normal"
+"FIScon 2026  : Extended" = "Tickets for FIScon 2026 go on sale next week! Its the place to be for everyone in the finance, insurance, and sales industry. All of the top companies are going to be there and there will be talks how to improve customer metrics, phone call duration, and overall productivity. "
 
 [node name="EmailBubble" type="NinePatchRect" parent="." unique_id=1209836565]
 layout_mode = 0

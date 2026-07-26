@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://8tw42qpxpnvx"]
+
+[ext_resource type="Texture2D" uid="uid://cul2mqranc801" path="res://Sprites/TITLE_SCREEN_04.jpg" id="1_bhpww"]
+[ext_resource type="Script" uid="uid://b7eftd1mibsw" path="res://Scripts/end_screen.gd" id="1_gdxnu"]
+[ext_resource type="Texture2D" uid="uid://codohwthpowcf" path="res://Sprites/happy_girl.png" id="2_bhpww"]
+[ext_resource type="Texture2D" uid="uid://bhvu5o0yo4vih" path="res://Sprites/sad_girl.png" id="3_gdxnu"]
+[ext_resource type="FontFile" uid="uid://doe2y2s8d1bw7" path="res://Fonts/Monofrik Demo.ttf" id="5_8yanq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8yanq"]
+font = ExtResource("5_8yanq")
+font_size = 200
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gdxnu"]
+font = ExtResource("5_8yanq")
+font_size = 128
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_8yanq"]
+default_font = ExtResource("5_8yanq")
+default_font_size = 128
+
+[node name="EndScreen" type="Node2D" unique_id=214616030 node_paths=PackedStringArray("happy", "sad", "results_text")]
+process_mode = 3
+z_index = 30
+script = ExtResource("1_gdxnu")
+happy = NodePath("HappyGirl")
+sad = NodePath("SadGirl")
+results_text = NodePath("EndGameResults")
+
+[node name="EndScreenSprite" type="Sprite2D" parent="." unique_id=177066359]
+process_mode = 3
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_bhpww")
+
+[node name="HappyGirl" type="Sprite2D" parent="." unique_id=163291432]
+process_mode = 3
+visible = false
+position = Vector2(985.19995, 464.99997)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_bhpww")
+
+[node name="SadGirl" type="Sprite2D" parent="." unique_id=755922666]
+process_mode = 3
+position = Vector2(985.19995, 464.99997)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_gdxnu")
+
+[node name="EndGameTitle" type="Label" parent="." unique_id=1618271369]
+process_mode = 3
+offset_left = -1796.0
+offset_top = -999.0
+offset_right = -186.0
+offset_bottom = -651.0
+text = "End Game Results:"
+label_settings = SubResource("LabelSettings_8yanq")
+metadata/_edit_use_anchors_ = true
+
+[node name="EndGameResults" type="Label" parent="." unique_id=1634626262]
+process_mode = 3
+offset_left = -1788.0
+offset_top = -657.0
+offset_right = -178.0
+offset_bottom = -309.0
+text = "- Emails Answered: ###
+- Emails Recieved: ###
+- Viruses Recieved: ###
+- Boss Reminders: ###
+
+Good / Bad Ending"
+label_settings = SubResource("LabelSettings_gdxnu")
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="." unique_id=632807658]
+process_mode = 3
+offset_left = -1769.0
+offset_top = 131.0
+offset_right = -676.0
+offset_bottom = 395.0
+theme = SubResource("Theme_8yanq")
+text = "RESTART GAME"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

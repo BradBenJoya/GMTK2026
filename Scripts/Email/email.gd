@@ -24,10 +24,6 @@ class_name Email
 @export var upload_stuff : Control
 @export var all : Control
 
-@export_group("Sounds")
-@export var correct_sfx : AudioStreamPlayer
-@export var incorrect_sfx : AudioStreamPlayer
-
 var open := false # tells the manager that it shouldnt be accounted for
 
 var deleted : bool = false
@@ -35,12 +31,32 @@ var deleted : bool = false
 var progress := 0.0
 
 var base_scale := Vector2.ONE # for easy scale animation tweaks
+# start JT
+var clickable_buttons: Array[Button] = [] 
+var hovered_button: Button = null
+var held_button : Button = null
+@export var upload_fill_rate : float = 100.0 / 2.0   # % per second while held (fills in 2s, tune as needed)
+@export var upload_drain_rate : float = 100.0 / 1.0  # % per second while released (drains in 1s, tune as needed)
+
+var held_down : bool = false
+#end JT
 
 # start ampbeetle
 signal activate_virus
 # end ampbeetle
 
 func _ready():
+	Global.total_emails += 1
+	# start JT
+	Global.fake_mouse_clicked.connect(_on_fake_mouse_clicked)
+	Global.fake_mouse_pressed.connect(_on_fake_mouse_pressed)
+	Global.fake_mouse_released.connect(_on_fake_mouse_released)
+	for node in find_children("*", "Button", true, false):
+		clickable_buttons.append(node)
+		node.mouse_filter = Control.MOUSE_FILTER_IGNORE # We want all of the buttons to react only to the fake cursor 
+	#end JT
+	Global.audio_manager.play_email_sfx("recieved")
+	
 	base_scale = scale
 	all.visible = false
 	expanded_email_text.visible = false
@@ -67,31 +83,101 @@ func _ready():
 	var text = email_list.create_email(type) # creates the email, and sets text to an array. first value is the person and topic, second is the expanded text
 	flavor_text.text = text[0]
 	expanded_email_text.text = text[1]
+	
+
 
 func _process(delta):
-	if Global.email_open and not open: # fixes the bug where you couldn't finish the email
+	fake_cursor_hover_behavior()
+	if open:
+		if held_button == upload_button and hovered_button == upload_button:
+			if not held_down:
+				held_down = true
+				Global.audio_manager.play_email_sfx("uploading")
+			
+			progress = min(progress + upload_fill_rate * delta, 100.0)
+		else:
+			if held_down:
+				held_down = false
+				Global.audio_manager.stop_uploading()
+			
+			progress = max(progress - upload_drain_rate * delta, 0.0)
+			
+		
+	if held_down:
+		upload_bar.value = progress
+		if progress >= 100.0 and not deleted:
+			deleted = true
+			delete_email("Upload")
+	if Global.email_open and not open || get_tree().paused: # fixes the bug where you couldn't finish the email
 		base_read_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	else:
 		base_read_button.mouse_filter = Control.MOUSE_FILTER_STOP
-	
-	if not open:
-		if abs(get_global_mouse_position().y - global_position.y) <= 25 and abs(get_global_mouse_position().x - global_position.x) < 600: # really long way to ask if the mouse is hovering over the email :P
+
+#start JT
+func _on_fake_mouse_clicked() -> void:
+	if hovered_button != null and not hovered_button.disabled:
+		hovered_button.emit_signal("pressed")
+		
+func _on_fake_mouse_pressed():
+	if hovered_button != null and not hovered_button.disabled:
+		held_button = hovered_button
+
+func _on_fake_mouse_released():
+	held_button = null
+			
+func _set_hover(button: Button, is_hovered: bool) -> void:
+	if button == null:
+		return
+	if is_hovered:
+		button.add_theme_stylebox_override("normal", button.get_theme_stylebox("hover"))
+		if not open:
 			scale += (base_scale * 1.05 - scale) / 5 # little popup animation when hovering
-		else:
+	else:
+		button.remove_theme_stylebox_override("normal")
+		if not open:
 			scale += (base_scale - scale) / 5
+			
+func fake_cursor_hover_behavior() -> void:
+	var fake_pos = Global.cursor_pos_in_subviewport(Global.monitor_container)
+	var new_hovered: Button = null
+	# iterate in reverse so topmost (last drawn/highest z) wins on overlap
+	var button_arr = clickable_buttons.duplicate()
+	button_arr.reverse()
+	for button in button_arr:
+		if button != null:
+			if not button.is_visible_in_tree() or not button.is_inside_tree() or (Global.email_open and button == base_read_button):
+				continue
+			elif button.get_global_rect().abs().has_point(fake_pos):
+				new_hovered = button
+				break
+
+	if new_hovered != hovered_button:
+		_set_hover(hovered_button, false)
+		_set_hover(new_hovered, true)
+		hovered_button = new_hovered
+#end JT
 
 func delete_email(input : String): # delete email after doing little animation
-	if type == input:
-		Global.audio_manager.correct_sfx.pitch_scale = randf_range(0.99, 1.01)
-		Global.audio_manager.correct_sfx.play()
-	else:
-		Global.audio_manager.incorrect_sfx.pitch_scale = randf_range(0.99, 1.01)
-		Global.audio_manager.incorrect_sfx.play()
+	if type == "Normal":
+		Global.audio_manager.play_email_sfx("sent")
+	if type == "Accept":
+		Global.audio_manager.play_email_sfx("correct")
+	if type == "Decline":
+		Global.audio_manager.play_email_sfx("incorrect")
+	if type == "Spam":
+		Global.audio_manager.play_email_sfx("deleted")
+	if type == "Upload":
+		Global.audio_manager.play_email_sfx("sent")
 	
 	expanded_email_text.visible = false
 	all.visible = false
 	Global.email_open = false # used to tell other emails to work again
 	open = false
+	#start JT
+	Global.reset_mouse_position()
+	Global.cursor_sprite.flip_v = false
+	Global.set_mouse_invert(false)
+	#end JT
 	
 	var scale_box_tween = create_tween().tween_property(self.get_node("EmailBubble"), "size", Vector2(800, 50), 0.1) # make box fit screen
 	var scale_text_tween = create_tween().tween_property(flavor_text, "size", Vector2(350, 24), 0.2) # make text fit screen
@@ -99,47 +185,57 @@ func delete_email(input : String): # delete email after doing little animation
 	var move_buttons_tween = create_tween().tween_property(self.get_node("Buttons"), "position", Vector2(0, 0), 0.2) # move buttons to original place
 	
 	await move_buttons_tween.finished
+	Global.audio_manager.play_virus_opened()
 	
-	deleted = true # let the manager know that it shouldnt account for this email anymore
-	z_index = -1 # get it out of the way to avoid overlap
-	var slide_out = create_tween().tween_property(self, "position", Vector2(-2000.0, position.y), 0.5)
-	await slide_out.finished
 	
 	if type == "Normal":
 		if input == "Upload":
-			pass # add boss
+			Global.manager.summon_boss()
 		if input == "Accept" || input == "Decline":
 			Global.manager.add_more_emails(1)
 	
 	if type == "Accept":
-		if input == "Accept":
-			pass # give upgrade
+		if input == "Normal" || input == "Spam":
+			Global.manager.summon_boss()
+		if input == "Decline":
+			Global.manager.add_more_emails(3)
+		if input == "Upload":
+			Global.manager.add_more_emails(1)
 	
 	if type == "Decline":
 		if input == "Upload":
 			Global.manager.add_more_emails(1)
 		if input == "Accept":
 			Global.manager.add_more_emails(3)
-		
 		if input == "Normal" || input == "Spam":
-			pass # add boss
+			Global.manager.summon_boss()
 	
 	if type == "Spam":
 		if input == "Upload":
-			pass # add popups
+			Global.manager.create_popups(10)
 		if input == "Accept" || input == "Decline":
 			Global.manager.add_more_emails(5)
-		
+			#Global.manager.weird_mouse() # doesnt work and may permalock you. USE F8 IF YOU GET STUCK
 		if input == "Normal":
 			Global.manager.add_more_emails(1)
+			Global.manager.create_popups(3)
 	
 	if type == "Upload":
 		if input == "Spam":
-			pass # add boss
+			Global.manager.summon_boss()
 		if input == "Accept" || input == "Decline":
-			pass # add boss
+			Global.manager.summon_boss()
 		if input == "Normal":
 			Global.manager.add_more_emails(3)
+	
+	expanded_email_text.visible = false
+	all.visible = false
+	Global.email_open = false # used to tell other emails to work again
+	open = false
+	deleted = true # let the manager know that it shouldnt account for this email anymore
+	z_index = -1 # get it out of the way to avoid overlap
+	var slide_out = create_tween().tween_property(self, "position", Vector2(-2000.0, position.y), 0.5)
+	await slide_out.finished
 	
 	queue_free()
 
@@ -159,8 +255,12 @@ func open_email(type):
 	# start Psuedo Pakman
 	expanded_email_text.visible = true
 	# end Psuedo Pakman
-
-
+	# startJT
+	#if(type == "Spam"):
+		#Global.set_mouse_invert(true)
+		#Global.cursor_sprite.flip_v = true
+	#end JT
+	
 # special interaction stuff
 func _on_read_pressed():
 	if open:
@@ -186,21 +286,25 @@ func _on_delete_pressed():
 	elif not Global.email_open:
 		open_email(type)
 
-func _on_upload_pressed(): # i think i did this one wrong (?)
-	if open:
-		while upload_button.button_pressed:
-			await get_tree().physics_frame
-			progress += 1 * upload_speed
-			upload_bar.value = progress
-		
-		if progress >= 100:
-			delete_email("Upload")
-		else:
-			if not upload_button.button_pressed:
-				progress = 0
-				upload_bar.value = progress
+#func _on_upload_pressed(): # i think i did this one wrong (?)
+#<<<<<<< HEAD
+	#if open:
+		#while upload_button.button_pressed:
+			#await get_tree().physics_frame
+			#progress += 1 * upload_speed
+			#upload_bar.value = progress
+		#
+		#if progress >= 100:
+			#delete_email("Upload")
+		#else:
+			#if not upload_button.button_pressed:
+				#progress = 0
+				#upload_bar.value = progress
+#=======
+	## moved functionality to process due to fake cursor 
+#>>>>>>> master
 	
-	elif not Global.email_open:
+	if not Global.email_open:
 		open_email(type)
 # end ByDesign
 

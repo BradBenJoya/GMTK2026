@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" uid="uid://cqonvry43p16h" path="res://Scripts/Manager/manager.gd" id="1_453op"]
 [ext_resource type="PackedScene" uid="uid://coeyr1oy5wo30" path="res://Scenes/email.tscn" id="2_wtnv7"]
+[ext_resource type="PackedScene" uid="uid://d36dqgmdusqot" path="res://Scenes/popup.tscn" id="3_plmk5"]
 
 [node name="Manager" type="Node2D" unique_id=1747145403]
+process_mode = 1
 script = ExtResource("1_453op")
 minimum_speed = 0.5
 maximum_speed = 4.0
 email_scene = ExtResource("2_wtnv7")
+popup_scene = ExtResource("3_plmk5")

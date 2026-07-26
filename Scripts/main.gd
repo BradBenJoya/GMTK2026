@@ -4,7 +4,8 @@ extends Node2D
 # start Psuedo Pakman
 @export_group("Scenes")
 @export var main_menu: PackedScene
-@export var monitor: PackedScene
+@export var end_screen : PackedScene
+@export var dark_screen : ColorRect
 
 @export var upgrade_list: Array[UpgradeItem]
 
@@ -46,6 +47,9 @@ enum UpgradeType {
 	EMAIL_SPEED = 5
 }
 
+#bydesign
+var last_state
+
 var game_state: GameState = GameState.MAIN_MENU:
 	set(value):
 		if game_state == value:
@@ -65,13 +69,18 @@ var upgrade_time = false
 var tween_time
 
 @export var day_duration : float = 300.0  # was 300, but shortening for testing
+@export var boss_sprite : Sprite2D
+@export var girl_sprite : Sprite2D
+
+var started : bool = false # avoid infinite music and game repeats (including getting double emails)
 
 func _ready():
-	$UpgradeTimer.start(day_duration / 8)
-	print($UpgradeTimer.wait_time)
-	
-	for button in %UpgradeChoice.get_children():
-		button.upgrade_list = upgrade_list
+	Global.email_correctly_answered.connect(_on_correct_email)
+	Global.reset() # reset globals to be sure globals are properly set once the scene reloads
+	#$UpgradeTimer.start(day_duration / 8)
+	#
+	#for button in %UpgradeChoice.get_children():
+		#button.upgrade_list = upgrade_list
 	
 	# start Psuedo Pakman
 	# trigger initial setup once
@@ -80,7 +89,15 @@ func _ready():
 	
 	tween_time = create_tween().tween_property(self, "clock", 8.0, day_duration)
 	await tween_time.finished
-	print("end game")
+	
+	end_game()
+
+func _on_correct_email():
+	if (Global.correct_emails % 5 == 0):
+		choose_upgrade()
+		game_state = GameState.PAUSE_MENU
+		%UpgradeBox.show()
+	
 
 func _process(delta):
 	counter.text = "Inbox " + str(total_emails)
@@ -93,15 +110,17 @@ func _process(delta):
 	else:
 		time.text = str(int(fmod(floor(clock + 9), 12))) + ":%02.f" % floor(fmod(clock + 9, 1)*60) + " AM"
 	
-	if fmod(snappedf(clock, 0.01), 1) == 0 and upgrade_time:
-		print(clock)
-		choose_upgrade()
-		game_state = GameState.PAUSE_MENU
-		%UpgradeBox.show()
+	#if fmod(snappedf(clock, 0.01), 1) == 0 and upgrade_time and clock != 8.0:
+		#choose_upgrade()
+		#game_state = GameState.PAUSE_MENU
+		#%UpgradeBox.show()
 
 
 # start Psuedo Pakman
 func _on_state_changed(new_state: GameState) -> void:
+	# start JT
+	Global.reset_mouse_position() # just insurance to make sure the cursor doesnt get out of sync
+	#end JT
 	# clear out whatever was there before
 	if new_state != GameState.PAUSE_MENU and current_scene_instance:
 		current_scene_instance.queue_free()
@@ -112,27 +131,43 @@ func _on_state_changed(new_state: GameState) -> void:
 			$MainMenu.show()
 			#current_scene_instance = main_menu.instantiate()
 			#add_child(current_scene_instance)
-			var play_button = $MainMenu.get_node("TempPlayButton")
+			var play_button = $MainMenu.get_node("TempPlayButton") # gives error but not fatal so... idk
 			play_button.play_pressed.connect(_on_play_pressed)
-			var options_button = $MainMenu.get_node("TempOptionButton")
+			var options_button = $MainMenu.get_node("TempOptionButton") # gives error but not fatal so... idk
 			options_button.play_pressed.connect(_on_options_pressed)
-			var quit_button = $MainMenu.get_node("TempQuitButton")
+			var quit_button = $MainMenu.get_node("TempQuitButton") # gives error but not fatal so... idk
 			quit_button.play_pressed.connect(_on_quit_pressed)
 			get_tree().paused = true
+			
+			var boss_tween = create_tween().tween_property(boss_sprite, "position:x", -1552, 1.0)
+			var girl_tween = create_tween().tween_property(girl_sprite, "position:x", 1664, 1.0)
 		GameState.GAME:
 			$MainMenu.hide()
 			get_tree().paused = false
+			var boss_tween = create_tween().tween_property(boss_sprite, "position:x", -2980, 1.0)
+			var girl_tween = create_tween().tween_property(girl_sprite, "position:x", 3062, 1.0)
 		GameState.PAUSE_MENU:
 			get_tree().paused = true
 
+func end_game():
+	Global.game_end = true
+	var dark_screen_tween_in = create_tween().tween_property(dark_screen, "modulate:a", 1.0, 1.0)
+	await dark_screen_tween_in.finished
+	var end_screen_instance = end_screen.instantiate()
+	add_child(end_screen_instance)
+
 func _on_play_pressed() -> void:
 	game_state = GameState.GAME
-	Global.manager.create_emails()
+	if not started:
+		started = true
+		Global.manager.create_emails()
+		Global.audio_manager.transition_from_menu()
 # end Psuedo Pakman
 # end ByDesign
 
 #start ampbeetle
 func _on_options_pressed() -> void:
+	last_state = game_state
 	$Options.show()
 
 func _on_quit_pressed() -> void:
@@ -165,10 +200,6 @@ func _on_accept_button_pressed() -> void:
 						spam_chance += button.effects[effect]
 					UpgradeType.EMAIL_SPEED:
 						email_speed += button.effects[effect]
-			print("upload: " + str(upload_speed))
-			print("virus: " + str(virus_chance))
-			print("spam: " + str(spam_chance))
-			print("email: " + str(email_speed))
 			
 			# Don't want it to reappear
 			game_state = GameState.GAME
@@ -184,15 +215,17 @@ func _on_accept_button_pressed() -> void:
 #add something to disable accept button unless an upgrade is selected
 
 func _on_upgrade_timer_timeout() -> void:
-	upgrade_time = true
+	#print("timoout")
+	pass#upgrade_time = true
 
 func _on_options_button_pressed() -> void:
 	$Options.show()
+	last_state = game_state
 	game_state = GameState.PAUSE_MENU
 
 func _on_exit_button_pressed() -> void:
 	$Options.hide()
-	game_state = GameState.GAME
+	game_state = last_state
 
 func _on_main_button_pressed() -> void:
 	#add a "are you sure?" later
@@ -205,7 +238,7 @@ func _on_apply_button_pressed() -> void:
 	elif Global._window_mode == 1:  # fullscreen mode
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	$Options.hide()
-	game_state = GameState.GAME
+	game_state = last_state
 
 #end ampbeetle
 

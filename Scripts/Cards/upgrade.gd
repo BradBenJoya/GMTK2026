@@ -19,6 +19,7 @@ var effects: Dictionary[UpgradeType, float]
 var upgrade: UpgradeItem
 
 @export var upgrade_list: Array[UpgradeItem]
+@export var new_display : Array[Polygon2D]
 
 enum UpgradeType {
 	UPLOAD_SPEED = 1,
@@ -40,7 +41,6 @@ func random_card() -> void:
 	# Pick a random upgrade from predefined list.
 	var random_element = randi_range(0, upgrade_list.size() - 1)
 	var random_upgrade = upgrade_list.pop_at(random_element)      #upgrade_list.pick_random()
-	print("picking random upgrade:" + str(random_upgrade))
 	
 	upgrade = random_upgrade
 	display_name = random_upgrade.name
@@ -48,7 +48,10 @@ func random_card() -> void:
 	effects = random_upgrade.effects
 	
 	if random_upgrade.image != null:
-		display_image = random_upgrade.image
+		#display_image = random_upgrade.image
+		for polygon in new_display:
+			if polygon.name == random_upgrade.name:
+				polygon.visible = true
 	
 	#Cycles through upgrade effects if more than one, and appends everything to description.
 	for effect in random_upgrade.effects:
