@@ -337,7 +337,7 @@ offset_top = -1043.0
 offset_right = 289.0
 offset_bottom = 357.0
 
-[node name="AudioManager" type="Node" parent="." unique_id=1887426924 node_paths=PackedStringArray("level_loop", "virus_loop", "level_ambience", "menu_loop", "mouse_click", "boss_yell", "virus_opened", "correct", "incorrect", "deleted", "recieved", "sent")]
+[node name="AudioManager" type="Node" parent="." unique_id=1887426924 node_paths=PackedStringArray("level_loop", "virus_loop", "level_ambience", "menu_loop", "mouse_click", "boss_yell", "virus_opened", "correct", "incorrect", "deleted", "uploading", "recieved", "sent")]
 script = ExtResource("15_h1bgf")
 level_loop = NodePath("Music/MxLoopLevel")
 virus_loop = NodePath("Music/MxLoopVirus")
@@ -349,6 +349,7 @@ virus_opened = [NodePath("SFX/Virus/SfxEmailVirusOpened01"), NodePath("SFX/Virus
 correct = [NodePath("SFX/Email/MxStingerCorrect")]
 incorrect = [NodePath("SFX/Email/MxStingerIncorrect")]
 deleted = [NodePath("SFX/Email/SfxEmailDeleted01"), NodePath("SFX/Email/SfxEmailDeleted02"), NodePath("SFX/Email/SfxEmailDeleted03"), NodePath("SFX/Email/SfxEmailDeleted04"), NodePath("SFX/Email/SfxEmailDeleted05"), NodePath("SFX/Email/SfxEmailDeleted06"), NodePath("SFX/Email/SfxEmailDeleted07"), NodePath("SFX/Email/SfxEmailDeleted08"), NodePath("SFX/Email/SfxEmailDeleted09")]
+uploading = [NodePath("SFX/Email/SfxEmailFileUploading01"), NodePath("SFX/Email/SfxEmailFileUploading02"), NodePath("SFX/Email/SfxEmailFileUploading03")]
 recieved = [NodePath("SFX/Email/SfxEmailRecieved01"), NodePath("SFX/Email/SfxEmailRecieved02"), NodePath("SFX/Email/SfxEmailRecieved03"), NodePath("SFX/Email/SfxEmailRecieved04"), NodePath("SFX/Email/SfxEmailRecieved05")]
 sent = [NodePath("SFX/Email/SfxEmailSent01"), NodePath("SFX/Email/SfxEmailSent02"), NodePath("SFX/Email/SfxEmailSent03"), NodePath("SFX/Email/SfxEmailSent04"), NodePath("SFX/Email/SfxEmailSent05"), NodePath("SFX/Email/SfxEmailSent06"), NodePath("SFX/Email/SfxEmailSent07")]
 

@@ -98,7 +98,7 @@ func _process(delta):
 			progress = max(progress - upload_drain_rate * delta, 0.0)
 			
 		
-	if held_down:
+	if held_down and not deleted:
 		
 		upload_bar.value = progress
 		if progress >= 100.0:
